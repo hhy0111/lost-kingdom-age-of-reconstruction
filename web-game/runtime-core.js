@@ -11,6 +11,7 @@
   const AUTO_STAGE_WINDOW_LIMIT = 80;
   const AUTO_STAGE_STARTING_ALLOWANCE = 5;
   const AUTO_STAGE_MIN_INTERVAL_MS = 10 * 60 * 1000;
+  const PARTY_REGEN_PER_SECOND = 0.003;
   const RESOURCE_KEYS = ['gold', 'diamond', 'food', 'wood', 'ore', 'magicStone'];
   const KINGDOM_TIERS = [
     { id: 'ruins', name: '폐허', minProgress: 0 },
@@ -141,6 +142,32 @@
     };
   }
 
+  function normalizedHeroStats(hero, index) {
+    const base = heroBaseStats(hero, index);
+    const level = Math.max(1, Math.floor(Number(hero.level) || 1));
+    const star = Math.max(1, Math.floor(Number(hero.star) || 1));
+    const levelBoost = Math.max(0, level - 1);
+    const starBoost = Math.max(0, star - 1);
+    return {
+      attack: Math.round(base.attack * (1 + levelBoost * 0.075 + starBoost * 0.22)),
+      defense: Math.round(base.defense * (1 + levelBoost * 0.055 + starBoost * 0.18)),
+      hp: Math.round(base.hp * (1 + levelBoost * 0.09 + starBoost * 0.22)),
+      cooldown: base.cooldown,
+      skillPower: Math.round(base.skillPower * (1 + Math.min(1.2, levelBoost * 0.006)) * 100) / 100,
+    };
+  }
+
+  function normalizeHeroProgression(state) {
+    state.heroes.owned.forEach((hero, index) => {
+      hero.level = Math.max(1, Math.floor(Number(hero.level) || 1));
+      hero.star = Math.max(1, Math.floor(Number(hero.star) || 1));
+      hero.exp = Math.max(0, Number.isFinite(hero.exp) ? hero.exp : 0);
+      hero.skillCharge = clamp(Number(hero.skillCharge) || 0, 0, 100);
+      hero.attackTimer = Number.isFinite(hero.attackTimer) ? hero.attackTimer : 0.2 + index * 0.2;
+      hero.stats = normalizedHeroStats(hero, index);
+    });
+  }
+
   function equipmentRating(item) {
     const rarityWeight = {
       일반: 1,
@@ -203,9 +230,9 @@
   }
 
   function recalculatePower(state) {
+    normalizeHeroProgression(state);
     const heroPower = state.heroes.owned.reduce((sum, hero) => {
-      const levelScale = 1 + (hero.level - 1) * 0.18 + (hero.star - 1) * 0.3;
-      return sum + Math.round((hero.stats.attack * 5 + hero.stats.defense * 3 + hero.stats.hp * 0.28) * levelScale);
+      return sum + Math.round(hero.stats.attack * 5 + hero.stats.defense * 3 + hero.stats.hp * 0.28 + hero.level * 35 + hero.star * 180);
     }, 0);
 
     const equippedItems = Object.values(state.inventory.equipped)
@@ -225,6 +252,22 @@
     return state.power;
   }
 
+  function syncPartyHealth(state, options = {}) {
+    const previousMax = Number(state.combat.partyHpMax) || 0;
+    const previousHp = Number(state.combat.partyHp) || 0;
+    const nextMax = Math.max(1200, Math.round(state.power.hero * 1.8 + 1200));
+    let ratio = previousMax > 1 ? previousHp / previousMax : 1;
+    if (!Number.isFinite(ratio) || previousHp <= 1) ratio = 1;
+    if (options.keepLowHealth) ratio = clamp(ratio, 0.25, 1);
+    state.combat.partyHpMax = nextMax;
+    state.combat.partyHp = Math.round(nextMax * clamp(ratio, 0.25, 1));
+  }
+
+  function enemyPowerPressure(state) {
+    const power = Math.max(0, Number(state.power?.total) || 0);
+    return Math.min(18000, Math.sqrt(power) * 4);
+  }
+
   function enemyTemplateForStage(data, stage) {
     const isBoss = stage % 10 === 0;
     if (isBoss) {
@@ -238,9 +281,9 @@
     const isBoss = stage % 10 === 0;
     const template = enemyTemplateForStage(data, stage);
     const region = data.regions[Math.min(data.regions.length - 1, Math.floor((stage - 1) / 12))];
-    const hpScale = Math.pow(stage, 1.28);
-    const hp = Math.round((560 + hpScale * 520 + state.power.total * 0.08) * (isBoss ? 8.5 : 1));
-    const attack = Math.round((34 + stage * 8 + state.power.total * 0.012) * (isBoss ? 1.8 : 1));
+    const pressure = enemyPowerPressure(state);
+    const hp = Math.round((560 + stage * 280 + Math.pow(stage, 1.16) * 700 + pressure) * (isBoss ? 6.8 : 1));
+    const attack = Math.round((34 + stage * 7.2 + Math.pow(stage, 0.72) * 18 + pressure * 0.08) * (isBoss ? 1.7 : 1));
 
     state.combat.enemy = {
       id: template.id,
@@ -287,8 +330,6 @@
       if (hero.exp >= required) {
         hero.exp -= required;
         hero.level += 1;
-        hero.stats.attack = Math.round(hero.stats.attack * 1.09);
-        hero.stats.hp = Math.round(hero.stats.hp * 1.08);
       }
     }
 
@@ -326,10 +367,9 @@
   }
 
   function heroDamage(state, hero) {
-    const levelScale = 1 + (hero.level - 1) * 0.09 + (hero.star - 1) * 0.16;
-    const equipmentScale = 1 + state.power.equipment / 16000;
+    const equipmentScale = 1 + Math.min(2.2, state.power.equipment / 16000);
     const variance = 0.88 + roll(state) * 0.24;
-    let damage = hero.stats.attack * levelScale * equipmentScale * variance;
+    let damage = hero.stats.attack * equipmentScale * variance;
     hero.skillCharge = clamp(hero.skillCharge + 16 + hero.level * 0.35, 0, 100);
 
     if (hero.skillCharge >= 100) {
@@ -376,8 +416,9 @@
             grantPatrolRewards(state, data, enemy);
             state.combat.floaters.push({ text: '순찰 보상', tone: 'reward', ttl: 720 });
           }
-          spawnEnemy(state, data);
           recalculatePower(state);
+          syncPartyHealth(state, { keepLowHealth: true });
+          spawnEnemy(state, data);
           break;
         }
       }
@@ -398,6 +439,12 @@
       floater.ttl -= dt * 1000;
     });
     state.combat.floaters = state.combat.floaters.filter((floater) => floater.ttl > 0).slice(-10);
+  }
+
+  function regenerateParty(state, dt) {
+    if (!Number.isFinite(state.combat.partyHpMax) || state.combat.partyHpMax <= 0) return;
+    const regen = Math.max(4, state.combat.partyHpMax * PARTY_REGEN_PER_SECOND) * dt;
+    state.combat.partyHp = Math.min(state.combat.partyHpMax, state.combat.partyHp + regen);
   }
 
   function applyVillageProductionTick(state, dt) {
@@ -429,6 +476,7 @@
       const dt = Math.min(0.1, remaining);
       state.timestamps.now += dt * 1000;
       applyVillageProductionTick(state, dt);
+      regenerateParty(state, dt);
       updateCombat(state, data, dt);
       for (const buff of Object.values(state.buffs.timers)) {
         buff.remaining = Math.max(0, buff.remaining - dt);
@@ -528,8 +576,7 @@
     };
 
     recalculatePower(state);
-    state.combat.partyHpMax = Math.round(state.power.hero * 1.8 + 1200);
-    state.combat.partyHp = state.combat.partyHpMax;
+    syncPartyHealth(state);
     spawnEnemy(state, data);
     addLog(state, '왕국 재건 작전 개시', 'success');
     return state;
@@ -557,7 +604,8 @@
     ensureProgressShape(state);
     ensureCombatPacing(state);
     recalculatePower(state);
-    if (!state.combat.enemy) spawnEnemy(state, data);
+    syncPartyHealth(state, { keepLowHealth: true });
+    spawnEnemy(state, data);
     return state;
   }
 
@@ -630,10 +678,8 @@
     state.resources.gold -= cost.gold;
     state.resources.food -= cost.food;
     hero.level += 1;
-    hero.stats.attack = Math.round(hero.stats.attack * 1.11);
-    hero.stats.defense = Math.round(hero.stats.defense * 1.08);
-    hero.stats.hp = Math.round(hero.stats.hp * 1.1);
     recalculatePower(state);
+    syncPartyHealth(state, { keepLowHealth: true });
     addLog(state, `${hero.name} Lv.${hero.level} 달성`, 'success');
     return hero;
   }
@@ -809,9 +855,15 @@
             name: state.combat.enemy.name,
             hp: Math.round(state.combat.enemy.hp),
             hpMax: state.combat.enemy.hpMax,
+            hpPercent: Math.round((state.combat.enemy.hp / Math.max(1, state.combat.enemy.hpMax)) * 100),
             isBoss: state.combat.enemy.isBoss,
           }
         : null,
+      party: {
+        hp: Math.round(state.combat.partyHp),
+        hpMax: state.combat.partyHpMax,
+        hpPercent: Math.round((state.combat.partyHp / Math.max(1, state.combat.partyHpMax)) * 100),
+      },
       resources: { ...state.resources },
       power: { ...state.power },
       heroes: state.heroes.owned.map((hero) => ({

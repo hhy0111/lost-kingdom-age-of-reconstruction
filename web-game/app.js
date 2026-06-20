@@ -476,7 +476,39 @@ function pacingSnapshot() {
   const limit = pacing.windowLimit || 80;
   const clears = Math.min(limit, pacing.autoStageClearsInWindow || 0);
   const minutes = Math.max(1, Math.round((pacing.minStageIntervalMs || 600000) / 60000));
-  return { pacing, limit, clears, minutes };
+  const interval = pacing.minStageIntervalMs || 600000;
+  const elapsed = Math.max(0, (state.timestamps?.now || Date.now()) - (pacing.lastAutoStageClearAt || 0));
+  const remainingMs = clears < 5 || clears >= limit ? 0 : Math.max(0, interval - elapsed);
+  return { pacing, limit, clears, minutes, remainingMs };
+}
+
+function formatDuration(ms) {
+  const totalSeconds = Math.max(0, Math.ceil(ms / 1000));
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}:${String(seconds).padStart(2, '0')}`;
+}
+
+function hpStatusText(value, max) {
+  const safeMax = Math.max(1, max || 1);
+  return `${formatNumber(value)}/${formatNumber(safeMax)} (${clampPercent(value / safeMax)}%)`;
+}
+
+function combatHudStatusText() {
+  const enemy = state.combat.enemy;
+  if (!enemy) return '적 탐색 중';
+  return `적 HP ${hpStatusText(enemy.hp, enemy.hpMax)}`;
+}
+
+function partyHpStatusText() {
+  return `아군 HP ${hpStatusText(state.combat.partyHp, state.combat.partyHpMax)}`;
+}
+
+function combatMomentumText() {
+  const { limit, clears, remainingMs } = pacingSnapshot();
+  if (clears >= limit) return `오늘 스테이지 진행 완료 · 순찰 보상 ${formatNumber(state.progress.patrolDefeats || 0)}회`;
+  if (clears < 5) return `빠른 스테이지 진행 ${clears}/5`;
+  return remainingMs > 0 ? `다음 스테이지까지 ${formatDuration(remainingMs)}` : '다음 처치 시 스테이지 진행';
 }
 
 function kingdomProgressScore() {
@@ -511,13 +543,14 @@ function liveTextValues() {
     lobbyStatus: `${state.village.tier.name} 단계 · 전투력 ${formatNumber(state.power.total)}`,
     kingdomNextGoal: kingdom.complete ? '최종 제국 단계 유지 중' : `${kingdom.nextName}까지 ${kingdom.remaining} 진척`,
     kingdomProgressValue: `${Math.min(kingdom.score, kingdom.max)}/${kingdom.max}`,
+    combatHudStatus: combatHudStatusText(),
+    partyHpStatus: partyHpStatusText(),
+    combatMomentum: combatMomentumText(),
     objectiveStageValue: `${Math.min(DAILY_STAGE_TARGET, state.combat.stage)}/${DAILY_STAGE_TARGET}`,
     objectiveEquipmentValue: `${Math.min(DAILY_EQUIPMENT_TARGET, state.progress.equipmentLooted)}/${DAILY_EQUIPMENT_TARGET}`,
     objectiveBuildingValue: `${Math.min(DAILY_BUILDING_TARGET, state.progress.buildingsUpgraded)}/${DAILY_BUILDING_TARGET}`,
     pacingTitle: clears >= limit ? '순찰 모드' : '자동 원정',
-    pacingHelp: clears >= limit
-      ? `순찰 보상 ${formatNumber(state.progress.patrolDefeats || 0)}회 누적`
-      : `초반 5회 후 ${minutes}분마다 스테이지 진행`,
+    pacingHelp: combatMomentumText(),
     pacingValue: `${clears}/${limit}`,
     dailyStageValue: `현재 Stage ${state.combat.stage}`,
     dailyEquipmentValue: `장비 ${formatNumber(state.progress.equipmentLooted)}개`,
@@ -537,6 +570,8 @@ function liveProgressValues() {
   const { limit, clears } = pacingSnapshot();
   const kingdom = kingdomNextMilestone();
   const values = {
+    enemyHp: { value: state.combat.enemy?.hp || 0, max: state.combat.enemy?.hpMax || 1 },
+    partyHp: { value: state.combat.partyHp, max: state.combat.partyHpMax },
     objectiveStage: { value: state.combat.stage, max: DAILY_STAGE_TARGET },
     objectiveEquipment: { value: state.progress.equipmentLooted, max: DAILY_EQUIPMENT_TARGET },
     objectiveBuilding: { value: state.progress.buildingsUpgraded, max: DAILY_BUILDING_TARGET },
@@ -566,7 +601,7 @@ function renderLivePanelUpdates() {
     const value = Math.max(0, progress.value || 0);
     const label = node.querySelector('[data-live-progress-value]');
     const fill = node.querySelector('[data-live-progress-fill]');
-    if (label) setStableText(label, `${Math.min(max, value)}/${max}`);
+    if (label) setStableText(label, progressValueText(value, max));
     if (fill) fill.style.width = `${clampPercent(value / max)}%`;
   });
 
@@ -1056,7 +1091,10 @@ function renderShell() {
             <strong class="stage-label"></strong>
             <span class="enemy-label"></span>
           </div>
+          <div class="combat-status-line enemy-hp-status" data-live-text="combatHudStatus"></div>
           <div class="hp-track"><div class="hp-fill"></div></div>
+          <div class="combat-status-line party-hp-status" data-live-text="partyHpStatus"></div>
+          <div class="hero-hp-track" data-live-progress="partyHp"><div class="hero-hp-fill" data-live-progress-fill="partyHp"></div></div>
         </div>
       </div>
       <section class="panel"></section>
@@ -1411,7 +1449,7 @@ function progressBar(label, value, max, liveKey = '') {
   const wrap = el('div', 'mini-progress');
   if (liveKey) wrap.dataset.liveProgress = liveKey;
   const top = el('div', 'mini-progress-top');
-  const valueNode = el('strong', '', `${Math.min(max, value)}/${max}`);
+  const valueNode = el('strong', '', progressValueText(value, max));
   if (liveKey) valueNode.dataset.liveProgressValue = liveKey;
   top.append(el('span', '', label), valueNode);
   const track = el('div', 'mini-progress-track');
@@ -1421,6 +1459,13 @@ function progressBar(label, value, max, liveKey = '') {
   track.append(fill);
   wrap.append(top, track);
   return wrap;
+}
+
+function progressValueText(value, max) {
+  const safeMax = Math.max(1, max || 1);
+  const safeValue = Math.max(0, Math.min(safeMax, value || 0));
+  if (safeMax >= 1000 || safeValue >= 1000) return `${formatNumber(safeValue)}/${formatNumber(safeMax)}`;
+  return `${Math.floor(safeValue)}/${safeMax}`;
 }
 
 function renderKingdomProgressCard() {
@@ -1453,6 +1498,20 @@ function renderObjectiveBoard() {
   return section;
 }
 
+function renderCombatReadoutCard() {
+  const section = el('section', 'combat-readout-card');
+  const title = el('strong', '', '전투 상태');
+  const momentum = el('small', 'combat-momentum', combatMomentumText());
+  momentum.dataset.liveText = 'combatMomentum';
+  section.append(
+    title,
+    progressBar('적 HP', state.combat.enemy?.hp || 0, state.combat.enemy?.hpMax || 1, 'enemyHp'),
+    progressBar('아군 HP', state.combat.partyHp, state.combat.partyHpMax, 'partyHp'),
+    momentum
+  );
+  return section;
+}
+
 function renderPacingBoard() {
   const pacing = state.combat.pacing || {};
   const limit = pacing.windowLimit || 80;
@@ -1469,6 +1528,7 @@ function renderPacingBoard() {
   title.dataset.liveText = 'pacingTitle';
   const help = el('small', '', helper);
   help.dataset.liveText = 'pacingHelp';
+  help.textContent = combatMomentumText();
   copy.append(
     title,
     progressBar('오늘 진행', clears, limit, 'pacingClears'),
@@ -1495,6 +1555,7 @@ function renderSkillRack() {
 
 function renderCombatPanel(panel) {
   panel.append(panelHead('전투', `Stage ${state.combat.stage}`, 'combatPanelStage'));
+  panel.append(renderCombatReadoutCard());
   panel.append(renderObjectiveBoard());
   panel.append(renderPacingBoard());
   panel.append(renderSkillRack());
@@ -2037,6 +2098,7 @@ function combatSnapshot() {
     enemiesDefeated: state.progress.enemiesDefeated,
     bossesDefeated: state.progress.bossesDefeated,
     equipmentLooted: state.progress.equipmentLooted,
+    patrolDefeats: state.progress.patrolDefeats || 0,
   };
 }
 
@@ -2087,6 +2149,13 @@ function captureCombatEvents(before, after) {
       createUpgradeBurst(null, '장비 획득', latestItem?.assetUrl);
     }
     ui.stageFlashMs = Math.max(ui.stageFlashMs, 560);
+  }
+
+  if (after.patrolDefeats > before.patrolDefeats) {
+    createCombatEvent('burst', 'enemy', after.patrolDefeats - before.patrolDefeats, 'patrol');
+    playCombatSfxThrottled('reward_gold_small', 800, { volume: 0.42 });
+    createRewardBurst(resourceDelta(before.resources, after.resources), { source: 'combat' });
+    ui.stageFlashMs = Math.max(ui.stageFlashMs, 240);
   }
 
   const sameEnemy = before.enemyKey === after.enemyKey;
@@ -2221,8 +2290,8 @@ function drawDamageText(event, w, h) {
   const y = event.y * h - progress * 58;
   const alpha = 1 - progress;
   const prefix = event.tone === 'crit' ? 'CRIT ' : event.tone === 'skill' ? 'SKILL ' : '';
-  const text = event.amount ? `${prefix}-${formatNumber(event.amount)}` : event.tone === 'reward' ? 'CLEAR' : 'HIT';
-  const color = event.tone === 'enemy' ? '#ff9f8d' : event.tone === 'skill' ? '#9ad7ff' : event.tone === 'crit' ? '#ffd166' : '#fff8df';
+  const text = event.tone === 'patrol' ? 'PATROL' : event.amount ? `${prefix}-${formatNumber(event.amount)}` : event.tone === 'reward' ? 'CLEAR' : 'HIT';
+  const color = event.tone === 'enemy' ? '#ff9f8d' : event.tone === 'skill' ? '#9ad7ff' : event.tone === 'crit' || event.tone === 'patrol' ? '#ffd166' : '#fff8df';
 
   ctx.save();
   ctx.globalAlpha = alpha;
@@ -2442,6 +2511,9 @@ function renderCanvas() {
   document.querySelector('.stage-label').textContent = `Stage ${state.combat.stage}`;
   document.querySelector('.enemy-label').textContent = enemy ? `${enemy.isBoss ? 'BOSS ' : ''}${enemy.name}` : '';
   document.querySelector('.hp-fill').style.width = enemy ? `${clampPercent(enemy.hp / enemy.hpMax)}%` : '0%';
+  document.querySelector('.enemy-hp-status').textContent = combatHudStatusText();
+  document.querySelector('.party-hp-status').textContent = partyHpStatusText();
+  document.querySelector('.hero-hp-fill').style.width = `${clampPercent(state.combat.partyHp / state.combat.partyHpMax)}%`;
 }
 
 function clampPercent(value) {

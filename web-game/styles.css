@@ -184,6 +184,32 @@ button {
   transition: width 0.12s linear;
 }
 
+.combat-status-line {
+  min-height: 14px;
+  color: rgba(255, 248, 223, 0.9);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.party-hp-status {
+  color: rgba(194, 232, 255, 0.94);
+}
+
+.hero-hp-track {
+  height: 7px;
+  border: 1px solid rgba(194, 232, 255, 0.44);
+  background: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.hero-hp-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #4ea7ff, #9ad7ff);
+  transition: width 0.12s linear;
+}
+
 .panel {
   min-height: 0;
   overflow: auto;
@@ -304,6 +330,24 @@ button {
 .card {
   display: grid;
   gap: 8px;
+}
+
+.combat-readout-card {
+  border: 1px solid rgba(80, 126, 82, 0.28);
+  background: rgba(240, 247, 231, 0.78);
+  padding: 10px;
+  display: grid;
+  gap: 8px;
+}
+
+.combat-readout-card > strong {
+  font-size: 14px;
+}
+
+.combat-momentum {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
 }
 
 .card-grid > .card {

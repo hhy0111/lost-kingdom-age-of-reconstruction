@@ -87,6 +87,38 @@ test('combat advances automatically, kills enemies, grants rewards, and spawns b
   assert.equal(state.combat.enemy.isBoss, true);
 });
 
+test('legacy overgrown combat saves are normalized into readable battle pacing', () => {
+  const data = makeData();
+  const legacy = runtime.createNewGame(data, { now: NOW, seed: 315 });
+  legacy.combat.stage = 2459;
+  legacy.combat.pacing.autoStageClearsInWindow = 8;
+  legacy.combat.pacing.lastAutoStageClearAt = legacy.timestamps.now;
+  legacy.heroes.owned.forEach((hero, index) => {
+    hero.level = 2459 - index * 80;
+    hero.stats.attack = 1e21;
+    hero.stats.defense = 1e18;
+    hero.stats.hp = 1e20;
+  });
+  legacy.power.total = 1.2e33;
+  legacy.combat.partyHp = 1;
+  legacy.combat.partyHpMax = 1;
+  legacy.combat.enemy = null;
+
+  const state = runtime.loadGame(runtime.serializeGame(legacy), data, { now: NOW + 1000 });
+  runtime.spawnEnemy(state, data);
+  const firstHp = state.combat.enemy.hp;
+
+  assert.ok(state.power.total < 2_000_000, `legacy power should be normalized, got ${state.power.total}`);
+  assert.ok(state.combat.enemy.hpMax < 50_000_000, `enemy hp should be readable, got ${state.combat.enemy.hpMax}`);
+  assert.ok(state.combat.partyHpMax > 100_000, `party hp should recover to the normalized roster, got ${state.combat.partyHpMax}`);
+
+  runtime.advanceTime(state, data, 10000);
+  const hpLostRatio = (firstHp - state.combat.enemy.hp) / state.combat.enemy.hpMax;
+
+  assert.ok(hpLostRatio > 0.02, `enemy hp should visibly drop in 10s, got ${hpLostRatio}`);
+  assert.ok(state.combat.partyHp > 1, `party hp should remain readable instead of pinned at 1, got ${state.combat.partyHp}`);
+});
+
 test('day-long active idle play is capped into patrol mode instead of runaway leveling', () => {
   const data = makeData();
   const state = runtime.createNewGame(data, { now: NOW, seed: 315 });
@@ -248,6 +280,10 @@ test('playable web game shell exposes canvas, PWA files, emulator server, and ve
   assert.match(app, /claimDailyPerformanceReward/);
   assert.match(app, /createCombatEvent/);
   assert.match(app, /drawDamageText/);
+  assert.match(app, /function combatHudStatusText/);
+  assert.match(app, /function partyHpStatusText/);
+  assert.match(app, /after\.patrolDefeats > before\.patrolDefeats/);
+  assert.match(app, /hero-hp-fill/);
   assert.match(app, /drawEffectSprite/);
   assert.match(app, /왕국 로비/);
   assert.match(app, /장기 보급/);
@@ -277,6 +313,9 @@ test('playable web game shell exposes canvas, PWA files, emulator server, and ve
   assert.match(app, /toastUid/);
   assert.match(app, /dataset\.toastIds/);
   assert.match(styles, /\.screen-flash/);
+  assert.match(styles, /\.hero-hp-track/);
+  assert.match(styles, /\.hero-hp-fill/);
+  assert.match(styles, /\.combat-status-line/);
   assert.match(styles, /\.spark-rain/);
   assert.match(styles, /\.patrol-status/);
   assert.match(styles, /\.village-lobby/);
@@ -300,7 +339,7 @@ test('playable web game shell exposes canvas, PWA files, emulator server, and ve
   assert.match(styles, /\.lobby-help/);
   assert.match(styles, /\.thumb-row div/);
   assert.match(styles, /\.row > div/);
-  assert.match(serviceWorker, /lost-kingdom-runtime-v27/);
+  assert.match(serviceWorker, /lost-kingdom-runtime-v28/);
   assert.match(serviceWorker, /privacy-policy\.html/);
   assert.match(serviceWorker, /audio-manifest\.json/);
   assert.match(server, /0\.0\.0\.0/);
@@ -321,7 +360,7 @@ test('install manifest exposes project-safe app icons for PWA installation', () 
   assert.ok(manifest.icons.some((icon) => icon.src === 'icons/app-icon-512.png' && icon.sizes === '512x512' && icon.purpose === 'any'));
   assert.ok(manifest.icons.some((icon) => icon.src === 'icons/app-icon-maskable-512.png' && icon.sizes === '512x512' && icon.purpose === 'maskable'));
   assert.match(indexHtml, /rel="apple-touch-icon" href="icons\/app-icon-192\.png"/);
-  assert.match(serviceWorker, /lost-kingdom-runtime-v27/);
+  assert.match(serviceWorker, /lost-kingdom-runtime-v28/);
   assert.match(serviceWorker, /icons\/app-icon-192\.png/);
   assert.match(serviceWorker, /icons\/app-icon-512\.png/);
   assert.match(serviceWorker, /icons\/app-icon-maskable-512\.png/);
