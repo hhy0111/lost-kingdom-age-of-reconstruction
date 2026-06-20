@@ -1,35 +1,44 @@
-# 광고/IAP SDK 연동 다음 단계
+# Monetization SDK Integration Status
 
-## 현재 완료된 범위
+Date: 2026-06-21
 
-- 광고/IAP 정책 데이터 테이블 생성
-- 보상형 광고 강제 노출 방지, 일일 제한, 쿨다운 정책 C# 코어 구현
-- 광고 제거 구매자 즉시 수령 정책 C# 코어 구현
-- 구매 transactionId 중복 지급 방지 C# 코어 구현
-- SDK 어댑터 인터페이스 정의
+This repository now contains the internal monetization contract and service layer for rewarded ads and in-app purchases. It does not contain a native Android, iOS, or Unity app project, so SDK package installation and device-level store testing must happen in the native app project that consumes this repository.
 
-## Unity SDK 설치 후 연결할 어댑터
+## Completed In This Repository
 
-| 어댑터 | 대상 SDK | 역할 |
-|---|---|---|
-| `IRewardedAdAdapter` | Google Mobile Ads SDK for AdMob | 광고 ready 확인, 광고 표시, 완료 콜백 전달 |
-| `IIapStoreAdapter` | Unity IAP | 구매 시작, 구매 결과, 구매 복원 결과 전달 |
+- Rewarded ad catalog and AdMob production identifiers are defined in `Assets/Data/Tables/ad_placements.json`.
+- All current ad placements are optional rewarded ads, never forced interstitials.
+- `IRewardedAdAdapter` defines the SDK bridge required from Google Mobile Ads SDK for AdMob.
+- `RewardedAdService` checks placement caps, cooldowns, remove-ads entitlement, SDK readiness, and rewarded completion before granting value.
+- `IIapStoreAdapter` defines the SDK bridge required from Unity IAP, Google Play Billing, or StoreKit.
+- `PurchaseService` starts purchases through the store adapter, rejects failed/pending-invalid results, validates receipt presence, checks product identity, prevents duplicate transaction fulfillment, and exposes restore flow handling.
+- `PurchaseLedger` prevents duplicate fulfillment by transaction ID.
+- `NonEmptyPurchaseReceiptValidator` provides the local validation gate and can be replaced by a server-backed validator later.
+- `npm run check` now runs both Node release checks and C# monetization core tests.
 
-## 구현 순서
+## Production Android Identifiers
 
-1. Unity Package Manager에서 광고 SDK와 Unity IAP 설치
-2. `Assets/Data/Tables/ad_placements.json`을 로드해 AdMob app ID `ca-app-pub-4402708884038037~5285192241` 및 rewarded ad unit ID `ca-app-pub-4402708884038037/6509654325` 매핑
-3. `Assets/Data/Tables/iap_products.json`을 로드해 store product ID 매핑
-4. `IRewardedAdAdapter` 구현체 작성
-5. `IIapStoreAdapter` 구현체 작성
-6. 구매 결과 수신 시 `PurchaseLedger.TryMarkFulfilled`로 중복 지급 방지
-7. 광고 보상 수령 시 `RewardedAdPolicy.Evaluate`로 표시/즉시수령/차단 결정
-8. `monetization_analytics_events.json`의 이벤트 이름으로 분석 SDK 연결
+| Item | Value |
+|---|---|
+| AdMob app ID | `ca-app-pub-4402708884038037~5285192241` |
+| Rewarded ad unit name | `rewarded_core` |
+| Rewarded ad unit ID | `ca-app-pub-4402708884038037/6509654325` |
 
-## 주의 사항
+## Native App Integration Required Outside This Repository
 
-- 광고 완료 콜백 전에는 보상을 지급하지 않는다.
-- 광고 실패/취소는 일일 횟수를 차감하지 않는다.
-- 광고 제거 구매자는 SDK ready 여부와 무관하게 즉시 수령 가능하다.
-- iOS에는 구매 복원 버튼을 설정 화면과 패키지 화면에 노출한다.
-- 소비성 상품은 transactionId 중복 지급만 방지하고, 일반 복원 보상으로 다시 지급하지 않는다.
+1. Add Google Mobile Ads SDK for AdMob to the Android or Unity app project.
+2. Add Unity IAP, Google Play Billing, or StoreKit to the native app project.
+3. Implement `IRewardedAdAdapter` by loading and showing the configured AdMob rewarded unit.
+4. Implement `IIapStoreAdapter` by forwarding purchase, pending, failure, restore, transaction ID, and receipt payload events from the platform store.
+5. Persist `PurchaseLedger` state with the app save data or server account state.
+6. Replace `NonEmptyPurchaseReceiptValidator` with server-backed validation before granting high-value durable goods in production, when a server is available.
+7. Run real-device sandbox tests for purchase success, cancellation, pending purchase, restore, rewarded complete, rewarded close, not-ready, cap, cooldown, and remove-ads instant claim.
+
+## Safety Rules
+
+- Never grant rewarded value before the rewarded completion callback.
+- Never show forced ads.
+- Do not count failed or closed ads as claimed rewards.
+- Do not grant purchases without a receipt or transaction ID.
+- Do not grant the same transaction ID twice.
+- Non-consumable and subscription restore should restore entitlement state, not duplicate consumable rewards.

@@ -5,6 +5,7 @@
   "description": "Image-independent data foundation for Lost Kingdom: Age of Reconstruction.",
   "scripts": {
     "test": "node --test tests/catalog-data.test.cjs tests/prompt-manifest.test.cjs tests/growth-upgrade.test.cjs tests/monetization-data.test.cjs tests/asset-application.test.cjs tests/audio-assets.test.cjs tests/privacy-policy.test.cjs tests/building-era-image-prompts.test.cjs tests/web-preview-data.test.cjs tests/web-game-runtime.test.cjs tests/release-readiness.test.cjs",
+    "test:monetization": "dotnet run --project tests/LostKingdom.Monetization.Tests/LostKingdom.Monetization.Tests.csproj",
     "build:data": "node tools/build-data.cjs",
     "validate:data": "node tools/validate-data.cjs",
     "build:prompts": "node tools/build-prompt-manifest.cjs",
@@ -18,7 +19,7 @@
     "build:game": "node tools/build-runtime-data.cjs",
     "validate:release": "node tools/validate-release-readiness.cjs",
     "serve:game": "node tools/serve-game.cjs",
-    "check": "npm test && npm run build:data && npm run validate:data && npm run build:prompts && npm run validate:prompts && npm run validate:assets && npm run validate:sounds && npm run build:preview && npm run build:game && npm run validate:release"
+    "check": "npm test && npm run test:monetization && npm run build:data && npm run validate:data && npm run build:prompts && npm run validate:prompts && npm run validate:assets && npm run validate:sounds && npm run build:preview && npm run build:game && npm run validate:release"
   },
   "devDependencies": {
     "pngjs": "^7.0.0"
