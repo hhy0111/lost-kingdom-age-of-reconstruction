@@ -1,0 +1,130 @@
+[
+  {
+    "id": "region_grassland",
+    "order": 1,
+    "name": "초원",
+    "stageRange": "1~100",
+    "mainResources": [
+      "식량",
+      "목재"
+    ],
+    "unlocks": [
+      "농장",
+      "여관",
+      "기본 영웅"
+    ],
+    "elementTheme": "neutral",
+    "mood": "무너진 들판과 생존자 캠프"
+  },
+  {
+    "id": "region_forest",
+    "order": 2,
+    "name": "숲",
+    "stageRange": "101~220",
+    "mainResources": [
+      "목재",
+      "식량"
+    ],
+    "unlocks": [
+      "벌목소",
+      "탐험가 길드"
+    ],
+    "elementTheme": "wind",
+    "mood": "고대 수목과 숨은 마을"
+  },
+  {
+    "id": "region_abandoned_mine",
+    "order": 3,
+    "name": "폐광",
+    "stageRange": "221~360",
+    "mainResources": [
+      "광석",
+      "골드"
+    ],
+    "unlocks": [
+      "광산",
+      "대장간 확장"
+    ],
+    "elementTheme": "earth",
+    "mood": "버려진 갱도와 광부 피난처"
+  },
+  {
+    "id": "region_desert",
+    "order": 4,
+    "name": "사막",
+    "stageRange": "361~520",
+    "mainResources": [
+      "골드",
+      "광석"
+    ],
+    "unlocks": [
+      "시장",
+      "상단 탐험"
+    ],
+    "elementTheme": "fire",
+    "mood": "모래 유적과 대상로"
+  },
+  {
+    "id": "region_snowfield",
+    "order": 5,
+    "name": "설원",
+    "stageRange": "521~700",
+    "mainResources": [
+      "식량",
+      "마력석"
+    ],
+    "unlocks": [
+      "성벽",
+      "사제단"
+    ],
+    "elementTheme": "water",
+    "mood": "얼어붙은 북방 요새"
+  },
+  {
+    "id": "region_volcano",
+    "order": 6,
+    "name": "화산",
+    "stageRange": "701~900",
+    "mainResources": [
+      "광석",
+      "마력석"
+    ],
+    "unlocks": [
+      "고급 제작",
+      "전설 장비"
+    ],
+    "elementTheme": "fire",
+    "mood": "용암 제련소와 불의 신전"
+  },
+  {
+    "id": "region_abyss",
+    "order": 7,
+    "name": "심연",
+    "stageRange": "901~1120",
+    "mainResources": [
+      "마력석"
+    ],
+    "unlocks": [
+      "각성",
+      "유물"
+    ],
+    "elementTheme": "dark",
+    "mood": "어둠 균열과 심연 제단"
+  },
+  {
+    "id": "region_demon_castle",
+    "order": 8,
+    "name": "마왕성",
+    "stageRange": "1121~1400",
+    "mainResources": [
+      "마력석",
+      "전설 재료"
+    ],
+    "unlocks": [
+      "최종 연구",
+      "신화 장비"
+    ],
+    "elementTheme": "dark",
+    "mood": "붕괴한 왕성 위의 마왕성"
+  }
+]

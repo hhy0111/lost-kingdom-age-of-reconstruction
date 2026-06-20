@@ -1,0 +1,152 @@
+[
+  {
+    "id": "monetization_screen_opened",
+    "eventName": "monetization_screen_opened",
+    "category": "screen"
+  },
+  {
+    "id": "shop_tab_opened",
+    "eventName": "shop_tab_opened",
+    "category": "screen"
+  },
+  {
+    "id": "package_detail_opened",
+    "eventName": "package_detail_opened",
+    "category": "screen"
+  },
+  {
+    "id": "ad_reward_offer_shown",
+    "eventName": "ad_reward_offer_shown",
+    "category": "ad"
+  },
+  {
+    "id": "ad_reward_offer_clicked",
+    "eventName": "ad_reward_offer_clicked",
+    "category": "ad"
+  },
+  {
+    "id": "ad_reward_started",
+    "eventName": "ad_reward_started",
+    "category": "ad"
+  },
+  {
+    "id": "ad_reward_completed",
+    "eventName": "ad_reward_completed",
+    "category": "ad"
+  },
+  {
+    "id": "ad_reward_failed",
+    "eventName": "ad_reward_failed",
+    "category": "ad"
+  },
+  {
+    "id": "ad_reward_granted",
+    "eventName": "ad_reward_granted",
+    "category": "ad"
+  },
+  {
+    "id": "ad_reward_limit_reached",
+    "eventName": "ad_reward_limit_reached",
+    "category": "ad"
+  },
+  {
+    "id": "ad_reward_cooldown_blocked",
+    "eventName": "ad_reward_cooldown_blocked",
+    "category": "ad"
+  },
+  {
+    "id": "remove_ads_offer_shown",
+    "eventName": "remove_ads_offer_shown",
+    "category": "iap"
+  },
+  {
+    "id": "iap_product_catalog_loaded",
+    "eventName": "iap_product_catalog_loaded",
+    "category": "iap"
+  },
+  {
+    "id": "iap_product_catalog_failed",
+    "eventName": "iap_product_catalog_failed",
+    "category": "iap"
+  },
+  {
+    "id": "iap_purchase_started",
+    "eventName": "iap_purchase_started",
+    "category": "iap"
+  },
+  {
+    "id": "iap_purchase_cancelled",
+    "eventName": "iap_purchase_cancelled",
+    "category": "iap"
+  },
+  {
+    "id": "iap_purchase_pending",
+    "eventName": "iap_purchase_pending",
+    "category": "iap"
+  },
+  {
+    "id": "iap_purchase_completed",
+    "eventName": "iap_purchase_completed",
+    "category": "iap"
+  },
+  {
+    "id": "iap_purchase_failed",
+    "eventName": "iap_purchase_failed",
+    "category": "iap"
+  },
+  {
+    "id": "iap_receipt_validation_started",
+    "eventName": "iap_receipt_validation_started",
+    "category": "iap"
+  },
+  {
+    "id": "iap_receipt_validation_succeeded",
+    "eventName": "iap_receipt_validation_succeeded",
+    "category": "iap"
+  },
+  {
+    "id": "iap_receipt_validation_failed",
+    "eventName": "iap_receipt_validation_failed",
+    "category": "iap"
+  },
+  {
+    "id": "iap_entitlement_granted",
+    "eventName": "iap_entitlement_granted",
+    "category": "iap"
+  },
+  {
+    "id": "iap_entitlement_duplicate_ignored",
+    "eventName": "iap_entitlement_duplicate_ignored",
+    "category": "iap"
+  },
+  {
+    "id": "iap_restore_started",
+    "eventName": "iap_restore_started",
+    "category": "iap"
+  },
+  {
+    "id": "iap_restore_completed",
+    "eventName": "iap_restore_completed",
+    "category": "iap"
+  },
+  {
+    "id": "iap_restore_failed",
+    "eventName": "iap_restore_failed",
+    "category": "iap"
+  },
+  {
+    "id": "iap_purchase_restored",
+    "eventName": "iap_purchase_restored",
+    "category": "iap"
+  },
+  {
+    "id": "kingdom_pass_premium_viewed",
+    "eventName": "kingdom_pass_premium_viewed",
+    "category": "pass"
+  },
+  {
+    "id": "kingdom_pass_premium_unlocked",
+    "eventName": "kingdom_pass_premium_unlocked",
+    "category": "pass"
+  }
+]

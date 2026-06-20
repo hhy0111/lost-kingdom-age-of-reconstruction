@@ -1,0 +1,58 @@
+[
+  {
+    "id": "store_google_icon_castle_progression",
+    "name": "Google Play 아이콘 테스트: 성 복구 단계",
+    "platform": "google_play",
+    "assetType": "icon",
+    "hypothesis": "폐허 성 vs 복구된 왕궁 아이콘 전환율 비교"
+  },
+  {
+    "id": "store_google_screenshot_first_10_minutes",
+    "name": "Google Play 스크린샷 테스트: 첫 10분 복구",
+    "platform": "google_play",
+    "assetType": "screenshot",
+    "hypothesis": "전투력 숫자보다 폐허에서 마을로 바뀌는 화면을 첫 장에 배치"
+  },
+  {
+    "id": "store_google_video_idle_loop",
+    "name": "Google Play 영상 테스트: 방치 루프",
+    "platform": "google_play",
+    "assetType": "video",
+    "hypothesis": "전투-보상-건설-왕국 변화 20초 루프 비교"
+  },
+  {
+    "id": "store_google_copy_classic_rpg",
+    "name": "Google Play 문구 테스트: 고전 RPG 감성",
+    "platform": "google_play",
+    "assetType": "copy",
+    "hypothesis": "마을 재건/장비 파밍/영웅 수집 키워드 비교"
+  },
+  {
+    "id": "store_apple_in_app_event_rebuild_week",
+    "name": "Apple In-App Event: 폐허 복구 주간",
+    "platform": "app_store",
+    "assetType": "in_app_event",
+    "hypothesis": "신규/기존/복귀 유저에게 기간 한정 복구 이벤트 노출"
+  },
+  {
+    "id": "store_apple_in_app_event_abyss_rift",
+    "name": "Apple In-App Event: 심연 균열",
+    "platform": "app_store",
+    "assetType": "in_app_event",
+    "hypothesis": "중후반 유저 재접속용 주말 이벤트 노출"
+  },
+  {
+    "id": "store_localized_korea_japan_us",
+    "name": "지역별 스토어 현지화",
+    "platform": "both",
+    "assetType": "localization",
+    "hypothesis": "한국/일본/미국 스크린샷 순서와 문구를 분리 테스트"
+  },
+  {
+    "id": "store_pre_registration_rewards",
+    "name": "사전예약 보상 테스트",
+    "platform": "google_play",
+    "assetType": "pre_registration",
+    "hypothesis": "희귀 장비 선택권 vs 다이아+소환권 구성 비교"
+  }
+]

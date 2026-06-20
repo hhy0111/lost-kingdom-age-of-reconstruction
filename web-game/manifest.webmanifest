@@ -1,0 +1,21 @@
+{
+  "name": "잃어버린 왕국 : 재건의 시대",
+  "short_name": "잃어버린 왕국",
+  "start_url": "/web-game/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f1e5",
+  "theme_color": "#23342d",
+  "icons": [
+    {
+      "src": "/Assets/Art/UI/ui_icon_001.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/Assets/Art/UI/ui_icon_005.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

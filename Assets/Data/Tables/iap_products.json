@@ -1,0 +1,72 @@
+[
+  {
+    "id": "iap_starter_pack",
+    "shopProductId": "starter_pack",
+    "googlePlayProductId": "lostkingdom.starter_pack",
+    "appleProductId": "com.lostkingdom.starterpack",
+    "productType": "consumable",
+    "priceKrw": 1500,
+    "fulfillmentPolicy": "grant_once_then_mark_claimed",
+    "restorePolicy": "not_restorable_consumable"
+  },
+  {
+    "id": "iap_remove_ads",
+    "shopProductId": "remove_ads",
+    "googlePlayProductId": "lostkingdom.remove_ads",
+    "appleProductId": "com.lostkingdom.removeads",
+    "productType": "non_consumable",
+    "priceKrw": 8900,
+    "fulfillmentPolicy": "unlock_ad_skip_entitlement_permanently",
+    "restorePolicy": "restore_non_consumable"
+  },
+  {
+    "id": "iap_monthly_subscription",
+    "shopProductId": "monthly_subscription",
+    "googlePlayProductId": "lostkingdom.monthly_subscription",
+    "appleProductId": "com.lostkingdom.monthlysubscription",
+    "productType": "subscription",
+    "priceKrw": 6500,
+    "fulfillmentPolicy": "grant_30_day_membership_and_daily_claims",
+    "restorePolicy": "restore_subscription_state"
+  },
+  {
+    "id": "iap_kingdom_pass",
+    "shopProductId": "kingdom_pass",
+    "googlePlayProductId": "lostkingdom.kingdom_pass",
+    "appleProductId": "com.lostkingdom.kingdompass",
+    "productType": "season_pass",
+    "priceKrw": 12900,
+    "fulfillmentPolicy": "unlock_current_season_premium_track",
+    "restorePolicy": "restore_current_season_entitlement"
+  },
+  {
+    "id": "iap_growth_pack_1",
+    "shopProductId": "growth_pack_1",
+    "googlePlayProductId": "lostkingdom.growth_pack_1",
+    "appleProductId": "com.lostkingdom.growthpack1",
+    "productType": "consumable",
+    "priceKrw": 5900,
+    "fulfillmentPolicy": "grant_growth_rewards_for_early_regions",
+    "restorePolicy": "not_restorable_consumable"
+  },
+  {
+    "id": "iap_growth_pack_2",
+    "shopProductId": "growth_pack_2",
+    "googlePlayProductId": "lostkingdom.growth_pack_2",
+    "appleProductId": "com.lostkingdom.growthpack2",
+    "productType": "consumable",
+    "priceKrw": 12900,
+    "fulfillmentPolicy": "grant_growth_rewards_for_mid_regions",
+    "restorePolicy": "not_restorable_consumable"
+  },
+  {
+    "id": "iap_growth_pack_3",
+    "shopProductId": "growth_pack_3",
+    "googlePlayProductId": "lostkingdom.growth_pack_3",
+    "appleProductId": "com.lostkingdom.growthpack3",
+    "productType": "consumable",
+    "priceKrw": 29000,
+    "fulfillmentPolicy": "grant_growth_rewards_for_late_regions",
+    "restorePolicy": "not_restorable_consumable"
+  }
+]

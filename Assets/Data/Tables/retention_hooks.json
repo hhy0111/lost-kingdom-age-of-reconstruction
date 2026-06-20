@@ -1,0 +1,86 @@
+[
+  {
+    "id": "retention_first_10_minute_kingdom_rebuild",
+    "name": "첫 10분 왕국 복구",
+    "type": "ftue",
+    "targetMetric": "install_to_d1",
+    "design": "첫 세션에 건물 2개 복구, 영웅 3명 편성, 첫 보스 예고를 완료한다."
+  },
+  {
+    "id": "retention_first_boss_goal",
+    "name": "첫 보스 목표 고정",
+    "type": "ftue",
+    "targetMetric": "install_to_d1",
+    "design": "시작 후 15분 안에 폐허의 첫 수문장 도전 목표를 노출한다."
+  },
+  {
+    "id": "retention_day_1_rebuild_road",
+    "name": "1일차 재건 로드",
+    "type": "daily",
+    "targetMetric": "d1",
+    "design": "마을 단계 진입까지 3단계 미션과 보상을 제공한다."
+  },
+  {
+    "id": "retention_day_3_crafting_unlock",
+    "name": "3일차 제작 해금 목표",
+    "type": "daily",
+    "targetMetric": "d3",
+    "design": "숲 진입과 첫 제작 장비를 연결해 중기 목표를 만든다."
+  },
+  {
+    "id": "retention_day_7_city_milestone",
+    "name": "7일차 도시 이정표",
+    "type": "weekly",
+    "targetMetric": "d7",
+    "design": "왕궁 Lv3와 영웅 15명 보유를 주간 목표로 제시한다."
+  },
+  {
+    "id": "retention_daily_kingdom_orders",
+    "name": "일일 왕국 명령",
+    "type": "daily",
+    "targetMetric": "repeat",
+    "design": "매일 3개의 짧은 미션을 제공하고 완주 보상은 과하지 않게 둔다."
+  },
+  {
+    "id": "retention_weekly_restoration_orders",
+    "name": "주간 복구 명령",
+    "type": "weekly",
+    "targetMetric": "d7_repeat",
+    "design": "전투, 건설, 탐험, 제작, 광고 보상 사용을 골고루 유도한다."
+  },
+  {
+    "id": "retention_return_kingdom_report",
+    "name": "복귀 왕국 보고서",
+    "type": "return",
+    "targetMetric": "d1_d7",
+    "design": "오프라인 보상 수령 전 왕국 변화, 놓친 보상, 추천 행동 3개를 보여준다."
+  },
+  {
+    "id": "retention_comeback_rescue",
+    "name": "복귀자 구출 작전",
+    "type": "return",
+    "targetMetric": "d7_d14",
+    "design": "3일 이상 미접속 유저에게 주민 구출 이벤트와 완만한 따라잡기 보상을 제공한다."
+  },
+  {
+    "id": "retention_collection_album",
+    "name": "재건 도감 앨범",
+    "type": "collection",
+    "targetMetric": "long_term",
+    "design": "몬스터, 영웅, 장비, 건물 외형 수집률을 시각 보상으로 연결한다."
+  },
+  {
+    "id": "retention_soft_notification_triggers",
+    "name": "선택형 알림 트리거",
+    "type": "notification",
+    "targetMetric": "return",
+    "design": "탐험 완료, 건설 완료, 오프라인 보상 포화만 사용자 동의 후 알림으로 보낸다."
+  },
+  {
+    "id": "retention_ab_rewarded_ad_tuning",
+    "name": "보상형 광고 A/B 조정",
+    "type": "monetization",
+    "targetMetric": "repeat",
+    "design": "광고 보상 배치, 제한 횟수, 간격을 원격 설정으로 비교한다."
+  }
+]

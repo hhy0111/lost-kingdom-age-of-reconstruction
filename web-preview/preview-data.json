@@ -1,0 +1,1385 @@
+{
+  "project": {
+    "title": "잃어버린 왕국 : 재건의 시대",
+    "subtitle": "고전 RPG 감성의 세로형 모바일 방치 RPG",
+    "orientation": "portrait-mobile",
+    "buildTarget": "Android / iOS",
+    "playMode": "single-player-first"
+  },
+  "completion": {
+    "assets": {
+      "applied": 435,
+      "categories": {
+        "ui_icon": 16,
+        "currency_icon": 6,
+        "main_hero": 3,
+        "monster": 104,
+        "boss": 32,
+        "equipment": 200,
+        "building": 60,
+        "effect": 6,
+        "environment": 8
+      }
+    },
+    "content": {
+      "regions": 8,
+      "monsters": 104,
+      "bosses": 32,
+      "heroes": 50,
+      "equipment": 200,
+      "buildingTypes": 12,
+      "buildingAssetLevels": 60,
+      "currencies": 6,
+      "liveEvents": 8,
+      "analyticsEvents": 58
+    }
+  },
+  "navigation": [
+    {
+      "id": "village",
+      "label": "마을",
+      "icon": "/Assets/Art/UI/ui_icon_001.png"
+    },
+    {
+      "id": "combat",
+      "label": "전투",
+      "icon": "/Assets/Art/UI/ui_icon_002.png"
+    },
+    {
+      "id": "heroes",
+      "label": "영웅",
+      "icon": "/Assets/Art/UI/ui_icon_003.png"
+    },
+    {
+      "id": "equipment",
+      "label": "장비",
+      "icon": "/Assets/Art/UI/ui_icon_004.png"
+    },
+    {
+      "id": "shop",
+      "label": "상점",
+      "icon": "/Assets/Art/UI/ui_icon_005.png"
+    }
+  ],
+  "featured": {
+    "village": [
+      {
+        "id": "building_001",
+        "name": "001 왕궁 Lv1",
+        "category": "building",
+        "assetUrl": "/Assets/Art/Buildings/building_001.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1225307
+      },
+      {
+        "id": "building_002",
+        "name": "002 왕궁 Lv2",
+        "category": "building",
+        "assetUrl": "/Assets/Art/Buildings/building_002.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1219808
+      },
+      {
+        "id": "building_003",
+        "name": "003 왕궁 Lv3",
+        "category": "building",
+        "assetUrl": "/Assets/Art/Buildings/building_003.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1102171
+      },
+      {
+        "id": "building_004",
+        "name": "004 왕궁 Lv4",
+        "category": "building",
+        "assetUrl": "/Assets/Art/Buildings/building_004.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1002209
+      },
+      {
+        "id": "building_005",
+        "name": "005 왕궁 Lv5",
+        "category": "building",
+        "assetUrl": "/Assets/Art/Buildings/building_005.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 938522
+      },
+      {
+        "id": "building_006",
+        "name": "006 여관 Lv1",
+        "category": "building",
+        "assetUrl": "/Assets/Art/Buildings/building_006.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1176666
+      },
+      {
+        "id": "building_007",
+        "name": "007 여관 Lv2",
+        "category": "building",
+        "assetUrl": "/Assets/Art/Buildings/building_007.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1227052
+      },
+      {
+        "id": "building_008",
+        "name": "008 여관 Lv3",
+        "category": "building",
+        "assetUrl": "/Assets/Art/Buildings/building_008.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1093954
+      }
+    ],
+    "combat": {
+      "regions": [
+        {
+          "id": "region_grassland",
+          "order": 1,
+          "name": "초원",
+          "stageRange": "1~100",
+          "mainResources": [
+            "식량",
+            "목재"
+          ],
+          "unlocks": [
+            "농장",
+            "여관",
+            "기본 영웅"
+          ],
+          "elementTheme": "neutral",
+          "mood": "무너진 들판과 생존자 캠프"
+        },
+        {
+          "id": "region_forest",
+          "order": 2,
+          "name": "숲",
+          "stageRange": "101~220",
+          "mainResources": [
+            "목재",
+            "식량"
+          ],
+          "unlocks": [
+            "벌목소",
+            "탐험가 길드"
+          ],
+          "elementTheme": "wind",
+          "mood": "고대 수목과 숨은 마을"
+        },
+        {
+          "id": "region_abandoned_mine",
+          "order": 3,
+          "name": "폐광",
+          "stageRange": "221~360",
+          "mainResources": [
+            "광석",
+            "골드"
+          ],
+          "unlocks": [
+            "광산",
+            "대장간 확장"
+          ],
+          "elementTheme": "earth",
+          "mood": "버려진 갱도와 광부 피난처"
+        },
+        {
+          "id": "region_desert",
+          "order": 4,
+          "name": "사막",
+          "stageRange": "361~520",
+          "mainResources": [
+            "골드",
+            "광석"
+          ],
+          "unlocks": [
+            "시장",
+            "상단 탐험"
+          ],
+          "elementTheme": "fire",
+          "mood": "모래 유적과 대상로"
+        },
+        {
+          "id": "region_snowfield",
+          "order": 5,
+          "name": "설원",
+          "stageRange": "521~700",
+          "mainResources": [
+            "식량",
+            "마력석"
+          ],
+          "unlocks": [
+            "성벽",
+            "사제단"
+          ],
+          "elementTheme": "water",
+          "mood": "얼어붙은 북방 요새"
+        },
+        {
+          "id": "region_volcano",
+          "order": 6,
+          "name": "화산",
+          "stageRange": "701~900",
+          "mainResources": [
+            "광석",
+            "마력석"
+          ],
+          "unlocks": [
+            "고급 제작",
+            "전설 장비"
+          ],
+          "elementTheme": "fire",
+          "mood": "용암 제련소와 불의 신전"
+        },
+        {
+          "id": "region_abyss",
+          "order": 7,
+          "name": "심연",
+          "stageRange": "901~1120",
+          "mainResources": [
+            "마력석"
+          ],
+          "unlocks": [
+            "각성",
+            "유물"
+          ],
+          "elementTheme": "dark",
+          "mood": "어둠 균열과 심연 제단"
+        },
+        {
+          "id": "region_demon_castle",
+          "order": 8,
+          "name": "마왕성",
+          "stageRange": "1121~1400",
+          "mainResources": [
+            "마력석",
+            "전설 재료"
+          ],
+          "unlocks": [
+            "최종 연구",
+            "신화 장비"
+          ],
+          "elementTheme": "dark",
+          "mood": "붕괴한 왕성 위의 마왕성"
+        }
+      ],
+      "monsters": [
+        {
+          "id": "monster_001",
+          "name": "허기진 슬라임",
+          "regionId": "region_grassland",
+          "role": "caster",
+          "element": "neutral",
+          "dropTableId": "drop_region_grassland",
+          "assetUrl": "/Assets/Art/Monsters/monster_001.png"
+        },
+        {
+          "id": "monster_002",
+          "name": "들쥐 도적",
+          "regionId": "region_grassland",
+          "role": "assassin",
+          "element": "neutral",
+          "dropTableId": "drop_region_grassland",
+          "assetUrl": "/Assets/Art/Monsters/monster_002.png"
+        },
+        {
+          "id": "monster_003",
+          "name": "갈기 늑대",
+          "regionId": "region_grassland",
+          "role": "fighter",
+          "element": "neutral",
+          "dropTableId": "drop_region_grassland",
+          "assetUrl": "/Assets/Art/Monsters/monster_003.png"
+        },
+        {
+          "id": "monster_004",
+          "name": "낡은 해골병",
+          "regionId": "region_grassland",
+          "role": "tank",
+          "element": "neutral",
+          "dropTableId": "drop_region_grassland",
+          "assetUrl": "/Assets/Art/Monsters/monster_004.png"
+        },
+        {
+          "id": "monster_005",
+          "name": "풀잎 고블린",
+          "regionId": "region_grassland",
+          "role": "fighter",
+          "element": "neutral",
+          "dropTableId": "drop_region_grassland",
+          "assetUrl": "/Assets/Art/Monsters/monster_005.png"
+        },
+        {
+          "id": "monster_006",
+          "name": "들판 박쥐",
+          "regionId": "region_grassland",
+          "role": "fighter",
+          "element": "neutral",
+          "dropTableId": "drop_region_grassland",
+          "assetUrl": "/Assets/Art/Monsters/monster_006.png"
+        },
+        {
+          "id": "monster_007",
+          "name": "무너진 허수아비",
+          "regionId": "region_grassland",
+          "role": "fighter",
+          "element": "neutral",
+          "dropTableId": "drop_region_grassland",
+          "assetUrl": "/Assets/Art/Monsters/monster_007.png"
+        },
+        {
+          "id": "monster_008",
+          "name": "멧돼지 돌격병",
+          "regionId": "region_grassland",
+          "role": "fighter",
+          "element": "neutral",
+          "dropTableId": "drop_region_grassland",
+          "assetUrl": "/Assets/Art/Monsters/monster_008.png"
+        }
+      ],
+      "bosses": [
+        {
+          "id": "boss_001",
+          "name": "들판의 폭군 그룸",
+          "regionId": "region_grassland",
+          "pattern": "elite_assault",
+          "element": "neutral",
+          "rewardId": "reward_boss_001",
+          "assetUrl": "/Assets/Art/Monsters/Bosses/boss_001.png"
+        },
+        {
+          "id": "boss_002",
+          "name": "해골 대장 발락",
+          "regionId": "region_grassland",
+          "pattern": "elite_assault",
+          "element": "neutral",
+          "rewardId": "reward_boss_002",
+          "assetUrl": "/Assets/Art/Monsters/Bosses/boss_002.png"
+        },
+        {
+          "id": "boss_003",
+          "name": "굶주린 늑대왕",
+          "regionId": "region_grassland",
+          "pattern": "elite_assault",
+          "element": "neutral",
+          "rewardId": "reward_boss_003",
+          "assetUrl": "/Assets/Art/Monsters/Bosses/boss_003.png"
+        },
+        {
+          "id": "boss_004",
+          "name": "폐허의 첫 수문장",
+          "regionId": "region_grassland",
+          "pattern": "heavy_guard",
+          "element": "neutral",
+          "rewardId": "reward_boss_004",
+          "assetUrl": "/Assets/Art/Monsters/Bosses/boss_004.png"
+        }
+      ],
+      "environments": [
+        {
+          "id": "environment_001",
+          "name": "초원 타일",
+          "category": "environment",
+          "assetUrl": "/Assets/Art/Environment/environment_001.png",
+          "width": 1254,
+          "height": 1254,
+          "transparentPixelCount": 1130328
+        },
+        {
+          "id": "environment_002",
+          "name": "숲 타일",
+          "category": "environment",
+          "assetUrl": "/Assets/Art/Environment/environment_002.png",
+          "width": 1254,
+          "height": 1254,
+          "transparentPixelCount": 1139666
+        },
+        {
+          "id": "environment_003",
+          "name": "폐광 타일",
+          "category": "environment",
+          "assetUrl": "/Assets/Art/Environment/environment_003.png",
+          "width": 1254,
+          "height": 1254,
+          "transparentPixelCount": 1141342
+        },
+        {
+          "id": "environment_004",
+          "name": "사막 타일",
+          "category": "environment",
+          "assetUrl": "/Assets/Art/Environment/environment_004.png",
+          "width": 1254,
+          "height": 1254,
+          "transparentPixelCount": 1068803
+        },
+        {
+          "id": "environment_005",
+          "name": "설원 타일",
+          "category": "environment",
+          "assetUrl": "/Assets/Art/Environment/environment_005.png",
+          "width": 1254,
+          "height": 1254,
+          "transparentPixelCount": 1265031
+        },
+        {
+          "id": "environment_006",
+          "name": "화산 타일",
+          "category": "environment",
+          "assetUrl": "/Assets/Art/Environment/environment_006.png",
+          "width": 1254,
+          "height": 1254,
+          "transparentPixelCount": 1053328
+        },
+        {
+          "id": "environment_007",
+          "name": "심연 타일",
+          "category": "environment",
+          "assetUrl": "/Assets/Art/Environment/environment_007.png",
+          "width": 1254,
+          "height": 1254,
+          "transparentPixelCount": 1042381
+        },
+        {
+          "id": "environment_008",
+          "name": "마왕성 타일",
+          "category": "environment",
+          "assetUrl": "/Assets/Art/Environment/environment_008.png",
+          "width": 1254,
+          "height": 1254,
+          "transparentPixelCount": 1175508
+        }
+      ]
+    },
+    "heroes": {
+      "stages": [
+        {
+          "id": "main_hero_001",
+          "name": "폐허 단계 주인공",
+          "category": "main_hero",
+          "assetUrl": "/Assets/Art/Characters/Heroes/main_hero_001.png",
+          "width": 1254,
+          "height": 1254,
+          "transparentPixelCount": 1107282
+        },
+        {
+          "id": "main_hero_002",
+          "name": "왕국 단계 주인공",
+          "category": "main_hero",
+          "assetUrl": "/Assets/Art/Characters/Heroes/main_hero_002.png",
+          "width": 1254,
+          "height": 1254,
+          "transparentPixelCount": 1098586
+        },
+        {
+          "id": "main_hero_003",
+          "name": "제국 단계 주인공",
+          "category": "main_hero",
+          "assetUrl": "/Assets/Art/Characters/Heroes/main_hero_003.png",
+          "width": 1254,
+          "height": 1254,
+          "transparentPixelCount": 1008952
+        }
+      ],
+      "roster": [
+        {
+          "id": "hero_001",
+          "name": "로안",
+          "rarity": "희귀",
+          "role": "전사",
+          "element": "무",
+          "skillName": "왕가의 일격",
+          "nonCombatBonus": "왕궁 건설 속도"
+        },
+        {
+          "id": "hero_002",
+          "name": "엘린",
+          "rarity": "희귀",
+          "role": "사제",
+          "element": "빛",
+          "skillName": "회복의 기도",
+          "nonCombatBonus": "주민 행복도"
+        },
+        {
+          "id": "hero_003",
+          "name": "브란",
+          "rarity": "고급",
+          "role": "탱커",
+          "element": "땅",
+          "skillName": "방패 밀치기",
+          "nonCombatBonus": "성벽 비용 감소"
+        },
+        {
+          "id": "hero_004",
+          "name": "미라",
+          "rarity": "희귀",
+          "role": "궁수",
+          "element": "바람",
+          "skillName": "연속 사격",
+          "nonCombatBonus": "탐험 성공률"
+        },
+        {
+          "id": "hero_005",
+          "name": "카일",
+          "rarity": "고급",
+          "role": "전사",
+          "element": "불",
+          "skillName": "불꽃 베기",
+          "nonCombatBonus": "대장간 생산"
+        },
+        {
+          "id": "hero_006",
+          "name": "세라",
+          "rarity": "영웅",
+          "role": "마법사",
+          "element": "물",
+          "skillName": "빙결 폭발",
+          "nonCombatBonus": "연구 시간 감소"
+        },
+        {
+          "id": "hero_007",
+          "name": "토르벤",
+          "rarity": "희귀",
+          "role": "탱커",
+          "element": "땅",
+          "skillName": "철벽 태세",
+          "nonCombatBonus": "광산 생산"
+        },
+        {
+          "id": "hero_008",
+          "name": "리아",
+          "rarity": "고급",
+          "role": "암살자",
+          "element": "바람",
+          "skillName": "그림자 찌르기",
+          "nonCombatBonus": "숲 탐험 보너스"
+        },
+        {
+          "id": "hero_009",
+          "name": "노아",
+          "rarity": "희귀",
+          "role": "지원가",
+          "element": "빛",
+          "skillName": "격려의 노래",
+          "nonCombatBonus": "골드 획득"
+        },
+        {
+          "id": "hero_010",
+          "name": "가렌",
+          "rarity": "영웅",
+          "role": "전사",
+          "element": "불",
+          "skillName": "용맹한 돌진",
+          "nonCombatBonus": "병영 훈련"
+        },
+        {
+          "id": "hero_011",
+          "name": "이솔데",
+          "rarity": "영웅",
+          "role": "사제",
+          "element": "빛",
+          "skillName": "성역",
+          "nonCombatBonus": "부상 회복"
+        },
+        {
+          "id": "hero_012",
+          "name": "다르크",
+          "rarity": "희귀",
+          "role": "암살자",
+          "element": "어둠",
+          "skillName": "암습",
+          "nonCombatBonus": "보스 피해"
+        }
+      ]
+    },
+    "equipment": [
+      {
+        "id": "equipment_001",
+        "name": "녹슨 검",
+        "setId": "equipment_set_001",
+        "slot": "weapon",
+        "rarity": "일반",
+        "assetUrl": "/Assets/Art/Equipment/equipment_001.png"
+      },
+      {
+        "id": "equipment_002",
+        "name": "찌그러진 투구",
+        "setId": "equipment_set_001",
+        "slot": "helmet",
+        "rarity": "일반",
+        "assetUrl": "/Assets/Art/Equipment/equipment_002.png"
+      },
+      {
+        "id": "equipment_003",
+        "name": "낡은 흉갑",
+        "setId": "equipment_set_001",
+        "slot": "armor",
+        "rarity": "일반",
+        "assetUrl": "/Assets/Art/Equipment/equipment_003.png"
+      },
+      {
+        "id": "equipment_004",
+        "name": "해진 장갑",
+        "setId": "equipment_set_001",
+        "slot": "gloves",
+        "rarity": "일반",
+        "assetUrl": "/Assets/Art/Equipment/equipment_004.png"
+      },
+      {
+        "id": "equipment_005",
+        "name": "먼지 신발",
+        "setId": "equipment_set_001",
+        "slot": "boots",
+        "rarity": "일반",
+        "assetUrl": "/Assets/Art/Equipment/equipment_005.png"
+      },
+      {
+        "id": "equipment_006",
+        "name": "나무 목걸이",
+        "setId": "equipment_set_001",
+        "slot": "necklace",
+        "rarity": "일반",
+        "assetUrl": "/Assets/Art/Equipment/equipment_006.png"
+      },
+      {
+        "id": "equipment_007",
+        "name": "구리 반지",
+        "setId": "equipment_set_001",
+        "slot": "ring",
+        "rarity": "일반",
+        "assetUrl": "/Assets/Art/Equipment/equipment_007.png"
+      },
+      {
+        "id": "equipment_008",
+        "name": "천 망토",
+        "setId": "equipment_set_001",
+        "slot": "cloak",
+        "rarity": "일반",
+        "assetUrl": "/Assets/Art/Equipment/equipment_008.png"
+      },
+      {
+        "id": "equipment_009",
+        "name": "낡은 허리띠",
+        "setId": "equipment_set_001",
+        "slot": "belt",
+        "rarity": "일반",
+        "assetUrl": "/Assets/Art/Equipment/equipment_009.png"
+      },
+      {
+        "id": "equipment_010",
+        "name": "깨진 왕가 문장",
+        "setId": "equipment_set_001",
+        "slot": "artifact",
+        "rarity": "일반",
+        "assetUrl": "/Assets/Art/Equipment/equipment_010.png"
+      },
+      {
+        "id": "equipment_011",
+        "name": "초원 창",
+        "setId": "equipment_set_002",
+        "slot": "weapon",
+        "rarity": "고급",
+        "assetUrl": "/Assets/Art/Equipment/equipment_011.png"
+      },
+      {
+        "id": "equipment_012",
+        "name": "가죽 두건",
+        "setId": "equipment_set_002",
+        "slot": "helmet",
+        "rarity": "고급",
+        "assetUrl": "/Assets/Art/Equipment/equipment_012.png"
+      }
+    ],
+    "effects": [
+      {
+        "id": "effect_001",
+        "name": "검격",
+        "category": "effect",
+        "assetUrl": "/Assets/Art/Effects/effect_001.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1478328
+      },
+      {
+        "id": "effect_002",
+        "name": "회복",
+        "category": "effect",
+        "assetUrl": "/Assets/Art/Effects/effect_002.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1349519
+      },
+      {
+        "id": "effect_003",
+        "name": "화염 폭발",
+        "category": "effect",
+        "assetUrl": "/Assets/Art/Effects/effect_003.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1365752
+      },
+      {
+        "id": "effect_004",
+        "name": "심연 저주",
+        "category": "effect",
+        "assetUrl": "/Assets/Art/Effects/effect_004.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1315633
+      },
+      {
+        "id": "effect_005",
+        "name": "얼음 충격",
+        "category": "effect",
+        "assetUrl": "/Assets/Art/Effects/effect_005.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1494564
+      },
+      {
+        "id": "effect_006",
+        "name": "레벨업 빛",
+        "category": "effect",
+        "assetUrl": "/Assets/Art/Effects/effect_006.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1402459
+      }
+    ],
+    "ui": [
+      {
+        "id": "ui_icon_001",
+        "name": "마을",
+        "category": "ui_icon",
+        "assetUrl": "/Assets/Art/UI/ui_icon_001.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1377118
+      },
+      {
+        "id": "ui_icon_002",
+        "name": "전투",
+        "category": "ui_icon",
+        "assetUrl": "/Assets/Art/UI/ui_icon_002.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1427566
+      },
+      {
+        "id": "ui_icon_003",
+        "name": "영웅",
+        "category": "ui_icon",
+        "assetUrl": "/Assets/Art/UI/ui_icon_003.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1440125
+      },
+      {
+        "id": "ui_icon_004",
+        "name": "장비",
+        "category": "ui_icon",
+        "assetUrl": "/Assets/Art/UI/ui_icon_004.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1401339
+      },
+      {
+        "id": "ui_icon_005",
+        "name": "상점",
+        "category": "ui_icon",
+        "assetUrl": "/Assets/Art/UI/ui_icon_005.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1288784
+      },
+      {
+        "id": "ui_icon_006",
+        "name": "건물",
+        "category": "ui_icon",
+        "assetUrl": "/Assets/Art/UI/ui_icon_006.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1412811
+      },
+      {
+        "id": "ui_icon_007",
+        "name": "연구",
+        "category": "ui_icon",
+        "assetUrl": "/Assets/Art/UI/ui_icon_007.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1332281
+      },
+      {
+        "id": "ui_icon_008",
+        "name": "탐험",
+        "category": "ui_icon",
+        "assetUrl": "/Assets/Art/UI/ui_icon_008.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1263304
+      },
+      {
+        "id": "ui_icon_009",
+        "name": "우편",
+        "category": "ui_icon",
+        "assetUrl": "/Assets/Art/UI/ui_icon_009.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1344362
+      },
+      {
+        "id": "ui_icon_010",
+        "name": "알림",
+        "category": "ui_icon",
+        "assetUrl": "/Assets/Art/UI/ui_icon_010.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1493058
+      },
+      {
+        "id": "ui_icon_011",
+        "name": "설정",
+        "category": "ui_icon",
+        "assetUrl": "/Assets/Art/UI/ui_icon_011.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1252848
+      },
+      {
+        "id": "ui_icon_012",
+        "name": "보상",
+        "category": "ui_icon",
+        "assetUrl": "/Assets/Art/UI/ui_icon_012.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1355459
+      },
+      {
+        "id": "ui_icon_013",
+        "name": "보스",
+        "category": "ui_icon",
+        "assetUrl": "/Assets/Art/UI/ui_icon_013.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1272406
+      },
+      {
+        "id": "ui_icon_014",
+        "name": "소환",
+        "category": "ui_icon",
+        "assetUrl": "/Assets/Art/UI/ui_icon_014.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1242107
+      },
+      {
+        "id": "ui_icon_015",
+        "name": "패스",
+        "category": "ui_icon",
+        "assetUrl": "/Assets/Art/UI/ui_icon_015.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1197679
+      },
+      {
+        "id": "ui_icon_016",
+        "name": "광고 보상",
+        "category": "ui_icon",
+        "assetUrl": "/Assets/Art/UI/ui_icon_016.png",
+        "width": 1254,
+        "height": 1254,
+        "transparentPixelCount": 1333078
+      }
+    ]
+  },
+  "economy": {
+    "currencies": [
+      {
+        "id": "gold",
+        "name": "골드",
+        "type": "basic",
+        "assetUrl": "/Assets/Art/UI/Currencies/currency_icon_001.png"
+      },
+      {
+        "id": "diamond",
+        "name": "다이아",
+        "type": "premium",
+        "assetUrl": "/Assets/Art/UI/Currencies/currency_icon_002.png"
+      },
+      {
+        "id": "food",
+        "name": "식량",
+        "type": "resource",
+        "assetUrl": "/Assets/Art/UI/Currencies/currency_icon_003.png"
+      },
+      {
+        "id": "wood",
+        "name": "목재",
+        "type": "resource",
+        "assetUrl": "/Assets/Art/UI/Currencies/currency_icon_004.png"
+      },
+      {
+        "id": "ore",
+        "name": "광석",
+        "type": "resource",
+        "assetUrl": "/Assets/Art/UI/Currencies/currency_icon_005.png"
+      },
+      {
+        "id": "magic_stone",
+        "name": "마력석",
+        "type": "resource",
+        "assetUrl": "/Assets/Art/UI/Currencies/currency_icon_006.png"
+      }
+    ]
+  },
+  "monetization": {
+    "ads": {
+      "total": 10,
+      "forcedAds": 0,
+      "placements": [
+        {
+          "id": "ad_offline_reward_x2",
+          "name": "오프라인 보상 2배",
+          "dailyLimit": 5,
+          "cooldownMinutes": 0,
+          "placementScreen": "offline_reward_popup",
+          "rewardGrantPolicy": "grant_after_completed_view",
+          "format": "rewarded",
+          "isForced": false,
+          "rewardType": "offline_reward_x2"
+        },
+        {
+          "id": "ad_gold_x2",
+          "name": "골드 2배",
+          "dailyLimit": 5,
+          "cooldownMinutes": 30,
+          "placementScreen": "combat_reward_panel",
+          "rewardGrantPolicy": "grant_timed_buff_after_completed_view",
+          "format": "rewarded",
+          "isForced": false,
+          "rewardType": "gold_x2"
+        },
+        {
+          "id": "ad_resource_x2",
+          "name": "자원 2배",
+          "dailyLimit": 5,
+          "cooldownMinutes": 30,
+          "placementScreen": "village_production_panel",
+          "rewardGrantPolicy": "grant_timed_buff_after_completed_view",
+          "format": "rewarded",
+          "isForced": false,
+          "rewardType": "resource_x2"
+        },
+        {
+          "id": "ad_expedition_complete",
+          "name": "영웅 탐험 즉시 완료",
+          "dailyLimit": 3,
+          "cooldownMinutes": 20,
+          "placementScreen": "expedition_detail",
+          "rewardGrantPolicy": "grant_completion_after_completed_view",
+          "format": "rewarded",
+          "isForced": false,
+          "rewardType": "expedition_complete"
+        },
+        {
+          "id": "ad_building_complete",
+          "name": "건물 건설 즉시 완료",
+          "dailyLimit": 3,
+          "cooldownMinutes": 20,
+          "placementScreen": "building_detail",
+          "rewardGrantPolicy": "grant_completion_after_completed_view",
+          "format": "rewarded",
+          "isForced": false,
+          "rewardType": "building_complete"
+        },
+        {
+          "id": "ad_equipment_box",
+          "name": "장비 상자 획득",
+          "dailyLimit": 5,
+          "cooldownMinutes": 15,
+          "placementScreen": "equipment_reward_panel",
+          "rewardGrantPolicy": "grant_item_after_completed_view",
+          "format": "rewarded",
+          "isForced": false,
+          "rewardType": "equipment_box"
+        },
+        {
+          "id": "ad_boss_retry",
+          "name": "보스 재도전권",
+          "dailyLimit": 3,
+          "cooldownMinutes": 20,
+          "placementScreen": "boss_retry_popup",
+          "rewardGrantPolicy": "grant_ticket_after_completed_view",
+          "format": "rewarded",
+          "isForced": false,
+          "rewardType": "boss_retry"
+        },
+        {
+          "id": "ad_free_summon",
+          "name": "무료 소환",
+          "dailyLimit": 5,
+          "cooldownMinutes": 15,
+          "placementScreen": "summon_panel",
+          "rewardGrantPolicy": "grant_summon_after_completed_view",
+          "format": "rewarded",
+          "isForced": false,
+          "rewardType": "free_summon"
+        },
+        {
+          "id": "ad_legendary_box_boost",
+          "name": "전설 상자 확률 증가",
+          "dailyLimit": 1,
+          "cooldownMinutes": 60,
+          "placementScreen": "equipment_chest_panel",
+          "rewardGrantPolicy": "grant_next_chest_modifier_after_completed_view",
+          "format": "rewarded",
+          "isForced": false,
+          "rewardType": "legendary_box_boost"
+        },
+        {
+          "id": "ad_daily_special",
+          "name": "일일 특별 보상",
+          "dailyLimit": 1,
+          "cooldownMinutes": 60,
+          "placementScreen": "daily_reward_panel",
+          "rewardGrantPolicy": "grant_choice_reward_after_completed_view",
+          "format": "rewarded",
+          "isForced": false,
+          "rewardType": "daily_special"
+        }
+      ]
+    },
+    "shopProducts": [
+      {
+        "id": "starter_pack",
+        "name": "스타터 패키지",
+        "priceKrw": 1500,
+        "type": "package"
+      },
+      {
+        "id": "remove_ads",
+        "name": "광고 제거 패키지",
+        "priceKrw": 8900,
+        "type": "convenience"
+      },
+      {
+        "id": "monthly_subscription",
+        "name": "월정액",
+        "priceKrw": 6500,
+        "type": "subscription"
+      },
+      {
+        "id": "kingdom_pass",
+        "name": "왕국 패스",
+        "priceKrw": 12900,
+        "type": "season_pass"
+      },
+      {
+        "id": "growth_pack_1",
+        "name": "성장 패키지 I",
+        "priceKrw": 5900,
+        "type": "growth"
+      },
+      {
+        "id": "growth_pack_2",
+        "name": "성장 패키지 II",
+        "priceKrw": 12900,
+        "type": "growth"
+      },
+      {
+        "id": "growth_pack_3",
+        "name": "성장 패키지 III",
+        "priceKrw": 29000,
+        "type": "growth"
+      }
+    ],
+    "iapProducts": [
+      {
+        "id": "iap_starter_pack",
+        "shopProductId": "starter_pack",
+        "googlePlayProductId": "lostkingdom.starter_pack",
+        "appleProductId": "com.lostkingdom.starterpack",
+        "productType": "consumable",
+        "priceKrw": 1500,
+        "fulfillmentPolicy": "grant_once_then_mark_claimed",
+        "restorePolicy": "not_restorable_consumable"
+      },
+      {
+        "id": "iap_remove_ads",
+        "shopProductId": "remove_ads",
+        "googlePlayProductId": "lostkingdom.remove_ads",
+        "appleProductId": "com.lostkingdom.removeads",
+        "productType": "non_consumable",
+        "priceKrw": 8900,
+        "fulfillmentPolicy": "unlock_ad_skip_entitlement_permanently",
+        "restorePolicy": "restore_non_consumable"
+      },
+      {
+        "id": "iap_monthly_subscription",
+        "shopProductId": "monthly_subscription",
+        "googlePlayProductId": "lostkingdom.monthly_subscription",
+        "appleProductId": "com.lostkingdom.monthlysubscription",
+        "productType": "subscription",
+        "priceKrw": 6500,
+        "fulfillmentPolicy": "grant_30_day_membership_and_daily_claims",
+        "restorePolicy": "restore_subscription_state"
+      },
+      {
+        "id": "iap_kingdom_pass",
+        "shopProductId": "kingdom_pass",
+        "googlePlayProductId": "lostkingdom.kingdom_pass",
+        "appleProductId": "com.lostkingdom.kingdompass",
+        "productType": "season_pass",
+        "priceKrw": 12900,
+        "fulfillmentPolicy": "unlock_current_season_premium_track",
+        "restorePolicy": "restore_current_season_entitlement"
+      },
+      {
+        "id": "iap_growth_pack_1",
+        "shopProductId": "growth_pack_1",
+        "googlePlayProductId": "lostkingdom.growth_pack_1",
+        "appleProductId": "com.lostkingdom.growthpack1",
+        "productType": "consumable",
+        "priceKrw": 5900,
+        "fulfillmentPolicy": "grant_growth_rewards_for_early_regions",
+        "restorePolicy": "not_restorable_consumable"
+      },
+      {
+        "id": "iap_growth_pack_2",
+        "shopProductId": "growth_pack_2",
+        "googlePlayProductId": "lostkingdom.growth_pack_2",
+        "appleProductId": "com.lostkingdom.growthpack2",
+        "productType": "consumable",
+        "priceKrw": 12900,
+        "fulfillmentPolicy": "grant_growth_rewards_for_mid_regions",
+        "restorePolicy": "not_restorable_consumable"
+      },
+      {
+        "id": "iap_growth_pack_3",
+        "shopProductId": "growth_pack_3",
+        "googlePlayProductId": "lostkingdom.growth_pack_3",
+        "appleProductId": "com.lostkingdom.growthpack3",
+        "productType": "consumable",
+        "priceKrw": 29000,
+        "fulfillmentPolicy": "grant_growth_rewards_for_late_regions",
+        "restorePolicy": "not_restorable_consumable"
+      }
+    ]
+  },
+  "retention": {
+    "hooks": [
+      {
+        "id": "retention_first_10_minute_kingdom_rebuild",
+        "name": "첫 10분 왕국 복구",
+        "type": "ftue",
+        "targetMetric": "install_to_d1",
+        "design": "첫 세션에 건물 2개 복구, 영웅 3명 편성, 첫 보스 예고를 완료한다."
+      },
+      {
+        "id": "retention_first_boss_goal",
+        "name": "첫 보스 목표 고정",
+        "type": "ftue",
+        "targetMetric": "install_to_d1",
+        "design": "시작 후 15분 안에 폐허의 첫 수문장 도전 목표를 노출한다."
+      },
+      {
+        "id": "retention_day_1_rebuild_road",
+        "name": "1일차 재건 로드",
+        "type": "daily",
+        "targetMetric": "d1",
+        "design": "마을 단계 진입까지 3단계 미션과 보상을 제공한다."
+      },
+      {
+        "id": "retention_day_3_crafting_unlock",
+        "name": "3일차 제작 해금 목표",
+        "type": "daily",
+        "targetMetric": "d3",
+        "design": "숲 진입과 첫 제작 장비를 연결해 중기 목표를 만든다."
+      },
+      {
+        "id": "retention_day_7_city_milestone",
+        "name": "7일차 도시 이정표",
+        "type": "weekly",
+        "targetMetric": "d7",
+        "design": "왕궁 Lv3와 영웅 15명 보유를 주간 목표로 제시한다."
+      },
+      {
+        "id": "retention_daily_kingdom_orders",
+        "name": "일일 왕국 명령",
+        "type": "daily",
+        "targetMetric": "repeat",
+        "design": "매일 3개의 짧은 미션을 제공하고 완주 보상은 과하지 않게 둔다."
+      },
+      {
+        "id": "retention_weekly_restoration_orders",
+        "name": "주간 복구 명령",
+        "type": "weekly",
+        "targetMetric": "d7_repeat",
+        "design": "전투, 건설, 탐험, 제작, 광고 보상 사용을 골고루 유도한다."
+      },
+      {
+        "id": "retention_return_kingdom_report",
+        "name": "복귀 왕국 보고서",
+        "type": "return",
+        "targetMetric": "d1_d7",
+        "design": "오프라인 보상 수령 전 왕국 변화, 놓친 보상, 추천 행동 3개를 보여준다."
+      },
+      {
+        "id": "retention_comeback_rescue",
+        "name": "복귀자 구출 작전",
+        "type": "return",
+        "targetMetric": "d7_d14",
+        "design": "3일 이상 미접속 유저에게 주민 구출 이벤트와 완만한 따라잡기 보상을 제공한다."
+      },
+      {
+        "id": "retention_collection_album",
+        "name": "재건 도감 앨범",
+        "type": "collection",
+        "targetMetric": "long_term",
+        "design": "몬스터, 영웅, 장비, 건물 외형 수집률을 시각 보상으로 연결한다."
+      },
+      {
+        "id": "retention_soft_notification_triggers",
+        "name": "선택형 알림 트리거",
+        "type": "notification",
+        "targetMetric": "return",
+        "design": "탐험 완료, 건설 완료, 오프라인 보상 포화만 사용자 동의 후 알림으로 보낸다."
+      },
+      {
+        "id": "retention_ab_rewarded_ad_tuning",
+        "name": "보상형 광고 A/B 조정",
+        "type": "monetization",
+        "targetMetric": "repeat",
+        "design": "광고 보상 배치, 제한 횟수, 간격을 원격 설정으로 비교한다."
+      }
+    ],
+    "liveEvents": [
+      {
+        "id": "event_ruin_rebuild_week",
+        "name": "폐허 복구 주간",
+        "cadence": "weekly",
+        "targetRegion": "초원/숲",
+        "design": "건물 건설과 주민 구출 보상 증가",
+        "serverDependency": "remote_config_optional"
+      },
+      {
+        "id": "event_forest_rescue_week",
+        "name": "숲의 생존자 구출",
+        "cadence": "weekly",
+        "targetRegion": "숲",
+        "design": "탐험 성공률과 주민 획득률 증가",
+        "serverDependency": "remote_config_optional"
+      },
+      {
+        "id": "event_mine_treasure_week",
+        "name": "폐광 보물 탐사",
+        "cadence": "weekly",
+        "targetRegion": "폐광",
+        "design": "광석과 장비 상자 보상 증가",
+        "serverDependency": "remote_config_optional"
+      },
+      {
+        "id": "event_desert_caravan",
+        "name": "사막 상단 축제",
+        "cadence": "weekly",
+        "targetRegion": "사막",
+        "design": "골드와 시장 교환 보너스",
+        "serverDependency": "remote_config_optional"
+      },
+      {
+        "id": "event_snow_fortress_defense",
+        "name": "설원 요새 방어전",
+        "cadence": "weekend",
+        "targetRegion": "설원",
+        "design": "성벽/방어 연구 보너스",
+        "serverDependency": "remote_config_optional"
+      },
+      {
+        "id": "event_volcano_forge_fever",
+        "name": "화산 제련 열풍",
+        "cadence": "weekend",
+        "targetRegion": "화산",
+        "design": "제작 시간 단축과 전설 조각 보상",
+        "serverDependency": "remote_config_optional"
+      },
+      {
+        "id": "event_abyss_rift_weekend",
+        "name": "심연 균열 주말",
+        "cadence": "weekend",
+        "targetRegion": "심연",
+        "design": "마력석과 각성 재료 보상",
+        "serverDependency": "remote_config_optional"
+      },
+      {
+        "id": "event_demon_castle_countdown",
+        "name": "마왕성 결전 예고",
+        "cadence": "season",
+        "targetRegion": "마왕성",
+        "design": "시즌 보스와 패스 미션 연동",
+        "serverDependency": "remote_config_optional"
+      }
+    ],
+    "storeExperiments": [
+      {
+        "id": "store_google_icon_castle_progression",
+        "name": "Google Play 아이콘 테스트: 성 복구 단계",
+        "platform": "google_play",
+        "assetType": "icon",
+        "hypothesis": "폐허 성 vs 복구된 왕궁 아이콘 전환율 비교"
+      },
+      {
+        "id": "store_google_screenshot_first_10_minutes",
+        "name": "Google Play 스크린샷 테스트: 첫 10분 복구",
+        "platform": "google_play",
+        "assetType": "screenshot",
+        "hypothesis": "전투력 숫자보다 폐허에서 마을로 바뀌는 화면을 첫 장에 배치"
+      },
+      {
+        "id": "store_google_video_idle_loop",
+        "name": "Google Play 영상 테스트: 방치 루프",
+        "platform": "google_play",
+        "assetType": "video",
+        "hypothesis": "전투-보상-건설-왕국 변화 20초 루프 비교"
+      },
+      {
+        "id": "store_google_copy_classic_rpg",
+        "name": "Google Play 문구 테스트: 고전 RPG 감성",
+        "platform": "google_play",
+        "assetType": "copy",
+        "hypothesis": "마을 재건/장비 파밍/영웅 수집 키워드 비교"
+      },
+      {
+        "id": "store_apple_in_app_event_rebuild_week",
+        "name": "Apple In-App Event: 폐허 복구 주간",
+        "platform": "app_store",
+        "assetType": "in_app_event",
+        "hypothesis": "신규/기존/복귀 유저에게 기간 한정 복구 이벤트 노출"
+      },
+      {
+        "id": "store_apple_in_app_event_abyss_rift",
+        "name": "Apple In-App Event: 심연 균열",
+        "platform": "app_store",
+        "assetType": "in_app_event",
+        "hypothesis": "중후반 유저 재접속용 주말 이벤트 노출"
+      },
+      {
+        "id": "store_localized_korea_japan_us",
+        "name": "지역별 스토어 현지화",
+        "platform": "both",
+        "assetType": "localization",
+        "hypothesis": "한국/일본/미국 스크린샷 순서와 문구를 분리 테스트"
+      },
+      {
+        "id": "store_pre_registration_rewards",
+        "name": "사전예약 보상 테스트",
+        "platform": "google_play",
+        "assetType": "pre_registration",
+        "hypothesis": "희귀 장비 선택권 vs 다이아+소환권 구성 비교"
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Unity generated files
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Unity crash reports and addressable cache
+[Mm]emoryCaptures/
+[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+
+# Node
+node_modules/
+npm-debug.log*
+*.log
+
+# .NET build output
+bin/
+
+# Generated verification artifacts
+output/
+.playwright-cli/
+
+# Local secrets and signing material
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+*.p12
+*.pem
+*.mobileprovision
+GoogleService-Info.plist
+google-services.json
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local agent scratch
+.superpowers/

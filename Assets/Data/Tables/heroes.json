@@ -1,0 +1,452 @@
+[
+  {
+    "id": "hero_001",
+    "name": "로안",
+    "rarity": "희귀",
+    "role": "전사",
+    "element": "무",
+    "skillName": "왕가의 일격",
+    "nonCombatBonus": "왕궁 건설 속도"
+  },
+  {
+    "id": "hero_002",
+    "name": "엘린",
+    "rarity": "희귀",
+    "role": "사제",
+    "element": "빛",
+    "skillName": "회복의 기도",
+    "nonCombatBonus": "주민 행복도"
+  },
+  {
+    "id": "hero_003",
+    "name": "브란",
+    "rarity": "고급",
+    "role": "탱커",
+    "element": "땅",
+    "skillName": "방패 밀치기",
+    "nonCombatBonus": "성벽 비용 감소"
+  },
+  {
+    "id": "hero_004",
+    "name": "미라",
+    "rarity": "희귀",
+    "role": "궁수",
+    "element": "바람",
+    "skillName": "연속 사격",
+    "nonCombatBonus": "탐험 성공률"
+  },
+  {
+    "id": "hero_005",
+    "name": "카일",
+    "rarity": "고급",
+    "role": "전사",
+    "element": "불",
+    "skillName": "불꽃 베기",
+    "nonCombatBonus": "대장간 생산"
+  },
+  {
+    "id": "hero_006",
+    "name": "세라",
+    "rarity": "영웅",
+    "role": "마법사",
+    "element": "물",
+    "skillName": "빙결 폭발",
+    "nonCombatBonus": "연구 시간 감소"
+  },
+  {
+    "id": "hero_007",
+    "name": "토르벤",
+    "rarity": "희귀",
+    "role": "탱커",
+    "element": "땅",
+    "skillName": "철벽 태세",
+    "nonCombatBonus": "광산 생산"
+  },
+  {
+    "id": "hero_008",
+    "name": "리아",
+    "rarity": "고급",
+    "role": "암살자",
+    "element": "바람",
+    "skillName": "그림자 찌르기",
+    "nonCombatBonus": "숲 탐험 보너스"
+  },
+  {
+    "id": "hero_009",
+    "name": "노아",
+    "rarity": "희귀",
+    "role": "지원가",
+    "element": "빛",
+    "skillName": "격려의 노래",
+    "nonCombatBonus": "골드 획득"
+  },
+  {
+    "id": "hero_010",
+    "name": "가렌",
+    "rarity": "영웅",
+    "role": "전사",
+    "element": "불",
+    "skillName": "용맹한 돌진",
+    "nonCombatBonus": "병영 훈련"
+  },
+  {
+    "id": "hero_011",
+    "name": "이솔데",
+    "rarity": "영웅",
+    "role": "사제",
+    "element": "빛",
+    "skillName": "성역",
+    "nonCombatBonus": "부상 회복"
+  },
+  {
+    "id": "hero_012",
+    "name": "다르크",
+    "rarity": "희귀",
+    "role": "암살자",
+    "element": "어둠",
+    "skillName": "암습",
+    "nonCombatBonus": "보스 피해"
+  },
+  {
+    "id": "hero_013",
+    "name": "헤론",
+    "rarity": "고급",
+    "role": "궁수",
+    "element": "무",
+    "skillName": "관통 화살",
+    "nonCombatBonus": "초원 보상"
+  },
+  {
+    "id": "hero_014",
+    "name": "베라",
+    "rarity": "영웅",
+    "role": "마법사",
+    "element": "불",
+    "skillName": "화염 폭풍",
+    "nonCombatBonus": "마법탑 생산"
+  },
+  {
+    "id": "hero_015",
+    "name": "마르틴",
+    "rarity": "희귀",
+    "role": "탱커",
+    "element": "물",
+    "skillName": "수호의 파도",
+    "nonCombatBonus": "식량 저장량"
+  },
+  {
+    "id": "hero_016",
+    "name": "클로이",
+    "rarity": "고급",
+    "role": "지원가",
+    "element": "바람",
+    "skillName": "신속의 춤",
+    "nonCombatBonus": "탐험 시간 감소"
+  },
+  {
+    "id": "hero_017",
+    "name": "오스카",
+    "rarity": "영웅",
+    "role": "전사",
+    "element": "땅",
+    "skillName": "대지 가르기",
+    "nonCombatBonus": "채석장 생산"
+  },
+  {
+    "id": "hero_018",
+    "name": "셀린",
+    "rarity": "희귀",
+    "role": "궁수",
+    "element": "물",
+    "skillName": "서리 화살",
+    "nonCombatBonus": "설원 탐험"
+  },
+  {
+    "id": "hero_019",
+    "name": "라그나",
+    "rarity": "전설",
+    "role": "탱커",
+    "element": "불",
+    "skillName": "불굴의 방벽",
+    "nonCombatBonus": "전체 체력"
+  },
+  {
+    "id": "hero_020",
+    "name": "아리아",
+    "rarity": "전설",
+    "role": "사제",
+    "element": "빛",
+    "skillName": "부활의 찬가",
+    "nonCombatBonus": "일일 보상 증가"
+  },
+  {
+    "id": "hero_021",
+    "name": "케인",
+    "rarity": "영웅",
+    "role": "암살자",
+    "element": "어둠",
+    "skillName": "처형",
+    "nonCombatBonus": "치명타 피해"
+  },
+  {
+    "id": "hero_022",
+    "name": "린",
+    "rarity": "희귀",
+    "role": "마법사",
+    "element": "바람",
+    "skillName": "회오리 칼날",
+    "nonCombatBonus": "목재 생산"
+  },
+  {
+    "id": "hero_023",
+    "name": "유리안",
+    "rarity": "고급",
+    "role": "전사",
+    "element": "무",
+    "skillName": "쌍검 난무",
+    "nonCombatBonus": "장비 드롭률"
+  },
+  {
+    "id": "hero_024",
+    "name": "메이브",
+    "rarity": "영웅",
+    "role": "지원가",
+    "element": "물",
+    "skillName": "정화의 물결",
+    "nonCombatBonus": "제작 시간 감소"
+  },
+  {
+    "id": "hero_025",
+    "name": "발터",
+    "rarity": "희귀",
+    "role": "탱커",
+    "element": "무",
+    "skillName": "도발",
+    "nonCombatBonus": "주민 수용량"
+  },
+  {
+    "id": "hero_026",
+    "name": "샤나",
+    "rarity": "전설",
+    "role": "궁수",
+    "element": "불",
+    "skillName": "불사조 화살",
+    "nonCombatBonus": "보스 상자 보너스"
+  },
+  {
+    "id": "hero_027",
+    "name": "루시엔",
+    "rarity": "영웅",
+    "role": "마법사",
+    "element": "빛",
+    "skillName": "태양 광선",
+    "nonCombatBonus": "연구 효율"
+  },
+  {
+    "id": "hero_028",
+    "name": "이그니스",
+    "rarity": "전설",
+    "role": "마법사",
+    "element": "불",
+    "skillName": "운석 낙하",
+    "nonCombatBonus": "화산 보상"
+  },
+  {
+    "id": "hero_029",
+    "name": "에다",
+    "rarity": "고급",
+    "role": "사제",
+    "element": "땅",
+    "skillName": "자연 치유",
+    "nonCombatBonus": "농장 생산"
+  },
+  {
+    "id": "hero_030",
+    "name": "바스티안",
+    "rarity": "영웅",
+    "role": "탱커",
+    "element": "어둠",
+    "skillName": "저주의 방패",
+    "nonCombatBonus": "피해 감소"
+  },
+  {
+    "id": "hero_031",
+    "name": "카린",
+    "rarity": "희귀",
+    "role": "암살자",
+    "element": "물",
+    "skillName": "안개 걸음",
+    "nonCombatBonus": "사막 탐험"
+  },
+  {
+    "id": "hero_032",
+    "name": "프레이",
+    "rarity": "전설",
+    "role": "전사",
+    "element": "빛",
+    "skillName": "심판의 검",
+    "nonCombatBonus": "전체 공격력"
+  },
+  {
+    "id": "hero_033",
+    "name": "모르간",
+    "rarity": "영웅",
+    "role": "지원가",
+    "element": "어둠",
+    "skillName": "공포의 속삭임",
+    "nonCombatBonus": "심연 보상"
+  },
+  {
+    "id": "hero_034",
+    "name": "티아",
+    "rarity": "고급",
+    "role": "궁수",
+    "element": "바람",
+    "skillName": "독수리 눈",
+    "nonCombatBonus": "명중률"
+  },
+  {
+    "id": "hero_035",
+    "name": "로벨",
+    "rarity": "희귀",
+    "role": "마법사",
+    "element": "땅",
+    "skillName": "돌창 소환",
+    "nonCombatBonus": "건물 비용 감소"
+  },
+  {
+    "id": "hero_036",
+    "name": "아델",
+    "rarity": "전설",
+    "role": "사제",
+    "element": "물",
+    "skillName": "생명의 샘",
+    "nonCombatBonus": "오프라인 보상"
+  },
+  {
+    "id": "hero_037",
+    "name": "칼릭스",
+    "rarity": "영웅",
+    "role": "전사",
+    "element": "어둠",
+    "skillName": "피의 회전",
+    "nonCombatBonus": "흡혈"
+  },
+  {
+    "id": "hero_038",
+    "name": "네리스",
+    "rarity": "희귀",
+    "role": "지원가",
+    "element": "빛",
+    "skillName": "보호막",
+    "nonCombatBonus": "장비 강화 비용 감소"
+  },
+  {
+    "id": "hero_039",
+    "name": "오필리아",
+    "rarity": "전설",
+    "role": "마법사",
+    "element": "어둠",
+    "skillName": "별 없는 밤",
+    "nonCombatBonus": "마력석 생산"
+  },
+  {
+    "id": "hero_040",
+    "name": "드레이크",
+    "rarity": "전설",
+    "role": "전사",
+    "element": "불",
+    "skillName": "용의 분노",
+    "nonCombatBonus": "화염 피해"
+  },
+  {
+    "id": "hero_041",
+    "name": "라일라",
+    "rarity": "영웅",
+    "role": "암살자",
+    "element": "바람",
+    "skillName": "무음 살격",
+    "nonCombatBonus": "탐험 희귀 보상"
+  },
+  {
+    "id": "hero_042",
+    "name": "하임",
+    "rarity": "고급",
+    "role": "탱커",
+    "element": "땅",
+    "skillName": "바위 피부",
+    "nonCombatBonus": "광석 저장량"
+  },
+  {
+    "id": "hero_043",
+    "name": "밀라",
+    "rarity": "희귀",
+    "role": "사제",
+    "element": "물",
+    "skillName": "치유의 비",
+    "nonCombatBonus": "식량 생산"
+  },
+  {
+    "id": "hero_044",
+    "name": "제이드",
+    "rarity": "영웅",
+    "role": "궁수",
+    "element": "땅",
+    "skillName": "분쇄 사격",
+    "nonCombatBonus": "폐광 보상"
+  },
+  {
+    "id": "hero_045",
+    "name": "에녹",
+    "rarity": "전설",
+    "role": "탱커",
+    "element": "무",
+    "skillName": "왕의 수호",
+    "nonCombatBonus": "파티 방어력"
+  },
+  {
+    "id": "hero_046",
+    "name": "벨라트릭스",
+    "rarity": "전설",
+    "role": "암살자",
+    "element": "어둠",
+    "skillName": "그림자 처형",
+    "nonCombatBonus": "보스 재도전 보너스"
+  },
+  {
+    "id": "hero_047",
+    "name": "실피",
+    "rarity": "희귀",
+    "role": "지원가",
+    "element": "바람",
+    "skillName": "바람 축복",
+    "nonCombatBonus": "이동형 탐험"
+  },
+  {
+    "id": "hero_048",
+    "name": "카산드라",
+    "rarity": "영웅",
+    "role": "마법사",
+    "element": "물",
+    "skillName": "빙하 창",
+    "nonCombatBonus": "설원 보상"
+  },
+  {
+    "id": "hero_049",
+    "name": "레오",
+    "rarity": "고급",
+    "role": "전사",
+    "element": "빛",
+    "skillName": "용기의 검",
+    "nonCombatBonus": "초반 골드"
+  },
+  {
+    "id": "hero_050",
+    "name": "세피라",
+    "rarity": "신화",
+    "role": "지원가",
+    "element": "빛",
+    "skillName": "왕국의 별",
+    "nonCombatBonus": "전체 생산량"
+  }
+]

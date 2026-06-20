@@ -1,0 +1,112 @@
+[
+  {
+    "id": "ad_offline_reward_x2",
+    "name": "오프라인 보상 2배",
+    "dailyLimit": 5,
+    "cooldownMinutes": 0,
+    "placementScreen": "offline_reward_popup",
+    "rewardGrantPolicy": "grant_after_completed_view",
+    "format": "rewarded",
+    "isForced": false,
+    "rewardType": "offline_reward_x2"
+  },
+  {
+    "id": "ad_gold_x2",
+    "name": "골드 2배",
+    "dailyLimit": 5,
+    "cooldownMinutes": 30,
+    "placementScreen": "combat_reward_panel",
+    "rewardGrantPolicy": "grant_timed_buff_after_completed_view",
+    "format": "rewarded",
+    "isForced": false,
+    "rewardType": "gold_x2"
+  },
+  {
+    "id": "ad_resource_x2",
+    "name": "자원 2배",
+    "dailyLimit": 5,
+    "cooldownMinutes": 30,
+    "placementScreen": "village_production_panel",
+    "rewardGrantPolicy": "grant_timed_buff_after_completed_view",
+    "format": "rewarded",
+    "isForced": false,
+    "rewardType": "resource_x2"
+  },
+  {
+    "id": "ad_expedition_complete",
+    "name": "영웅 탐험 즉시 완료",
+    "dailyLimit": 3,
+    "cooldownMinutes": 20,
+    "placementScreen": "expedition_detail",
+    "rewardGrantPolicy": "grant_completion_after_completed_view",
+    "format": "rewarded",
+    "isForced": false,
+    "rewardType": "expedition_complete"
+  },
+  {
+    "id": "ad_building_complete",
+    "name": "건물 건설 즉시 완료",
+    "dailyLimit": 3,
+    "cooldownMinutes": 20,
+    "placementScreen": "building_detail",
+    "rewardGrantPolicy": "grant_completion_after_completed_view",
+    "format": "rewarded",
+    "isForced": false,
+    "rewardType": "building_complete"
+  },
+  {
+    "id": "ad_equipment_box",
+    "name": "장비 상자 획득",
+    "dailyLimit": 5,
+    "cooldownMinutes": 15,
+    "placementScreen": "equipment_reward_panel",
+    "rewardGrantPolicy": "grant_item_after_completed_view",
+    "format": "rewarded",
+    "isForced": false,
+    "rewardType": "equipment_box"
+  },
+  {
+    "id": "ad_boss_retry",
+    "name": "보스 재도전권",
+    "dailyLimit": 3,
+    "cooldownMinutes": 20,
+    "placementScreen": "boss_retry_popup",
+    "rewardGrantPolicy": "grant_ticket_after_completed_view",
+    "format": "rewarded",
+    "isForced": false,
+    "rewardType": "boss_retry"
+  },
+  {
+    "id": "ad_free_summon",
+    "name": "무료 소환",
+    "dailyLimit": 5,
+    "cooldownMinutes": 15,
+    "placementScreen": "summon_panel",
+    "rewardGrantPolicy": "grant_summon_after_completed_view",
+    "format": "rewarded",
+    "isForced": false,
+    "rewardType": "free_summon"
+  },
+  {
+    "id": "ad_legendary_box_boost",
+    "name": "전설 상자 확률 증가",
+    "dailyLimit": 1,
+    "cooldownMinutes": 60,
+    "placementScreen": "equipment_chest_panel",
+    "rewardGrantPolicy": "grant_next_chest_modifier_after_completed_view",
+    "format": "rewarded",
+    "isForced": false,
+    "rewardType": "legendary_box_boost"
+  },
+  {
+    "id": "ad_daily_special",
+    "name": "일일 특별 보상",
+    "dailyLimit": 1,
+    "cooldownMinutes": 60,
+    "placementScreen": "daily_reward_panel",
+    "rewardGrantPolicy": "grant_choice_reward_after_completed_view",
+    "format": "rewarded",
+    "isForced": false,
+    "rewardType": "daily_special"
+  }
+]

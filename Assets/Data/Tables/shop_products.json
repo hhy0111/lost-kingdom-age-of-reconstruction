@@ -1,0 +1,44 @@
+[
+  {
+    "id": "starter_pack",
+    "name": "스타터 패키지",
+    "priceKrw": 1500,
+    "type": "package"
+  },
+  {
+    "id": "remove_ads",
+    "name": "광고 제거 패키지",
+    "priceKrw": 8900,
+    "type": "convenience"
+  },
+  {
+    "id": "monthly_subscription",
+    "name": "월정액",
+    "priceKrw": 6500,
+    "type": "subscription"
+  },
+  {
+    "id": "kingdom_pass",
+    "name": "왕국 패스",
+    "priceKrw": 12900,
+    "type": "season_pass"
+  },
+  {
+    "id": "growth_pack_1",
+    "name": "성장 패키지 I",
+    "priceKrw": 5900,
+    "type": "growth"
+  },
+  {
+    "id": "growth_pack_2",
+    "name": "성장 패키지 II",
+    "priceKrw": 12900,
+    "type": "growth"
+  },
+  {
+    "id": "growth_pack_3",
+    "name": "성장 패키지 III",
+    "priceKrw": 29000,
+    "type": "growth"
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "name": "lost-kingdom-foundation",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Image-independent data foundation for Lost Kingdom: Age of Reconstruction.",
+  "scripts": {
+    "test": "node --test tests/catalog-data.test.cjs tests/prompt-manifest.test.cjs tests/growth-upgrade.test.cjs tests/monetization-data.test.cjs tests/asset-application.test.cjs tests/audio-assets.test.cjs tests/privacy-policy.test.cjs tests/web-preview-data.test.cjs tests/web-game-runtime.test.cjs tests/release-readiness.test.cjs",
+    "build:data": "node tools/build-data.cjs",
+    "validate:data": "node tools/validate-data.cjs",
+    "build:prompts": "node tools/build-prompt-manifest.cjs",
+    "validate:prompts": "node tools/validate-prompt-manifest.cjs",
+    "apply:assets": "node tools/apply-assets.cjs",
+    "validate:assets": "node tools/validate-assets.cjs",
+    "apply:sounds": "node tools/apply-sounds.cjs",
+    "validate:sounds": "node tools/validate-sounds.cjs",
+    "build:preview": "node tools/build-preview-data.cjs",
+    "serve:preview": "node tools/serve-preview.cjs",
+    "build:game": "node tools/build-runtime-data.cjs",
+    "validate:release": "node tools/validate-release-readiness.cjs",
+    "serve:game": "node tools/serve-game.cjs",
+    "check": "npm test && npm run build:data && npm run validate:data && npm run build:prompts && npm run validate:prompts && npm run validate:assets && npm run validate:sounds && npm run build:preview && npm run build:game && npm run validate:release"
+  },
+  "devDependencies": {
+    "pngjs": "^7.0.0"
+  }
+}

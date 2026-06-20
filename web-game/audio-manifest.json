@@ -1,0 +1,1094 @@
+[
+  {
+    "id": "bgm_title_rebuild_kingdom",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_title_rebuild_kingdom.wav",
+    "loop": true,
+    "use": "타이틀/시작 화면"
+  },
+  {
+    "id": "bgm_opening_ruins_to_hope",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_opening_ruins_to_hope.wav",
+    "loop": true,
+    "use": "오프닝 연출"
+  },
+  {
+    "id": "bgm_village_ruins",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_village_ruins.wav",
+    "loop": true,
+    "use": "폐허 단계 마을"
+  },
+  {
+    "id": "bgm_village_town",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_village_town.wav",
+    "loop": true,
+    "use": "마을 단계"
+  },
+  {
+    "id": "bgm_village_city",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_village_city.wav",
+    "loop": true,
+    "use": "도시 단계"
+  },
+  {
+    "id": "bgm_village_kingdom",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_village_kingdom.wav",
+    "loop": true,
+    "use": "왕국 단계"
+  },
+  {
+    "id": "bgm_village_empire",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_village_empire.wav",
+    "loop": true,
+    "use": "제국 단계"
+  },
+  {
+    "id": "bgm_combat_plains",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_combat_plains.wav",
+    "loop": true,
+    "use": "초원 전투"
+  },
+  {
+    "id": "bgm_combat_forest",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_combat_forest.wav",
+    "loop": true,
+    "use": "숲 전투"
+  },
+  {
+    "id": "bgm_combat_mine",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_combat_mine.wav",
+    "loop": true,
+    "use": "폐광 전투"
+  },
+  {
+    "id": "bgm_combat_desert",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_combat_desert.wav",
+    "loop": true,
+    "use": "사막 전투"
+  },
+  {
+    "id": "bgm_combat_snowfield",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_combat_snowfield.wav",
+    "loop": true,
+    "use": "설원 전투"
+  },
+  {
+    "id": "bgm_combat_volcano",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_combat_volcano.wav",
+    "loop": true,
+    "use": "화산 전투"
+  },
+  {
+    "id": "bgm_combat_abyss",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_combat_abyss.wav",
+    "loop": true,
+    "use": "심연 전투"
+  },
+  {
+    "id": "bgm_combat_demon_castle",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_combat_demon_castle.wav",
+    "loop": true,
+    "use": "마왕성 전투"
+  },
+  {
+    "id": "bgm_boss_encounter",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_boss_encounter.wav",
+    "loop": true,
+    "use": "일반 보스"
+  },
+  {
+    "id": "bgm_final_boss_dark_lord",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_final_boss_dark_lord.wav",
+    "loop": true,
+    "use": "최종 보스"
+  },
+  {
+    "id": "bgm_shop_merchant",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_shop_merchant.wav",
+    "loop": true,
+    "use": "상점"
+  },
+  {
+    "id": "bgm_hero_hall",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_hero_hall.wav",
+    "loop": true,
+    "use": "영웅/장비 화면"
+  },
+  {
+    "id": "bgm_reward_ceremony",
+    "group": "BGM",
+    "url": "audio/BGM/bgm_reward_ceremony.wav",
+    "loop": true,
+    "use": "출석/패스/큰 보상"
+  },
+  {
+    "id": "amb_village_ruins_wind",
+    "group": "Ambience",
+    "url": "audio/Ambience/amb_village_ruins_wind.wav",
+    "loop": true,
+    "use": "폐허 마을"
+  },
+  {
+    "id": "amb_village_busy_day",
+    "group": "Ambience",
+    "url": "audio/Ambience/amb_village_busy_day.wav",
+    "loop": true,
+    "use": "성장한 마을"
+  },
+  {
+    "id": "amb_castle_hall",
+    "group": "Ambience",
+    "url": "audio/Ambience/amb_castle_hall.wav",
+    "loop": true,
+    "use": "왕궁/로비"
+  },
+  {
+    "id": "amb_plains_breeze",
+    "group": "Ambience",
+    "url": "audio/Ambience/amb_plains_breeze.wav",
+    "loop": true,
+    "use": "초원"
+  },
+  {
+    "id": "amb_forest_deep",
+    "group": "Ambience",
+    "url": "audio/Ambience/amb_forest_deep.wav",
+    "loop": true,
+    "use": "숲"
+  },
+  {
+    "id": "amb_abandoned_mine",
+    "group": "Ambience",
+    "url": "audio/Ambience/amb_abandoned_mine.wav",
+    "loop": true,
+    "use": "폐광"
+  },
+  {
+    "id": "amb_desert_wind",
+    "group": "Ambience",
+    "url": "audio/Ambience/amb_desert_wind.wav",
+    "loop": true,
+    "use": "사막"
+  },
+  {
+    "id": "amb_snowfield",
+    "group": "Ambience",
+    "url": "audio/Ambience/amb_snowfield.wav",
+    "loop": true,
+    "use": "설원"
+  },
+  {
+    "id": "amb_volcano_lava",
+    "group": "Ambience",
+    "url": "audio/Ambience/amb_volcano_lava.wav",
+    "loop": true,
+    "use": "화산"
+  },
+  {
+    "id": "amb_abyss_magic",
+    "group": "Ambience",
+    "url": "audio/Ambience/amb_abyss_magic.wav",
+    "loop": true,
+    "use": "심연"
+  },
+  {
+    "id": "amb_demon_castle",
+    "group": "Ambience",
+    "url": "audio/Ambience/amb_demon_castle.wav",
+    "loop": true,
+    "use": "마왕성"
+  },
+  {
+    "id": "amb_shop_interior",
+    "group": "Ambience",
+    "url": "audio/Ambience/amb_shop_interior.wav",
+    "loop": true,
+    "use": "상점 내부"
+  },
+  {
+    "id": "ui_boot_ready",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_boot_ready.wav",
+    "loop": false,
+    "use": "앱 준비 완료"
+  },
+  {
+    "id": "ui_tap_confirm_01",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_tap_confirm_01.wav",
+    "loop": false,
+    "use": "기본 버튼 탭"
+  },
+  {
+    "id": "ui_tap_confirm_02",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_tap_confirm_02.wav",
+    "loop": false,
+    "use": "버튼 탭 변형"
+  },
+  {
+    "id": "ui_tab_switch",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_tab_switch.wav",
+    "loop": false,
+    "use": "하단 탭 이동"
+  },
+  {
+    "id": "ui_panel_open",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_panel_open.wav",
+    "loop": false,
+    "use": "팝업 열림"
+  },
+  {
+    "id": "ui_panel_close",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_panel_close.wav",
+    "loop": false,
+    "use": "팝업 닫힘"
+  },
+  {
+    "id": "ui_modal_confirm",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_modal_confirm.wav",
+    "loop": false,
+    "use": "확인/수령"
+  },
+  {
+    "id": "ui_modal_cancel",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_modal_cancel.wav",
+    "loop": false,
+    "use": "취소/나중에"
+  },
+  {
+    "id": "ui_button_disabled",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_button_disabled.wav",
+    "loop": false,
+    "use": "비활성 버튼"
+  },
+  {
+    "id": "ui_scroll_drag",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_scroll_drag.wav",
+    "loop": false,
+    "use": "터치 스크롤 시작"
+  },
+  {
+    "id": "ui_scroll_stop",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_scroll_stop.wav",
+    "loop": false,
+    "use": "스크롤 멈춤"
+  },
+  {
+    "id": "ui_toast_notice",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_toast_notice.wav",
+    "loop": false,
+    "use": "토스트 알림"
+  },
+  {
+    "id": "ui_error_soft",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_error_soft.wav",
+    "loop": false,
+    "use": "자원 부족/오류"
+  },
+  {
+    "id": "ui_number_count",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_number_count.wav",
+    "loop": false,
+    "use": "숫자 증가"
+  },
+  {
+    "id": "ui_unlock",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_unlock.wav",
+    "loop": false,
+    "use": "기능 해금"
+  },
+  {
+    "id": "ui_transition_wipe",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_transition_wipe.wav",
+    "loop": false,
+    "use": "화면 전환"
+  },
+  {
+    "id": "ui_checkbox_on",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_checkbox_on.wav",
+    "loop": false,
+    "use": "토글 ON"
+  },
+  {
+    "id": "ui_checkbox_off",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_checkbox_off.wav",
+    "loop": false,
+    "use": "토글 OFF"
+  },
+  {
+    "id": "ui_slider_step",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_slider_step.wav",
+    "loop": false,
+    "use": "설정 슬라이더"
+  },
+  {
+    "id": "ui_page_next",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_page_next.wav",
+    "loop": false,
+    "use": "다음 페이지"
+  },
+  {
+    "id": "ui_page_prev",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_page_prev.wav",
+    "loop": false,
+    "use": "이전 페이지"
+  },
+  {
+    "id": "ui_rare_popup",
+    "group": "UI",
+    "url": "audio/SFX/UI/ui_rare_popup.wav",
+    "loop": false,
+    "use": "희귀 팝업 등장"
+  },
+  {
+    "id": "combat_sword_light_01",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_sword_light_01.wav",
+    "loop": false,
+    "use": "기본 검 공격"
+  },
+  {
+    "id": "combat_sword_light_02",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_sword_light_02.wav",
+    "loop": false,
+    "use": "기본 검 공격 변형"
+  },
+  {
+    "id": "combat_sword_heavy",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_sword_heavy.wav",
+    "loop": false,
+    "use": "강공격"
+  },
+  {
+    "id": "combat_hit_flesh_light",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_hit_flesh_light.wav",
+    "loop": false,
+    "use": "일반 몬스터 피격"
+  },
+  {
+    "id": "combat_hit_armor",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_hit_armor.wav",
+    "loop": false,
+    "use": "갑옷/단단한 몬스터 피격"
+  },
+  {
+    "id": "combat_hit_magic",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_hit_magic.wav",
+    "loop": false,
+    "use": "마법 피격"
+  },
+  {
+    "id": "combat_critical_hit",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_critical_hit.wav",
+    "loop": false,
+    "use": "치명타"
+  },
+  {
+    "id": "combat_skill_cast",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_skill_cast.wav",
+    "loop": false,
+    "use": "스킬 발동"
+  },
+  {
+    "id": "combat_skill_impact",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_skill_impact.wav",
+    "loop": false,
+    "use": "스킬 적중"
+  },
+  {
+    "id": "combat_fire_skill",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_fire_skill.wav",
+    "loop": false,
+    "use": "화염 스킬"
+  },
+  {
+    "id": "combat_ice_skill",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_ice_skill.wav",
+    "loop": false,
+    "use": "얼음 스킬"
+  },
+  {
+    "id": "combat_lightning_skill",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_lightning_skill.wav",
+    "loop": false,
+    "use": "번개 스킬"
+  },
+  {
+    "id": "combat_dark_skill",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_dark_skill.wav",
+    "loop": false,
+    "use": "암흑 스킬"
+  },
+  {
+    "id": "combat_heal_skill",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_heal_skill.wav",
+    "loop": false,
+    "use": "회복 스킬"
+  },
+  {
+    "id": "combat_guard_block",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_guard_block.wav",
+    "loop": false,
+    "use": "방어/막기"
+  },
+  {
+    "id": "combat_dodge",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_dodge.wav",
+    "loop": false,
+    "use": "회피"
+  },
+  {
+    "id": "combat_enemy_attack_claw",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_enemy_attack_claw.wav",
+    "loop": false,
+    "use": "발톱 공격"
+  },
+  {
+    "id": "combat_enemy_attack_bite",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_enemy_attack_bite.wav",
+    "loop": false,
+    "use": "물기 공격"
+  },
+  {
+    "id": "combat_enemy_attack_slime",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_enemy_attack_slime.wav",
+    "loop": false,
+    "use": "슬라임 공격"
+  },
+  {
+    "id": "combat_enemy_attack_undead",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_enemy_attack_undead.wav",
+    "loop": false,
+    "use": "언데드 공격"
+  },
+  {
+    "id": "combat_enemy_attack_golem",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_enemy_attack_golem.wav",
+    "loop": false,
+    "use": "골렘 공격"
+  },
+  {
+    "id": "combat_enemy_attack_demon",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_enemy_attack_demon.wav",
+    "loop": false,
+    "use": "악마 공격"
+  },
+  {
+    "id": "combat_monster_death_small",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_monster_death_small.wav",
+    "loop": false,
+    "use": "소형 몬스터 처치"
+  },
+  {
+    "id": "combat_monster_death_large",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_monster_death_large.wav",
+    "loop": false,
+    "use": "대형 몬스터 처치"
+  },
+  {
+    "id": "combat_boss_intro",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_boss_intro.wav",
+    "loop": false,
+    "use": "보스 등장"
+  },
+  {
+    "id": "combat_boss_roar_beast",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_boss_roar_beast.wav",
+    "loop": false,
+    "use": "야수형 보스"
+  },
+  {
+    "id": "combat_boss_roar_demon",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_boss_roar_demon.wav",
+    "loop": false,
+    "use": "악마형 보스"
+  },
+  {
+    "id": "combat_boss_skill_charge",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_boss_skill_charge.wav",
+    "loop": false,
+    "use": "보스 스킬 차징"
+  },
+  {
+    "id": "combat_boss_skill_impact",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_boss_skill_impact.wav",
+    "loop": false,
+    "use": "보스 스킬 적중"
+  },
+  {
+    "id": "combat_stage_clear",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_stage_clear.wav",
+    "loop": false,
+    "use": "스테이지 클리어"
+  },
+  {
+    "id": "combat_boss_clear",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_boss_clear.wav",
+    "loop": false,
+    "use": "보스 처치"
+  },
+  {
+    "id": "combat_party_defeat",
+    "group": "Combat",
+    "url": "audio/SFX/Combat/combat_party_defeat.wav",
+    "loop": false,
+    "use": "패배/후퇴"
+  },
+  {
+    "id": "reward_gold_small",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/reward_gold_small.wav",
+    "loop": false,
+    "use": "골드 소량 획득"
+  },
+  {
+    "id": "reward_gold_large",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/reward_gold_large.wav",
+    "loop": false,
+    "use": "골드 대량 획득"
+  },
+  {
+    "id": "reward_diamond",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/reward_diamond.wav",
+    "loop": false,
+    "use": "다이아 획득"
+  },
+  {
+    "id": "reward_food",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/reward_food.wav",
+    "loop": false,
+    "use": "식량 획득"
+  },
+  {
+    "id": "reward_wood",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/reward_wood.wav",
+    "loop": false,
+    "use": "목재 획득"
+  },
+  {
+    "id": "reward_ore",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/reward_ore.wav",
+    "loop": false,
+    "use": "광석 획득"
+  },
+  {
+    "id": "reward_magic_stone",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/reward_magic_stone.wav",
+    "loop": false,
+    "use": "마력석 획득"
+  },
+  {
+    "id": "reward_offline_claim",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/reward_offline_claim.wav",
+    "loop": false,
+    "use": "오프라인 보상 수령"
+  },
+  {
+    "id": "reward_double_ad",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/reward_double_ad.wav",
+    "loop": false,
+    "use": "광고 2배 보상"
+  },
+  {
+    "id": "reward_daily_claim",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/reward_daily_claim.wav",
+    "loop": false,
+    "use": "일일 보상 수령"
+  },
+  {
+    "id": "reward_weekly_special",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/reward_weekly_special.wav",
+    "loop": false,
+    "use": "7일 특수 아이템"
+  },
+  {
+    "id": "reward_monthly_relic",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/reward_monthly_relic.wav",
+    "loop": false,
+    "use": "30일 특수 아이템"
+  },
+  {
+    "id": "chest_open_common",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/chest_open_common.wav",
+    "loop": false,
+    "use": "일반 상자 개봉"
+  },
+  {
+    "id": "chest_open_rare",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/chest_open_rare.wav",
+    "loop": false,
+    "use": "희귀 상자 개봉"
+  },
+  {
+    "id": "chest_open_epic",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/chest_open_epic.wav",
+    "loop": false,
+    "use": "영웅 상자 개봉"
+  },
+  {
+    "id": "chest_open_legendary",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/chest_open_legendary.wav",
+    "loop": false,
+    "use": "전설 상자 개봉"
+  },
+  {
+    "id": "loot_drop_common",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/loot_drop_common.wav",
+    "loop": false,
+    "use": "일반 장비 드롭"
+  },
+  {
+    "id": "loot_drop_rare",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/loot_drop_rare.wav",
+    "loop": false,
+    "use": "희귀 장비 드롭"
+  },
+  {
+    "id": "loot_drop_epic",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/loot_drop_epic.wav",
+    "loop": false,
+    "use": "영웅 장비 드롭"
+  },
+  {
+    "id": "loot_drop_legendary",
+    "group": "Reward",
+    "url": "audio/SFX/Reward/loot_drop_legendary.wav",
+    "loop": false,
+    "use": "전설 장비 드롭"
+  },
+  {
+    "id": "village_build_start",
+    "group": "Village",
+    "url": "audio/SFX/Village/village_build_start.wav",
+    "loop": false,
+    "use": "건설 시작"
+  },
+  {
+    "id": "village_build_complete",
+    "group": "Village",
+    "url": "audio/SFX/Village/village_build_complete.wav",
+    "loop": false,
+    "use": "건설 완료"
+  },
+  {
+    "id": "village_upgrade",
+    "group": "Village",
+    "url": "audio/SFX/Village/village_upgrade.wav",
+    "loop": false,
+    "use": "건물 강화"
+  },
+  {
+    "id": "village_tier_up",
+    "group": "Village",
+    "url": "audio/SFX/Village/village_tier_up.wav",
+    "loop": false,
+    "use": "왕국 단계 상승"
+  },
+  {
+    "id": "village_palace_upgrade",
+    "group": "Village",
+    "url": "audio/SFX/Village/village_palace_upgrade.wav",
+    "loop": false,
+    "use": "왕궁 강화"
+  },
+  {
+    "id": "village_barracks_upgrade",
+    "group": "Village",
+    "url": "audio/SFX/Village/village_barracks_upgrade.wav",
+    "loop": false,
+    "use": "병영 강화"
+  },
+  {
+    "id": "village_farm_collect",
+    "group": "Village",
+    "url": "audio/SFX/Village/village_farm_collect.wav",
+    "loop": false,
+    "use": "농장 생산"
+  },
+  {
+    "id": "village_lumber_collect",
+    "group": "Village",
+    "url": "audio/SFX/Village/village_lumber_collect.wav",
+    "loop": false,
+    "use": "벌목장 생산"
+  },
+  {
+    "id": "village_mine_collect",
+    "group": "Village",
+    "url": "audio/SFX/Village/village_mine_collect.wav",
+    "loop": false,
+    "use": "광산 생산"
+  },
+  {
+    "id": "village_magic_lab_collect",
+    "group": "Village",
+    "url": "audio/SFX/Village/village_magic_lab_collect.wav",
+    "loop": false,
+    "use": "마법 연구소 생산"
+  },
+  {
+    "id": "village_resident_join",
+    "group": "Village",
+    "url": "audio/SFX/Village/village_resident_join.wav",
+    "loop": false,
+    "use": "주민 합류"
+  },
+  {
+    "id": "village_research_start",
+    "group": "Village",
+    "url": "audio/SFX/Village/village_research_start.wav",
+    "loop": false,
+    "use": "연구 시작"
+  },
+  {
+    "id": "village_research_complete",
+    "group": "Village",
+    "url": "audio/SFX/Village/village_research_complete.wav",
+    "loop": false,
+    "use": "연구 완료"
+  },
+  {
+    "id": "village_expedition_return",
+    "group": "Village",
+    "url": "audio/SFX/Village/village_expedition_return.wav",
+    "loop": false,
+    "use": "탐험 복귀"
+  },
+  {
+    "id": "hero_summon_common",
+    "group": "Hero",
+    "url": "audio/SFX/Hero/hero_summon_common.wav",
+    "loop": false,
+    "use": "일반 영웅 소환"
+  },
+  {
+    "id": "hero_summon_rare",
+    "group": "Hero",
+    "url": "audio/SFX/Hero/hero_summon_rare.wav",
+    "loop": false,
+    "use": "희귀 영웅 소환"
+  },
+  {
+    "id": "hero_summon_epic",
+    "group": "Hero",
+    "url": "audio/SFX/Hero/hero_summon_epic.wav",
+    "loop": false,
+    "use": "영웅 등급 소환"
+  },
+  {
+    "id": "hero_summon_legendary",
+    "group": "Hero",
+    "url": "audio/SFX/Hero/hero_summon_legendary.wav",
+    "loop": false,
+    "use": "전설 영웅 소환"
+  },
+  {
+    "id": "hero_level_up",
+    "group": "Hero",
+    "url": "audio/SFX/Hero/hero_level_up.wav",
+    "loop": false,
+    "use": "영웅 레벨업"
+  },
+  {
+    "id": "hero_train",
+    "group": "Hero",
+    "url": "audio/SFX/Hero/hero_train.wav",
+    "loop": false,
+    "use": "영웅 훈련"
+  },
+  {
+    "id": "hero_rank_up",
+    "group": "Hero",
+    "url": "audio/SFX/Hero/hero_rank_up.wav",
+    "loop": false,
+    "use": "영웅 승급"
+  },
+  {
+    "id": "hero_detail_open",
+    "group": "Hero",
+    "url": "audio/SFX/Hero/hero_detail_open.wav",
+    "loop": false,
+    "use": "영웅 상세 팝업"
+  },
+  {
+    "id": "equipment_equip",
+    "group": "Hero",
+    "url": "audio/SFX/Hero/equipment_equip.wav",
+    "loop": false,
+    "use": "장비 장착"
+  },
+  {
+    "id": "equipment_unequip",
+    "group": "Hero",
+    "url": "audio/SFX/Hero/equipment_unequip.wav",
+    "loop": false,
+    "use": "장비 해제"
+  },
+  {
+    "id": "equipment_auto_equip",
+    "group": "Hero",
+    "url": "audio/SFX/Hero/equipment_auto_equip.wav",
+    "loop": false,
+    "use": "장비 정리/자동 장착"
+  },
+  {
+    "id": "equipment_enhance_success",
+    "group": "Hero",
+    "url": "audio/SFX/Hero/equipment_enhance_success.wav",
+    "loop": false,
+    "use": "장비 강화 성공"
+  },
+  {
+    "id": "equipment_enhance_fail",
+    "group": "Hero",
+    "url": "audio/SFX/Hero/equipment_enhance_fail.wav",
+    "loop": false,
+    "use": "장비 강화 실패"
+  },
+  {
+    "id": "equipment_reforge",
+    "group": "Hero",
+    "url": "audio/SFX/Hero/equipment_reforge.wav",
+    "loop": false,
+    "use": "장비 재련"
+  },
+  {
+    "id": "artifact_activate",
+    "group": "Hero",
+    "url": "audio/SFX/Hero/artifact_activate.wav",
+    "loop": false,
+    "use": "유물 활성화"
+  },
+  {
+    "id": "set_bonus_unlock",
+    "group": "Hero",
+    "url": "audio/SFX/Hero/set_bonus_unlock.wav",
+    "loop": false,
+    "use": "세트 효과 활성화"
+  },
+  {
+    "id": "ad_reward_ready",
+    "group": "Shop",
+    "url": "audio/SFX/Shop/ad_reward_ready.wav",
+    "loop": false,
+    "use": "선택형 광고 보상 가능"
+  },
+  {
+    "id": "ad_reward_claim",
+    "group": "Shop",
+    "url": "audio/SFX/Shop/ad_reward_claim.wav",
+    "loop": false,
+    "use": "광고 보상 수령"
+  },
+  {
+    "id": "ad_skip_entitlement",
+    "group": "Shop",
+    "url": "audio/SFX/Shop/ad_skip_entitlement.wav",
+    "loop": false,
+    "use": "광고 제거 혜택 적용"
+  },
+  {
+    "id": "purchase_open",
+    "group": "Shop",
+    "url": "audio/SFX/Shop/purchase_open.wav",
+    "loop": false,
+    "use": "상품 카드 열림"
+  },
+  {
+    "id": "purchase_success",
+    "group": "Shop",
+    "url": "audio/SFX/Shop/purchase_success.wav",
+    "loop": false,
+    "use": "결제 성공"
+  },
+  {
+    "id": "purchase_cancel",
+    "group": "Shop",
+    "url": "audio/SFX/Shop/purchase_cancel.wav",
+    "loop": false,
+    "use": "결제 취소"
+  },
+  {
+    "id": "purchase_restore",
+    "group": "Shop",
+    "url": "audio/SFX/Shop/purchase_restore.wav",
+    "loop": false,
+    "use": "구매 복원"
+  },
+  {
+    "id": "pass_reward_unlock",
+    "group": "Shop",
+    "url": "audio/SFX/Shop/pass_reward_unlock.wav",
+    "loop": false,
+    "use": "왕국 패스 보상 해금"
+  },
+  {
+    "id": "monthly_reward_claim",
+    "group": "Shop",
+    "url": "audio/SFX/Shop/monthly_reward_claim.wav",
+    "loop": false,
+    "use": "월정액 일일 보상"
+  },
+  {
+    "id": "growth_pack_claim",
+    "group": "Shop",
+    "url": "audio/SFX/Shop/growth_pack_claim.wav",
+    "loop": false,
+    "use": "성장 패키지 지급"
+  },
+  {
+    "id": "free_summon_ready",
+    "group": "Shop",
+    "url": "audio/SFX/Shop/free_summon_ready.wav",
+    "loop": false,
+    "use": "무료 소환 가능"
+  },
+  {
+    "id": "legendary_rate_up",
+    "group": "Shop",
+    "url": "audio/SFX/Shop/legendary_rate_up.wav",
+    "loop": false,
+    "use": "전설 확률 증가"
+  },
+  {
+    "id": "notification_daily",
+    "group": "System",
+    "url": "audio/SFX/System/notification_daily.wav",
+    "loop": false,
+    "use": "일일 알림"
+  },
+  {
+    "id": "notification_offline_reward",
+    "group": "System",
+    "url": "audio/SFX/System/notification_offline_reward.wav",
+    "loop": false,
+    "use": "오프라인 보상 알림"
+  },
+  {
+    "id": "notification_build_complete",
+    "group": "System",
+    "url": "audio/SFX/System/notification_build_complete.wav",
+    "loop": false,
+    "use": "건설 완료 알림"
+  },
+  {
+    "id": "notification_expedition_done",
+    "group": "System",
+    "url": "audio/SFX/System/notification_expedition_done.wav",
+    "loop": false,
+    "use": "탐험 완료 알림"
+  },
+  {
+    "id": "save_complete",
+    "group": "System",
+    "url": "audio/SFX/System/save_complete.wav",
+    "loop": false,
+    "use": "저장 완료"
+  },
+  {
+    "id": "network_soft_warning",
+    "group": "System",
+    "url": "audio/SFX/System/network_soft_warning.wav",
+    "loop": false,
+    "use": "네트워크/스토어 경고"
+  },
+  {
+    "id": "settings_open",
+    "group": "System",
+    "url": "audio/SFX/System/settings_open.wav",
+    "loop": false,
+    "use": "설정 열림"
+  },
+  {
+    "id": "settings_apply",
+    "group": "System",
+    "url": "audio/SFX/System/settings_apply.wav",
+    "loop": false,
+    "use": "설정 적용"
+  }
+]

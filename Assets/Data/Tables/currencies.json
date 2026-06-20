@@ -1,0 +1,32 @@
+[
+  {
+    "id": "gold",
+    "name": "골드",
+    "type": "basic"
+  },
+  {
+    "id": "diamond",
+    "name": "다이아",
+    "type": "premium"
+  },
+  {
+    "id": "food",
+    "name": "식량",
+    "type": "resource"
+  },
+  {
+    "id": "wood",
+    "name": "목재",
+    "type": "resource"
+  },
+  {
+    "id": "ore",
+    "name": "광석",
+    "type": "resource"
+  },
+  {
+    "id": "magic_stone",
+    "name": "마력석",
+    "type": "resource"
+  }
+]

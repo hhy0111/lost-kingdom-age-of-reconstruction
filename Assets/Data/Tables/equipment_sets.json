@@ -1,0 +1,102 @@
+[
+  {
+    "id": "equipment_set_001",
+    "name": "녹슨 개척자",
+    "rarity": "일반"
+  },
+  {
+    "id": "equipment_set_002",
+    "name": "초원 수호자",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_set_003",
+    "name": "생존자",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_set_004",
+    "name": "숲 그림자",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_set_005",
+    "name": "고대 수목",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_set_006",
+    "name": "폐광 채굴자",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_set_007",
+    "name": "수정 파수꾼",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_set_008",
+    "name": "사막 유랑자",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_set_009",
+    "name": "황금 유적",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_set_010",
+    "name": "서리 감시자",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_set_011",
+    "name": "북방 기사",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_set_012",
+    "name": "화염 제련",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_set_013",
+    "name": "용암 군주",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_set_014",
+    "name": "심연 추적자",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_set_015",
+    "name": "공허 사제",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_set_016",
+    "name": "왕국 재건자",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_set_017",
+    "name": "별빛 왕가",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_set_018",
+    "name": "마왕 학살자",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_set_019",
+    "name": "제국 창건자",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_set_020",
+    "name": "영원의 수호",
+    "rarity": "신화"
+  }
+]

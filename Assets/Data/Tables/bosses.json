@@ -1,0 +1,258 @@
+[
+  {
+    "id": "boss_001",
+    "name": "들판의 폭군 그룸",
+    "regionId": "region_grassland",
+    "pattern": "elite_assault",
+    "element": "neutral",
+    "rewardId": "reward_boss_001"
+  },
+  {
+    "id": "boss_002",
+    "name": "해골 대장 발락",
+    "regionId": "region_grassland",
+    "pattern": "elite_assault",
+    "element": "neutral",
+    "rewardId": "reward_boss_002"
+  },
+  {
+    "id": "boss_003",
+    "name": "굶주린 늑대왕",
+    "regionId": "region_grassland",
+    "pattern": "elite_assault",
+    "element": "neutral",
+    "rewardId": "reward_boss_003"
+  },
+  {
+    "id": "boss_004",
+    "name": "폐허의 첫 수문장",
+    "regionId": "region_grassland",
+    "pattern": "heavy_guard",
+    "element": "neutral",
+    "rewardId": "reward_boss_004"
+  },
+  {
+    "id": "boss_005",
+    "name": "독버섯 군주",
+    "regionId": "region_forest",
+    "pattern": "elite_assault",
+    "element": "wind",
+    "rewardId": "reward_boss_005"
+  },
+  {
+    "id": "boss_006",
+    "name": "고대나무 파수꾼",
+    "regionId": "region_forest",
+    "pattern": "elite_assault",
+    "element": "wind",
+    "rewardId": "reward_boss_006"
+  },
+  {
+    "id": "boss_007",
+    "name": "녹색 칼날 레인저",
+    "regionId": "region_forest",
+    "pattern": "elite_assault",
+    "element": "wind",
+    "rewardId": "reward_boss_007"
+  },
+  {
+    "id": "boss_008",
+    "name": "숲의 타락한 드루이드",
+    "regionId": "region_forest",
+    "pattern": "magic_burst",
+    "element": "wind",
+    "rewardId": "reward_boss_008"
+  },
+  {
+    "id": "boss_009",
+    "name": "수정 거미 여왕",
+    "regionId": "region_abandoned_mine",
+    "pattern": "multi_hit",
+    "element": "earth",
+    "rewardId": "reward_boss_009"
+  },
+  {
+    "id": "boss_010",
+    "name": "녹슨 골렘 장군",
+    "regionId": "region_abandoned_mine",
+    "pattern": "heavy_guard",
+    "element": "earth",
+    "rewardId": "reward_boss_010"
+  },
+  {
+    "id": "boss_011",
+    "name": "광산 망령 감독관",
+    "regionId": "region_abandoned_mine",
+    "pattern": "elite_assault",
+    "element": "earth",
+    "rewardId": "reward_boss_011"
+  },
+  {
+    "id": "boss_012",
+    "name": "검은 곡괭이 오크",
+    "regionId": "region_abandoned_mine",
+    "pattern": "elite_assault",
+    "element": "earth",
+    "rewardId": "reward_boss_012"
+  },
+  {
+    "id": "boss_013",
+    "name": "모래왕 전갈",
+    "regionId": "region_desert",
+    "pattern": "multi_hit",
+    "element": "fire",
+    "rewardId": "reward_boss_013"
+  },
+  {
+    "id": "boss_014",
+    "name": "황금 미라 파라크",
+    "regionId": "region_desert",
+    "pattern": "elite_assault",
+    "element": "fire",
+    "rewardId": "reward_boss_014"
+  },
+  {
+    "id": "boss_015",
+    "name": "유적의 석상 거인",
+    "regionId": "region_desert",
+    "pattern": "heavy_guard",
+    "element": "fire",
+    "rewardId": "reward_boss_015"
+  },
+  {
+    "id": "boss_016",
+    "name": "열풍의 도적왕",
+    "regionId": "region_desert",
+    "pattern": "elite_assault",
+    "element": "fire",
+    "rewardId": "reward_boss_016"
+  },
+  {
+    "id": "boss_017",
+    "name": "서리늑대 대족장",
+    "regionId": "region_snowfield",
+    "pattern": "elite_assault",
+    "element": "water",
+    "rewardId": "reward_boss_017"
+  },
+  {
+    "id": "boss_018",
+    "name": "얼음 갑옷 기사",
+    "regionId": "region_snowfield",
+    "pattern": "elite_assault",
+    "element": "water",
+    "rewardId": "reward_boss_018"
+  },
+  {
+    "id": "boss_019",
+    "name": "북방 설인왕",
+    "regionId": "region_snowfield",
+    "pattern": "elite_assault",
+    "element": "water",
+    "rewardId": "reward_boss_019"
+  },
+  {
+    "id": "boss_020",
+    "name": "눈보라 마녀",
+    "regionId": "region_snowfield",
+    "pattern": "magic_burst",
+    "element": "water",
+    "rewardId": "reward_boss_020"
+  },
+  {
+    "id": "boss_021",
+    "name": "마그마 골렘",
+    "regionId": "region_volcano",
+    "pattern": "heavy_guard",
+    "element": "fire",
+    "rewardId": "reward_boss_021"
+  },
+  {
+    "id": "boss_022",
+    "name": "화염 도마뱀 군주",
+    "regionId": "region_volcano",
+    "pattern": "elite_assault",
+    "element": "fire",
+    "rewardId": "reward_boss_022"
+  },
+  {
+    "id": "boss_023",
+    "name": "용암 대장장이",
+    "regionId": "region_volcano",
+    "pattern": "elite_assault",
+    "element": "fire",
+    "rewardId": "reward_boss_023"
+  },
+  {
+    "id": "boss_024",
+    "name": "불의 사도 칼도르",
+    "regionId": "region_volcano",
+    "pattern": "elite_assault",
+    "element": "fire",
+    "rewardId": "reward_boss_024"
+  },
+  {
+    "id": "boss_025",
+    "name": "공허의 눈",
+    "regionId": "region_abyss",
+    "pattern": "elite_assault",
+    "element": "dark",
+    "rewardId": "reward_boss_025"
+  },
+  {
+    "id": "boss_026",
+    "name": "악몽 수확자",
+    "regionId": "region_abyss",
+    "pattern": "elite_assault",
+    "element": "dark",
+    "rewardId": "reward_boss_026"
+  },
+  {
+    "id": "boss_027",
+    "name": "타락한 대사제",
+    "regionId": "region_abyss",
+    "pattern": "magic_burst",
+    "element": "dark",
+    "rewardId": "reward_boss_027"
+  },
+  {
+    "id": "boss_028",
+    "name": "심연의 쌍검귀",
+    "regionId": "region_abyss",
+    "pattern": "multi_hit",
+    "element": "dark",
+    "rewardId": "reward_boss_028"
+  },
+  {
+    "id": "boss_029",
+    "name": "암흑 기사단장",
+    "regionId": "region_demon_castle",
+    "pattern": "elite_assault",
+    "element": "dark",
+    "rewardId": "reward_boss_029"
+  },
+  {
+    "id": "boss_030",
+    "name": "지옥문 파수꾼",
+    "regionId": "region_demon_castle",
+    "pattern": "elite_assault",
+    "element": "dark",
+    "rewardId": "reward_boss_030"
+  },
+  {
+    "id": "boss_031",
+    "name": "마왕의 왼팔 아그론",
+    "regionId": "region_demon_castle",
+    "pattern": "final_phase",
+    "element": "dark",
+    "rewardId": "reward_boss_031"
+  },
+  {
+    "id": "boss_032",
+    "name": "마왕 모르가스",
+    "regionId": "region_demon_castle",
+    "pattern": "final_phase",
+    "element": "dark",
+    "rewardId": "reward_boss_032"
+  }
+]

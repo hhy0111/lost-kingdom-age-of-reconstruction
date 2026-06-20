@@ -1,0 +1,834 @@
+[
+  {
+    "id": "monster_001",
+    "name": "허기진 슬라임",
+    "regionId": "region_grassland",
+    "role": "caster",
+    "element": "neutral",
+    "dropTableId": "drop_region_grassland"
+  },
+  {
+    "id": "monster_002",
+    "name": "들쥐 도적",
+    "regionId": "region_grassland",
+    "role": "assassin",
+    "element": "neutral",
+    "dropTableId": "drop_region_grassland"
+  },
+  {
+    "id": "monster_003",
+    "name": "갈기 늑대",
+    "regionId": "region_grassland",
+    "role": "fighter",
+    "element": "neutral",
+    "dropTableId": "drop_region_grassland"
+  },
+  {
+    "id": "monster_004",
+    "name": "낡은 해골병",
+    "regionId": "region_grassland",
+    "role": "tank",
+    "element": "neutral",
+    "dropTableId": "drop_region_grassland"
+  },
+  {
+    "id": "monster_005",
+    "name": "풀잎 고블린",
+    "regionId": "region_grassland",
+    "role": "fighter",
+    "element": "neutral",
+    "dropTableId": "drop_region_grassland"
+  },
+  {
+    "id": "monster_006",
+    "name": "들판 박쥐",
+    "regionId": "region_grassland",
+    "role": "fighter",
+    "element": "neutral",
+    "dropTableId": "drop_region_grassland"
+  },
+  {
+    "id": "monster_007",
+    "name": "무너진 허수아비",
+    "regionId": "region_grassland",
+    "role": "fighter",
+    "element": "neutral",
+    "dropTableId": "drop_region_grassland"
+  },
+  {
+    "id": "monster_008",
+    "name": "멧돼지 돌격병",
+    "regionId": "region_grassland",
+    "role": "fighter",
+    "element": "neutral",
+    "dropTableId": "drop_region_grassland"
+  },
+  {
+    "id": "monster_009",
+    "name": "잡초 정령",
+    "regionId": "region_grassland",
+    "role": "caster",
+    "element": "neutral",
+    "dropTableId": "drop_region_grassland"
+  },
+  {
+    "id": "monster_010",
+    "name": "초원 코볼트",
+    "regionId": "region_grassland",
+    "role": "fighter",
+    "element": "neutral",
+    "dropTableId": "drop_region_grassland"
+  },
+  {
+    "id": "monster_011",
+    "name": "도망병 망령",
+    "regionId": "region_grassland",
+    "role": "fighter",
+    "element": "neutral",
+    "dropTableId": "drop_region_grassland"
+  },
+  {
+    "id": "monster_012",
+    "name": "흙투성이 좀비",
+    "regionId": "region_grassland",
+    "role": "fighter",
+    "element": "neutral",
+    "dropTableId": "drop_region_grassland"
+  },
+  {
+    "id": "monster_013",
+    "name": "작은 오크",
+    "regionId": "region_grassland",
+    "role": "fighter",
+    "element": "neutral",
+    "dropTableId": "drop_region_grassland"
+  },
+  {
+    "id": "monster_014",
+    "name": "덩굴 슬라임",
+    "regionId": "region_forest",
+    "role": "caster",
+    "element": "wind",
+    "dropTableId": "drop_region_forest"
+  },
+  {
+    "id": "monster_015",
+    "name": "나무껍질 고블린",
+    "regionId": "region_forest",
+    "role": "fighter",
+    "element": "wind",
+    "dropTableId": "drop_region_forest"
+  },
+  {
+    "id": "monster_016",
+    "name": "숲 늑대",
+    "regionId": "region_forest",
+    "role": "fighter",
+    "element": "wind",
+    "dropTableId": "drop_region_forest"
+  },
+  {
+    "id": "monster_017",
+    "name": "독버섯 정령",
+    "regionId": "region_forest",
+    "role": "caster",
+    "element": "wind",
+    "dropTableId": "drop_region_forest"
+  },
+  {
+    "id": "monster_018",
+    "name": "가시 멧돼지",
+    "regionId": "region_forest",
+    "role": "fighter",
+    "element": "wind",
+    "dropTableId": "drop_region_forest"
+  },
+  {
+    "id": "monster_019",
+    "name": "이끼 해골병",
+    "regionId": "region_forest",
+    "role": "tank",
+    "element": "wind",
+    "dropTableId": "drop_region_forest"
+  },
+  {
+    "id": "monster_020",
+    "name": "숲 그림자",
+    "regionId": "region_forest",
+    "role": "fighter",
+    "element": "wind",
+    "dropTableId": "drop_region_forest"
+  },
+  {
+    "id": "monster_021",
+    "name": "도토리 도적",
+    "regionId": "region_forest",
+    "role": "assassin",
+    "element": "wind",
+    "dropTableId": "drop_region_forest"
+  },
+  {
+    "id": "monster_022",
+    "name": "올빼미 사역마",
+    "regionId": "region_forest",
+    "role": "fighter",
+    "element": "wind",
+    "dropTableId": "drop_region_forest"
+  },
+  {
+    "id": "monster_023",
+    "name": "고대 뿌리괴물",
+    "regionId": "region_forest",
+    "role": "fighter",
+    "element": "wind",
+    "dropTableId": "drop_region_forest"
+  },
+  {
+    "id": "monster_024",
+    "name": "독침 벌떼",
+    "regionId": "region_forest",
+    "role": "fighter",
+    "element": "wind",
+    "dropTableId": "drop_region_forest"
+  },
+  {
+    "id": "monster_025",
+    "name": "녹색 코볼트",
+    "regionId": "region_forest",
+    "role": "fighter",
+    "element": "wind",
+    "dropTableId": "drop_region_forest"
+  },
+  {
+    "id": "monster_026",
+    "name": "숲 오크 정찰병",
+    "regionId": "region_forest",
+    "role": "fighter",
+    "element": "wind",
+    "dropTableId": "drop_region_forest"
+  },
+  {
+    "id": "monster_027",
+    "name": "광부 좀비",
+    "regionId": "region_abandoned_mine",
+    "role": "fighter",
+    "element": "earth",
+    "dropTableId": "drop_region_abandoned_mine"
+  },
+  {
+    "id": "monster_028",
+    "name": "녹슨 골렘",
+    "regionId": "region_abandoned_mine",
+    "role": "tank",
+    "element": "earth",
+    "dropTableId": "drop_region_abandoned_mine"
+  },
+  {
+    "id": "monster_029",
+    "name": "박쥐 무리",
+    "regionId": "region_abandoned_mine",
+    "role": "fighter",
+    "element": "earth",
+    "dropTableId": "drop_region_abandoned_mine"
+  },
+  {
+    "id": "monster_030",
+    "name": "돌가루 슬라임",
+    "regionId": "region_abandoned_mine",
+    "role": "caster",
+    "element": "earth",
+    "dropTableId": "drop_region_abandoned_mine"
+  },
+  {
+    "id": "monster_031",
+    "name": "곡괭이 고블린",
+    "regionId": "region_abandoned_mine",
+    "role": "fighter",
+    "element": "earth",
+    "dropTableId": "drop_region_abandoned_mine"
+  },
+  {
+    "id": "monster_032",
+    "name": "어둠 코볼트",
+    "regionId": "region_abandoned_mine",
+    "role": "fighter",
+    "element": "earth",
+    "dropTableId": "drop_region_abandoned_mine"
+  },
+  {
+    "id": "monster_033",
+    "name": "수정 거미",
+    "regionId": "region_abandoned_mine",
+    "role": "fighter",
+    "element": "earth",
+    "dropTableId": "drop_region_abandoned_mine"
+  },
+  {
+    "id": "monster_034",
+    "name": "갱도 해골병",
+    "regionId": "region_abandoned_mine",
+    "role": "tank",
+    "element": "earth",
+    "dropTableId": "drop_region_abandoned_mine"
+  },
+  {
+    "id": "monster_035",
+    "name": "폐광 도적",
+    "regionId": "region_abandoned_mine",
+    "role": "assassin",
+    "element": "earth",
+    "dropTableId": "drop_region_abandoned_mine"
+  },
+  {
+    "id": "monster_036",
+    "name": "광석 벌레",
+    "regionId": "region_abandoned_mine",
+    "role": "fighter",
+    "element": "earth",
+    "dropTableId": "drop_region_abandoned_mine"
+  },
+  {
+    "id": "monster_037",
+    "name": "무너진 수레 망령",
+    "regionId": "region_abandoned_mine",
+    "role": "fighter",
+    "element": "earth",
+    "dropTableId": "drop_region_abandoned_mine"
+  },
+  {
+    "id": "monster_038",
+    "name": "철갑 오크",
+    "regionId": "region_abandoned_mine",
+    "role": "fighter",
+    "element": "earth",
+    "dropTableId": "drop_region_abandoned_mine"
+  },
+  {
+    "id": "monster_039",
+    "name": "검은 먼지 정령",
+    "regionId": "region_abandoned_mine",
+    "role": "caster",
+    "element": "earth",
+    "dropTableId": "drop_region_abandoned_mine"
+  },
+  {
+    "id": "monster_040",
+    "name": "모래 슬라임",
+    "regionId": "region_desert",
+    "role": "caster",
+    "element": "fire",
+    "dropTableId": "drop_region_desert"
+  },
+  {
+    "id": "monster_041",
+    "name": "사막 도적",
+    "regionId": "region_desert",
+    "role": "assassin",
+    "element": "fire",
+    "dropTableId": "drop_region_desert"
+  },
+  {
+    "id": "monster_042",
+    "name": "전갈병",
+    "regionId": "region_desert",
+    "role": "fighter",
+    "element": "fire",
+    "dropTableId": "drop_region_desert"
+  },
+  {
+    "id": "monster_043",
+    "name": "미라 보초",
+    "regionId": "region_desert",
+    "role": "fighter",
+    "element": "fire",
+    "dropTableId": "drop_region_desert"
+  },
+  {
+    "id": "monster_044",
+    "name": "황금 코볼트",
+    "regionId": "region_desert",
+    "role": "fighter",
+    "element": "fire",
+    "dropTableId": "drop_region_desert"
+  },
+  {
+    "id": "monster_045",
+    "name": "모래늑대",
+    "regionId": "region_desert",
+    "role": "fighter",
+    "element": "fire",
+    "dropTableId": "drop_region_desert"
+  },
+  {
+    "id": "monster_046",
+    "name": "유적 해골검사",
+    "regionId": "region_desert",
+    "role": "tank",
+    "element": "fire",
+    "dropTableId": "drop_region_desert"
+  },
+  {
+    "id": "monster_047",
+    "name": "열풍 정령",
+    "regionId": "region_desert",
+    "role": "caster",
+    "element": "fire",
+    "dropTableId": "drop_region_desert"
+  },
+  {
+    "id": "monster_048",
+    "name": "사막 박쥐",
+    "regionId": "region_desert",
+    "role": "fighter",
+    "element": "fire",
+    "dropTableId": "drop_region_desert"
+  },
+  {
+    "id": "monster_049",
+    "name": "석상 파수꾼",
+    "regionId": "region_desert",
+    "role": "fighter",
+    "element": "fire",
+    "dropTableId": "drop_region_desert"
+  },
+  {
+    "id": "monster_050",
+    "name": "독침 전갈",
+    "regionId": "region_desert",
+    "role": "fighter",
+    "element": "fire",
+    "dropTableId": "drop_region_desert"
+  },
+  {
+    "id": "monster_051",
+    "name": "모래 오크",
+    "regionId": "region_desert",
+    "role": "fighter",
+    "element": "fire",
+    "dropTableId": "drop_region_desert"
+  },
+  {
+    "id": "monster_052",
+    "name": "항아리 망령",
+    "regionId": "region_desert",
+    "role": "fighter",
+    "element": "fire",
+    "dropTableId": "drop_region_desert"
+  },
+  {
+    "id": "monster_053",
+    "name": "얼음 슬라임",
+    "regionId": "region_snowfield",
+    "role": "caster",
+    "element": "water",
+    "dropTableId": "drop_region_snowfield"
+  },
+  {
+    "id": "monster_054",
+    "name": "눈늑대",
+    "regionId": "region_snowfield",
+    "role": "fighter",
+    "element": "water",
+    "dropTableId": "drop_region_snowfield"
+  },
+  {
+    "id": "monster_055",
+    "name": "서리 고블린",
+    "regionId": "region_snowfield",
+    "role": "fighter",
+    "element": "water",
+    "dropTableId": "drop_region_snowfield"
+  },
+  {
+    "id": "monster_056",
+    "name": "설원 해골병",
+    "regionId": "region_snowfield",
+    "role": "tank",
+    "element": "water",
+    "dropTableId": "drop_region_snowfield"
+  },
+  {
+    "id": "monster_057",
+    "name": "얼어붙은 좀비",
+    "regionId": "region_snowfield",
+    "role": "fighter",
+    "element": "water",
+    "dropTableId": "drop_region_snowfield"
+  },
+  {
+    "id": "monster_058",
+    "name": "빙결 박쥐",
+    "regionId": "region_snowfield",
+    "role": "fighter",
+    "element": "water",
+    "dropTableId": "drop_region_snowfield"
+  },
+  {
+    "id": "monster_059",
+    "name": "눈보라 정령",
+    "regionId": "region_snowfield",
+    "role": "caster",
+    "element": "water",
+    "dropTableId": "drop_region_snowfield"
+  },
+  {
+    "id": "monster_060",
+    "name": "북방 오크",
+    "regionId": "region_snowfield",
+    "role": "fighter",
+    "element": "water",
+    "dropTableId": "drop_region_snowfield"
+  },
+  {
+    "id": "monster_061",
+    "name": "얼음 갑옷병",
+    "regionId": "region_snowfield",
+    "role": "tank",
+    "element": "water",
+    "dropTableId": "drop_region_snowfield"
+  },
+  {
+    "id": "monster_062",
+    "name": "설산 코볼트",
+    "regionId": "region_snowfield",
+    "role": "fighter",
+    "element": "water",
+    "dropTableId": "drop_region_snowfield"
+  },
+  {
+    "id": "monster_063",
+    "name": "동상 망령",
+    "regionId": "region_snowfield",
+    "role": "fighter",
+    "element": "water",
+    "dropTableId": "drop_region_snowfield"
+  },
+  {
+    "id": "monster_064",
+    "name": "흰곰 돌격병",
+    "regionId": "region_snowfield",
+    "role": "fighter",
+    "element": "water",
+    "dropTableId": "drop_region_snowfield"
+  },
+  {
+    "id": "monster_065",
+    "name": "얼음 가시괴물",
+    "regionId": "region_snowfield",
+    "role": "fighter",
+    "element": "water",
+    "dropTableId": "drop_region_snowfield"
+  },
+  {
+    "id": "monster_066",
+    "name": "용암 슬라임",
+    "regionId": "region_volcano",
+    "role": "caster",
+    "element": "fire",
+    "dropTableId": "drop_region_volcano"
+  },
+  {
+    "id": "monster_067",
+    "name": "불꽃 고블린",
+    "regionId": "region_volcano",
+    "role": "fighter",
+    "element": "fire",
+    "dropTableId": "drop_region_volcano"
+  },
+  {
+    "id": "monster_068",
+    "name": "재투성이 해골병",
+    "regionId": "region_volcano",
+    "role": "tank",
+    "element": "fire",
+    "dropTableId": "drop_region_volcano"
+  },
+  {
+    "id": "monster_069",
+    "name": "화산 박쥐",
+    "regionId": "region_volcano",
+    "role": "fighter",
+    "element": "fire",
+    "dropTableId": "drop_region_volcano"
+  },
+  {
+    "id": "monster_070",
+    "name": "용암 골렘",
+    "regionId": "region_volcano",
+    "role": "tank",
+    "element": "fire",
+    "dropTableId": "drop_region_volcano"
+  },
+  {
+    "id": "monster_071",
+    "name": "불도마뱀",
+    "regionId": "region_volcano",
+    "role": "fighter",
+    "element": "fire",
+    "dropTableId": "drop_region_volcano"
+  },
+  {
+    "id": "monster_072",
+    "name": "화염 코볼트",
+    "regionId": "region_volcano",
+    "role": "fighter",
+    "element": "fire",
+    "dropTableId": "drop_region_volcano"
+  },
+  {
+    "id": "monster_073",
+    "name": "잿불 정령",
+    "regionId": "region_volcano",
+    "role": "caster",
+    "element": "fire",
+    "dropTableId": "drop_region_volcano"
+  },
+  {
+    "id": "monster_074",
+    "name": "검은 오크",
+    "regionId": "region_volcano",
+    "role": "fighter",
+    "element": "fire",
+    "dropTableId": "drop_region_volcano"
+  },
+  {
+    "id": "monster_075",
+    "name": "화산 전갈",
+    "regionId": "region_volcano",
+    "role": "fighter",
+    "element": "fire",
+    "dropTableId": "drop_region_volcano"
+  },
+  {
+    "id": "monster_076",
+    "name": "녹은 갑옷병",
+    "regionId": "region_volcano",
+    "role": "tank",
+    "element": "fire",
+    "dropTableId": "drop_region_volcano"
+  },
+  {
+    "id": "monster_077",
+    "name": "불씨 망령",
+    "regionId": "region_volcano",
+    "role": "fighter",
+    "element": "fire",
+    "dropTableId": "drop_region_volcano"
+  },
+  {
+    "id": "monster_078",
+    "name": "마그마 벌레",
+    "regionId": "region_volcano",
+    "role": "fighter",
+    "element": "fire",
+    "dropTableId": "drop_region_volcano"
+  },
+  {
+    "id": "monster_079",
+    "name": "심연 슬라임",
+    "regionId": "region_abyss",
+    "role": "caster",
+    "element": "dark",
+    "dropTableId": "drop_region_abyss"
+  },
+  {
+    "id": "monster_080",
+    "name": "공허 해골병",
+    "regionId": "region_abyss",
+    "role": "tank",
+    "element": "dark",
+    "dropTableId": "drop_region_abyss"
+  },
+  {
+    "id": "monster_081",
+    "name": "그림자 고블린",
+    "regionId": "region_abyss",
+    "role": "fighter",
+    "element": "dark",
+    "dropTableId": "drop_region_abyss"
+  },
+  {
+    "id": "monster_082",
+    "name": "어둠 사제",
+    "regionId": "region_abyss",
+    "role": "fighter",
+    "element": "dark",
+    "dropTableId": "drop_region_abyss"
+  },
+  {
+    "id": "monster_083",
+    "name": "균열 박쥐",
+    "regionId": "region_abyss",
+    "role": "fighter",
+    "element": "dark",
+    "dropTableId": "drop_region_abyss"
+  },
+  {
+    "id": "monster_084",
+    "name": "심연 늑대",
+    "regionId": "region_abyss",
+    "role": "fighter",
+    "element": "dark",
+    "dropTableId": "drop_region_abyss"
+  },
+  {
+    "id": "monster_085",
+    "name": "검은 촉수",
+    "regionId": "region_abyss",
+    "role": "fighter",
+    "element": "dark",
+    "dropTableId": "drop_region_abyss"
+  },
+  {
+    "id": "monster_086",
+    "name": "저주받은 갑옷",
+    "regionId": "region_abyss",
+    "role": "tank",
+    "element": "dark",
+    "dropTableId": "drop_region_abyss"
+  },
+  {
+    "id": "monster_087",
+    "name": "공허 정령",
+    "regionId": "region_abyss",
+    "role": "caster",
+    "element": "dark",
+    "dropTableId": "drop_region_abyss"
+  },
+  {
+    "id": "monster_088",
+    "name": "심연 코볼트",
+    "regionId": "region_abyss",
+    "role": "fighter",
+    "element": "dark",
+    "dropTableId": "drop_region_abyss"
+  },
+  {
+    "id": "monster_089",
+    "name": "악몽 망령",
+    "regionId": "region_abyss",
+    "role": "fighter",
+    "element": "dark",
+    "dropTableId": "drop_region_abyss"
+  },
+  {
+    "id": "monster_090",
+    "name": "타락한 오크",
+    "regionId": "region_abyss",
+    "role": "fighter",
+    "element": "dark",
+    "dropTableId": "drop_region_abyss"
+  },
+  {
+    "id": "monster_091",
+    "name": "눈 없는 추적자",
+    "regionId": "region_abyss",
+    "role": "assassin",
+    "element": "dark",
+    "dropTableId": "drop_region_abyss"
+  },
+  {
+    "id": "monster_092",
+    "name": "마성 슬라임",
+    "regionId": "region_demon_castle",
+    "role": "caster",
+    "element": "dark",
+    "dropTableId": "drop_region_demon_castle"
+  },
+  {
+    "id": "monster_093",
+    "name": "마왕군 보병",
+    "regionId": "region_demon_castle",
+    "role": "fighter",
+    "element": "dark",
+    "dropTableId": "drop_region_demon_castle"
+  },
+  {
+    "id": "monster_094",
+    "name": "지옥 박쥐",
+    "regionId": "region_demon_castle",
+    "role": "fighter",
+    "element": "dark",
+    "dropTableId": "drop_region_demon_castle"
+  },
+  {
+    "id": "monster_095",
+    "name": "검은 해골기사",
+    "regionId": "region_demon_castle",
+    "role": "tank",
+    "element": "dark",
+    "dropTableId": "drop_region_demon_castle"
+  },
+  {
+    "id": "monster_096",
+    "name": "마성 고블린",
+    "regionId": "region_demon_castle",
+    "role": "fighter",
+    "element": "dark",
+    "dropTableId": "drop_region_demon_castle"
+  },
+  {
+    "id": "monster_097",
+    "name": "지옥견",
+    "regionId": "region_demon_castle",
+    "role": "fighter",
+    "element": "dark",
+    "dropTableId": "drop_region_demon_castle"
+  },
+  {
+    "id": "monster_098",
+    "name": "마왕성 궁수",
+    "regionId": "region_demon_castle",
+    "role": "ranger",
+    "element": "dark",
+    "dropTableId": "drop_region_demon_castle"
+  },
+  {
+    "id": "monster_099",
+    "name": "악마 사제",
+    "regionId": "region_demon_castle",
+    "role": "fighter",
+    "element": "dark",
+    "dropTableId": "drop_region_demon_castle"
+  },
+  {
+    "id": "monster_100",
+    "name": "저주 골렘",
+    "regionId": "region_demon_castle",
+    "role": "tank",
+    "element": "dark",
+    "dropTableId": "drop_region_demon_castle"
+  },
+  {
+    "id": "monster_101",
+    "name": "피의 망령",
+    "regionId": "region_demon_castle",
+    "role": "fighter",
+    "element": "dark",
+    "dropTableId": "drop_region_demon_castle"
+  },
+  {
+    "id": "monster_102",
+    "name": "마성 오크",
+    "regionId": "region_demon_castle",
+    "role": "fighter",
+    "element": "dark",
+    "dropTableId": "drop_region_demon_castle"
+  },
+  {
+    "id": "monster_103",
+    "name": "암흑 기사",
+    "regionId": "region_demon_castle",
+    "role": "assassin",
+    "element": "dark",
+    "dropTableId": "drop_region_demon_castle"
+  },
+  {
+    "id": "monster_104",
+    "name": "지옥 화염정령",
+    "regionId": "region_demon_castle",
+    "role": "caster",
+    "element": "dark",
+    "dropTableId": "drop_region_demon_castle"
+  }
+]

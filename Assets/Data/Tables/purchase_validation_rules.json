@@ -1,0 +1,38 @@
+[
+  {
+    "id": "validation_unity_iap_receipt",
+    "name": "Unity IAP receipt validation",
+    "enforcement": "client_and_optional_server",
+    "policy": "Validate local receipt structure before fulfillment and send receipt to server when available."
+  },
+  {
+    "id": "validation_google_play_billing",
+    "name": "Google Play Billing validation",
+    "enforcement": "server_recommended",
+    "policy": "Store purchase token and verify entitlement before granting durable value."
+  },
+  {
+    "id": "validation_apple_storekit_restore",
+    "name": "Apple StoreKit restore",
+    "enforcement": "client_required",
+    "policy": "Provide restore flow for non-consumables and subscriptions."
+  },
+  {
+    "id": "validation_pending_purchase_queue",
+    "name": "Pending purchase queue",
+    "enforcement": "client_required",
+    "policy": "Do not grant product until store reports completed purchase and receipt exists."
+  },
+  {
+    "id": "validation_idempotent_fulfillment",
+    "name": "Idempotent fulfillment",
+    "enforcement": "client_required",
+    "policy": "Track transaction ids so retry or restore cannot duplicate rewards."
+  },
+  {
+    "id": "validation_purchase_restore_button",
+    "name": "Visible restore purchases button",
+    "enforcement": "ui_required",
+    "policy": "Expose purchase restore in settings and package screen."
+  }
+]

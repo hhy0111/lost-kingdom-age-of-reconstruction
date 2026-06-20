@@ -1,0 +1,66 @@
+[
+  {
+    "id": "event_ruin_rebuild_week",
+    "name": "폐허 복구 주간",
+    "cadence": "weekly",
+    "targetRegion": "초원/숲",
+    "design": "건물 건설과 주민 구출 보상 증가",
+    "serverDependency": "remote_config_optional"
+  },
+  {
+    "id": "event_forest_rescue_week",
+    "name": "숲의 생존자 구출",
+    "cadence": "weekly",
+    "targetRegion": "숲",
+    "design": "탐험 성공률과 주민 획득률 증가",
+    "serverDependency": "remote_config_optional"
+  },
+  {
+    "id": "event_mine_treasure_week",
+    "name": "폐광 보물 탐사",
+    "cadence": "weekly",
+    "targetRegion": "폐광",
+    "design": "광석과 장비 상자 보상 증가",
+    "serverDependency": "remote_config_optional"
+  },
+  {
+    "id": "event_desert_caravan",
+    "name": "사막 상단 축제",
+    "cadence": "weekly",
+    "targetRegion": "사막",
+    "design": "골드와 시장 교환 보너스",
+    "serverDependency": "remote_config_optional"
+  },
+  {
+    "id": "event_snow_fortress_defense",
+    "name": "설원 요새 방어전",
+    "cadence": "weekend",
+    "targetRegion": "설원",
+    "design": "성벽/방어 연구 보너스",
+    "serverDependency": "remote_config_optional"
+  },
+  {
+    "id": "event_volcano_forge_fever",
+    "name": "화산 제련 열풍",
+    "cadence": "weekend",
+    "targetRegion": "화산",
+    "design": "제작 시간 단축과 전설 조각 보상",
+    "serverDependency": "remote_config_optional"
+  },
+  {
+    "id": "event_abyss_rift_weekend",
+    "name": "심연 균열 주말",
+    "cadence": "weekend",
+    "targetRegion": "심연",
+    "design": "마력석과 각성 재료 보상",
+    "serverDependency": "remote_config_optional"
+  },
+  {
+    "id": "event_demon_castle_countdown",
+    "name": "마왕성 결전 예고",
+    "cadence": "season",
+    "targetRegion": "마왕성",
+    "design": "시즌 보스와 패스 미션 연동",
+    "serverDependency": "remote_config_optional"
+  }
+]

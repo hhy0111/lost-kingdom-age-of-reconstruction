@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "equipment_001",
+    "name": "녹슨 검",
+    "setId": "equipment_set_001",
+    "slot": "weapon",
+    "rarity": "일반"
+  },
+  {
+    "id": "equipment_002",
+    "name": "찌그러진 투구",
+    "setId": "equipment_set_001",
+    "slot": "helmet",
+    "rarity": "일반"
+  },
+  {
+    "id": "equipment_003",
+    "name": "낡은 흉갑",
+    "setId": "equipment_set_001",
+    "slot": "armor",
+    "rarity": "일반"
+  },
+  {
+    "id": "equipment_004",
+    "name": "해진 장갑",
+    "setId": "equipment_set_001",
+    "slot": "gloves",
+    "rarity": "일반"
+  },
+  {
+    "id": "equipment_005",
+    "name": "먼지 신발",
+    "setId": "equipment_set_001",
+    "slot": "boots",
+    "rarity": "일반"
+  },
+  {
+    "id": "equipment_006",
+    "name": "나무 목걸이",
+    "setId": "equipment_set_001",
+    "slot": "necklace",
+    "rarity": "일반"
+  },
+  {
+    "id": "equipment_007",
+    "name": "구리 반지",
+    "setId": "equipment_set_001",
+    "slot": "ring",
+    "rarity": "일반"
+  },
+  {
+    "id": "equipment_008",
+    "name": "천 망토",
+    "setId": "equipment_set_001",
+    "slot": "cloak",
+    "rarity": "일반"
+  },
+  {
+    "id": "equipment_009",
+    "name": "낡은 허리띠",
+    "setId": "equipment_set_001",
+    "slot": "belt",
+    "rarity": "일반"
+  },
+  {
+    "id": "equipment_010",
+    "name": "깨진 왕가 문장",
+    "setId": "equipment_set_001",
+    "slot": "artifact",
+    "rarity": "일반"
+  },
+  {
+    "id": "equipment_011",
+    "name": "초원 창",
+    "setId": "equipment_set_002",
+    "slot": "weapon",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_012",
+    "name": "가죽 두건",
+    "setId": "equipment_set_002",
+    "slot": "helmet",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_013",
+    "name": "초원 갑옷",
+    "setId": "equipment_set_002",
+    "slot": "armor",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_014",
+    "name": "풀잎 장갑",
+    "setId": "equipment_set_002",
+    "slot": "gloves",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_015",
+    "name": "사냥꾼 장화",
+    "setId": "equipment_set_002",
+    "slot": "boots",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_016",
+    "name": "들꽃 목걸이",
+    "setId": "equipment_set_002",
+    "slot": "necklace",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_017",
+    "name": "초록 반지",
+    "setId": "equipment_set_002",
+    "slot": "ring",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_018",
+    "name": "초원 망토",
+    "setId": "equipment_set_002",
+    "slot": "cloak",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_019",
+    "name": "사냥 허리띠",
+    "setId": "equipment_set_002",
+    "slot": "belt",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_020",
+    "name": "들판의 부적",
+    "setId": "equipment_set_002",
+    "slot": "artifact",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_021",
+    "name": "생존자의 도끼",
+    "setId": "equipment_set_003",
+    "slot": "weapon",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_022",
+    "name": "생존자의 모자",
+    "setId": "equipment_set_003",
+    "slot": "helmet",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_023",
+    "name": "덧댄 갑옷",
+    "setId": "equipment_set_003",
+    "slot": "armor",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_024",
+    "name": "두꺼운 장갑",
+    "setId": "equipment_set_003",
+    "slot": "gloves",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_025",
+    "name": "튼튼한 신발",
+    "setId": "equipment_set_003",
+    "slot": "boots",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_026",
+    "name": "뼈 목걸이",
+    "setId": "equipment_set_003",
+    "slot": "necklace",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_027",
+    "name": "철 반지",
+    "setId": "equipment_set_003",
+    "slot": "ring",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_028",
+    "name": "방수 망토",
+    "setId": "equipment_set_003",
+    "slot": "cloak",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_029",
+    "name": "도구 허리띠",
+    "setId": "equipment_set_003",
+    "slot": "belt",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_030",
+    "name": "생존 일지",
+    "setId": "equipment_set_003",
+    "slot": "artifact",
+    "rarity": "고급"
+  },
+  {
+    "id": "equipment_031",
+    "name": "그림자 단검",
+    "setId": "equipment_set_004",
+    "slot": "weapon",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_032",
+    "name": "숲그늘 후드",
+    "setId": "equipment_set_004",
+    "slot": "helmet",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_033",
+    "name": "그림자 가죽갑옷",
+    "setId": "equipment_set_004",
+    "slot": "armor",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_034",
+    "name": "은신 장갑",
+    "setId": "equipment_set_004",
+    "slot": "gloves",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_035",
+    "name": "고요한 장화",
+    "setId": "equipment_set_004",
+    "slot": "boots",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_036",
+    "name": "흑엽 목걸이",
+    "setId": "equipment_set_004",
+    "slot": "necklace",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_037",
+    "name": "그림자 반지",
+    "setId": "equipment_set_004",
+    "slot": "ring",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_038",
+    "name": "위장 망토",
+    "setId": "equipment_set_004",
+    "slot": "cloak",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_039",
+    "name": "은신 허리띠",
+    "setId": "equipment_set_004",
+    "slot": "belt",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_040",
+    "name": "숲의 표식",
+    "setId": "equipment_set_004",
+    "slot": "artifact",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_041",
+    "name": "수목 지팡이",
+    "setId": "equipment_set_005",
+    "slot": "weapon",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_042",
+    "name": "나무관 투구",
+    "setId": "equipment_set_005",
+    "slot": "helmet",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_043",
+    "name": "수피 갑옷",
+    "setId": "equipment_set_005",
+    "slot": "armor",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_044",
+    "name": "뿌리 장갑",
+    "setId": "equipment_set_005",
+    "slot": "gloves",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_045",
+    "name": "이끼 장화",
+    "setId": "equipment_set_005",
+    "slot": "boots",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_046",
+    "name": "수액 목걸이",
+    "setId": "equipment_set_005",
+    "slot": "necklace",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_047",
+    "name": "나이테 반지",
+    "setId": "equipment_set_005",
+    "slot": "ring",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_048",
+    "name": "잎사귀 망토",
+    "setId": "equipment_set_005",
+    "slot": "cloak",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_049",
+    "name": "덩굴 허리띠",
+    "setId": "equipment_set_005",
+    "slot": "belt",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_050",
+    "name": "고대 씨앗",
+    "setId": "equipment_set_005",
+    "slot": "artifact",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_051",
+    "name": "채굴 곡괭이",
+    "setId": "equipment_set_006",
+    "slot": "weapon",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_052",
+    "name": "광부 헬멧",
+    "setId": "equipment_set_006",
+    "slot": "helmet",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_053",
+    "name": "광부 조끼",
+    "setId": "equipment_set_006",
+    "slot": "armor",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_054",
+    "name": "작업 장갑",
+    "setId": "equipment_set_006",
+    "slot": "gloves",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_055",
+    "name": "철심 장화",
+    "setId": "equipment_set_006",
+    "slot": "boots",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_056",
+    "name": "광석 목걸이",
+    "setId": "equipment_set_006",
+    "slot": "necklace",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_057",
+    "name": "납 반지",
+    "setId": "equipment_set_006",
+    "slot": "ring",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_058",
+    "name": "먼지 망토",
+    "setId": "equipment_set_006",
+    "slot": "cloak",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_059",
+    "name": "작업 허리띠",
+    "setId": "equipment_set_006",
+    "slot": "belt",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_060",
+    "name": "갱도 램프",
+    "setId": "equipment_set_006",
+    "slot": "artifact",
+    "rarity": "희귀"
+  },
+  {
+    "id": "equipment_061",
+    "name": "수정검",
+    "setId": "equipment_set_007",
+    "slot": "weapon",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_062",
+    "name": "수정 투구",
+    "setId": "equipment_set_007",
+    "slot": "helmet",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_063",
+    "name": "수정 갑옷",
+    "setId": "equipment_set_007",
+    "slot": "armor",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_064",
+    "name": "수정 장갑",
+    "setId": "equipment_set_007",
+    "slot": "gloves",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_065",
+    "name": "수정 장화",
+    "setId": "equipment_set_007",
+    "slot": "boots",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_066",
+    "name": "수정 목걸이",
+    "setId": "equipment_set_007",
+    "slot": "necklace",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_067",
+    "name": "수정 반지",
+    "setId": "equipment_set_007",
+    "slot": "ring",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_068",
+    "name": "수정 망토",
+    "setId": "equipment_set_007",
+    "slot": "cloak",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_069",
+    "name": "수정 허리띠",
+    "setId": "equipment_set_007",
+    "slot": "belt",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_070",
+    "name": "빛나는 수정핵",
+    "setId": "equipment_set_007",
+    "slot": "artifact",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_071",
+    "name": "유랑자의 곡도",
+    "setId": "equipment_set_008",
+    "slot": "weapon",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_072",
+    "name": "천막 두건",
+    "setId": "equipment_set_008",
+    "slot": "helmet",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_073",
+    "name": "사막 로브",
+    "setId": "equipment_set_008",
+    "slot": "armor",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_074",
+    "name": "모래 장갑",
+    "setId": "equipment_set_008",
+    "slot": "gloves",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_075",
+    "name": "방열 장화",
+    "setId": "equipment_set_008",
+    "slot": "boots",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_076",
+    "name": "오아시스 목걸이",
+    "setId": "equipment_set_008",
+    "slot": "necklace",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_077",
+    "name": "황동 반지",
+    "setId": "equipment_set_008",
+    "slot": "ring",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_078",
+    "name": "모래 망토",
+    "setId": "equipment_set_008",
+    "slot": "cloak",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_079",
+    "name": "물주머니 허리띠",
+    "setId": "equipment_set_008",
+    "slot": "belt",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_080",
+    "name": "항해 나침반",
+    "setId": "equipment_set_008",
+    "slot": "artifact",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_081",
+    "name": "황금 창",
+    "setId": "equipment_set_009",
+    "slot": "weapon",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_082",
+    "name": "황금 가면",
+    "setId": "equipment_set_009",
+    "slot": "helmet",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_083",
+    "name": "황금 흉갑",
+    "setId": "equipment_set_009",
+    "slot": "armor",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_084",
+    "name": "황금 장갑",
+    "setId": "equipment_set_009",
+    "slot": "gloves",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_085",
+    "name": "황금 샌들",
+    "setId": "equipment_set_009",
+    "slot": "boots",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_086",
+    "name": "태양 목걸이",
+    "setId": "equipment_set_009",
+    "slot": "necklace",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_087",
+    "name": "황금 반지",
+    "setId": "equipment_set_009",
+    "slot": "ring",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_088",
+    "name": "왕가 망토",
+    "setId": "equipment_set_009",
+    "slot": "cloak",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_089",
+    "name": "장식 허리띠",
+    "setId": "equipment_set_009",
+    "slot": "belt",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_090",
+    "name": "유적 석판",
+    "setId": "equipment_set_009",
+    "slot": "artifact",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_091",
+    "name": "서리검",
+    "setId": "equipment_set_010",
+    "slot": "weapon",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_092",
+    "name": "서리 투구",
+    "setId": "equipment_set_010",
+    "slot": "helmet",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_093",
+    "name": "털가죽 갑옷",
+    "setId": "equipment_set_010",
+    "slot": "armor",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_094",
+    "name": "방한 장갑",
+    "setId": "equipment_set_010",
+    "slot": "gloves",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_095",
+    "name": "설원 장화",
+    "setId": "equipment_set_010",
+    "slot": "boots",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_096",
+    "name": "얼음 목걸이",
+    "setId": "equipment_set_010",
+    "slot": "necklace",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_097",
+    "name": "은빛 반지",
+    "setId": "equipment_set_010",
+    "slot": "ring",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_098",
+    "name": "눈보라 망토",
+    "setId": "equipment_set_010",
+    "slot": "cloak",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_099",
+    "name": "방한 허리띠",
+    "setId": "equipment_set_010",
+    "slot": "belt",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_100",
+    "name": "서리 결정",
+    "setId": "equipment_set_010",
+    "slot": "artifact",
+    "rarity": "영웅"
+  },
+  {
+    "id": "equipment_101",
+    "name": "북방 대검",
+    "setId": "equipment_set_011",
+    "slot": "weapon",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_102",
+    "name": "기사 투구",
+    "setId": "equipment_set_011",
+    "slot": "helmet",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_103",
+    "name": "북방 판금갑옷",
+    "setId": "equipment_set_011",
+    "slot": "armor",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_104",
+    "name": "기사 장갑",
+    "setId": "equipment_set_011",
+    "slot": "gloves",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_105",
+    "name": "강철 장화",
+    "setId": "equipment_set_011",
+    "slot": "boots",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_106",
+    "name": "맹세 목걸이",
+    "setId": "equipment_set_011",
+    "slot": "necklace",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_107",
+    "name": "기사 반지",
+    "setId": "equipment_set_011",
+    "slot": "ring",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_108",
+    "name": "백색 망토",
+    "setId": "equipment_set_011",
+    "slot": "cloak",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_109",
+    "name": "판금 허리띠",
+    "setId": "equipment_set_011",
+    "slot": "belt",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_110",
+    "name": "북방 깃발",
+    "setId": "equipment_set_011",
+    "slot": "artifact",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_111",
+    "name": "화염 망치",
+    "setId": "equipment_set_012",
+    "slot": "weapon",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_112",
+    "name": "제련 투구",
+    "setId": "equipment_set_012",
+    "slot": "helmet",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_113",
+    "name": "화염 갑옷",
+    "setId": "equipment_set_012",
+    "slot": "armor",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_114",
+    "name": "제련 장갑",
+    "setId": "equipment_set_012",
+    "slot": "gloves",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_115",
+    "name": "용암 장화",
+    "setId": "equipment_set_012",
+    "slot": "boots",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_116",
+    "name": "불씨 목걸이",
+    "setId": "equipment_set_012",
+    "slot": "necklace",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_117",
+    "name": "홍염 반지",
+    "setId": "equipment_set_012",
+    "slot": "ring",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_118",
+    "name": "불꽃 망토",
+    "setId": "equipment_set_012",
+    "slot": "cloak",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_119",
+    "name": "제련 허리띠",
+    "setId": "equipment_set_012",
+    "slot": "belt",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_120",
+    "name": "불의 룬",
+    "setId": "equipment_set_012",
+    "slot": "artifact",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_121",
+    "name": "용암 도끼",
+    "setId": "equipment_set_013",
+    "slot": "weapon",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_122",
+    "name": "용암 왕관",
+    "setId": "equipment_set_013",
+    "slot": "helmet",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_123",
+    "name": "용암 갑주",
+    "setId": "equipment_set_013",
+    "slot": "armor",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_124",
+    "name": "용암 건틀릿",
+    "setId": "equipment_set_013",
+    "slot": "gloves",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_125",
+    "name": "용암 발굽장화",
+    "setId": "equipment_set_013",
+    "slot": "boots",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_126",
+    "name": "마그마 목걸이",
+    "setId": "equipment_set_013",
+    "slot": "necklace",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_127",
+    "name": "용암 반지",
+    "setId": "equipment_set_013",
+    "slot": "ring",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_128",
+    "name": "재의 망토",
+    "setId": "equipment_set_013",
+    "slot": "cloak",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_129",
+    "name": "검은 허리띠",
+    "setId": "equipment_set_013",
+    "slot": "belt",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_130",
+    "name": "용암 심장",
+    "setId": "equipment_set_013",
+    "slot": "artifact",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_131",
+    "name": "심연 단검",
+    "setId": "equipment_set_014",
+    "slot": "weapon",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_132",
+    "name": "무음 후드",
+    "setId": "equipment_set_014",
+    "slot": "helmet",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_133",
+    "name": "심연 갑옷",
+    "setId": "equipment_set_014",
+    "slot": "armor",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_134",
+    "name": "어둠 장갑",
+    "setId": "equipment_set_014",
+    "slot": "gloves",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_135",
+    "name": "추적 장화",
+    "setId": "equipment_set_014",
+    "slot": "boots",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_136",
+    "name": "공허 목걸이",
+    "setId": "equipment_set_014",
+    "slot": "necklace",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_137",
+    "name": "검은 반지",
+    "setId": "equipment_set_014",
+    "slot": "ring",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_138",
+    "name": "밤의 망토",
+    "setId": "equipment_set_014",
+    "slot": "cloak",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_139",
+    "name": "그림자 허리띠",
+    "setId": "equipment_set_014",
+    "slot": "belt",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_140",
+    "name": "심연 눈동자",
+    "setId": "equipment_set_014",
+    "slot": "artifact",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_141",
+    "name": "공허 지팡이",
+    "setId": "equipment_set_015",
+    "slot": "weapon",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_142",
+    "name": "사제관",
+    "setId": "equipment_set_015",
+    "slot": "helmet",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_143",
+    "name": "공허 로브",
+    "setId": "equipment_set_015",
+    "slot": "armor",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_144",
+    "name": "의식 장갑",
+    "setId": "equipment_set_015",
+    "slot": "gloves",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_145",
+    "name": "의식 신발",
+    "setId": "equipment_set_015",
+    "slot": "boots",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_146",
+    "name": "저주 목걸이",
+    "setId": "equipment_set_015",
+    "slot": "necklace",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_147",
+    "name": "공허 반지",
+    "setId": "equipment_set_015",
+    "slot": "ring",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_148",
+    "name": "의식 망토",
+    "setId": "equipment_set_015",
+    "slot": "cloak",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_149",
+    "name": "룬 허리띠",
+    "setId": "equipment_set_015",
+    "slot": "belt",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_150",
+    "name": "공허 성서",
+    "setId": "equipment_set_015",
+    "slot": "artifact",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_151",
+    "name": "재건자의 검",
+    "setId": "equipment_set_016",
+    "slot": "weapon",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_152",
+    "name": "왕국 투구",
+    "setId": "equipment_set_016",
+    "slot": "helmet",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_153",
+    "name": "왕국 갑옷",
+    "setId": "equipment_set_016",
+    "slot": "armor",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_154",
+    "name": "재건 장갑",
+    "setId": "equipment_set_016",
+    "slot": "gloves",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_155",
+    "name": "순찰 장화",
+    "setId": "equipment_set_016",
+    "slot": "boots",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_156",
+    "name": "왕국 목걸이",
+    "setId": "equipment_set_016",
+    "slot": "necklace",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_157",
+    "name": "왕국 반지",
+    "setId": "equipment_set_016",
+    "slot": "ring",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_158",
+    "name": "왕실 망토",
+    "setId": "equipment_set_016",
+    "slot": "cloak",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_159",
+    "name": "건설 허리띠",
+    "setId": "equipment_set_016",
+    "slot": "belt",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_160",
+    "name": "재건 칙령",
+    "setId": "equipment_set_016",
+    "slot": "artifact",
+    "rarity": "전설"
+  },
+  {
+    "id": "equipment_161",
+    "name": "별빛 성검",
+    "setId": "equipment_set_017",
+    "slot": "weapon",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_162",
+    "name": "별빛 왕관",
+    "setId": "equipment_set_017",
+    "slot": "helmet",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_163",
+    "name": "별빛 갑주",
+    "setId": "equipment_set_017",
+    "slot": "armor",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_164",
+    "name": "별빛 건틀릿",
+    "setId": "equipment_set_017",
+    "slot": "gloves",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_165",
+    "name": "별빛 장화",
+    "setId": "equipment_set_017",
+    "slot": "boots",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_166",
+    "name": "별의 목걸이",
+    "setId": "equipment_set_017",
+    "slot": "necklace",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_167",
+    "name": "별의 반지",
+    "setId": "equipment_set_017",
+    "slot": "ring",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_168",
+    "name": "은하 망토",
+    "setId": "equipment_set_017",
+    "slot": "cloak",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_169",
+    "name": "왕권 허리띠",
+    "setId": "equipment_set_017",
+    "slot": "belt",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_170",
+    "name": "별의 유물",
+    "setId": "equipment_set_017",
+    "slot": "artifact",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_171",
+    "name": "마왕학살검",
+    "setId": "equipment_set_018",
+    "slot": "weapon",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_172",
+    "name": "결전 투구",
+    "setId": "equipment_set_018",
+    "slot": "helmet",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_173",
+    "name": "결전 갑옷",
+    "setId": "equipment_set_018",
+    "slot": "armor",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_174",
+    "name": "결전 장갑",
+    "setId": "equipment_set_018",
+    "slot": "gloves",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_175",
+    "name": "결전 장화",
+    "setId": "equipment_set_018",
+    "slot": "boots",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_176",
+    "name": "결전 목걸이",
+    "setId": "equipment_set_018",
+    "slot": "necklace",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_177",
+    "name": "결전 반지",
+    "setId": "equipment_set_018",
+    "slot": "ring",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_178",
+    "name": "붉은 망토",
+    "setId": "equipment_set_018",
+    "slot": "cloak",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_179",
+    "name": "결전 허리띠",
+    "setId": "equipment_set_018",
+    "slot": "belt",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_180",
+    "name": "마왕의 파편",
+    "setId": "equipment_set_018",
+    "slot": "artifact",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_181",
+    "name": "제국의 창",
+    "setId": "equipment_set_019",
+    "slot": "weapon",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_182",
+    "name": "황제관",
+    "setId": "equipment_set_019",
+    "slot": "helmet",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_183",
+    "name": "제국 갑주",
+    "setId": "equipment_set_019",
+    "slot": "armor",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_184",
+    "name": "황금 건틀릿",
+    "setId": "equipment_set_019",
+    "slot": "gloves",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_185",
+    "name": "제국 장화",
+    "setId": "equipment_set_019",
+    "slot": "boots",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_186",
+    "name": "황제 목걸이",
+    "setId": "equipment_set_019",
+    "slot": "necklace",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_187",
+    "name": "옥좌 반지",
+    "setId": "equipment_set_019",
+    "slot": "ring",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_188",
+    "name": "제국 망토",
+    "setId": "equipment_set_019",
+    "slot": "cloak",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_189",
+    "name": "황실 허리띠",
+    "setId": "equipment_set_019",
+    "slot": "belt",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_190",
+    "name": "창건 선언문",
+    "setId": "equipment_set_019",
+    "slot": "artifact",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_191",
+    "name": "영원의 검",
+    "setId": "equipment_set_020",
+    "slot": "weapon",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_192",
+    "name": "영원 투구",
+    "setId": "equipment_set_020",
+    "slot": "helmet",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_193",
+    "name": "영원 갑옷",
+    "setId": "equipment_set_020",
+    "slot": "armor",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_194",
+    "name": "영원 장갑",
+    "setId": "equipment_set_020",
+    "slot": "gloves",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_195",
+    "name": "영원 장화",
+    "setId": "equipment_set_020",
+    "slot": "boots",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_196",
+    "name": "영원 목걸이",
+    "setId": "equipment_set_020",
+    "slot": "necklace",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_197",
+    "name": "영원 반지",
+    "setId": "equipment_set_020",
+    "slot": "ring",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_198",
+    "name": "영원 망토",
+    "setId": "equipment_set_020",
+    "slot": "cloak",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_199",
+    "name": "영원 허리띠",
+    "setId": "equipment_set_020",
+    "slot": "belt",
+    "rarity": "신화"
+  },
+  {
+    "id": "equipment_200",
+    "name": "시간의 핵",
+    "setId": "equipment_set_020",
+    "slot": "artifact",
+    "rarity": "신화"
+  }
+]

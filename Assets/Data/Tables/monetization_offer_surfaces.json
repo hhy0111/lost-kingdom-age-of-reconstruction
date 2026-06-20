@@ -1,0 +1,65 @@
+[
+  {
+    "id": "surface_offline_reward_popup",
+    "name": "오프라인 보상 팝업",
+    "monetizationId": "ad_offline_reward_x2",
+    "flow": "return_session",
+    "displayRule": "show_after_reward_preview"
+  },
+  {
+    "id": "surface_combat_reward_panel",
+    "name": "전투 보상 패널",
+    "monetizationId": "ad_gold_x2",
+    "flow": "combat_loop",
+    "displayRule": "show_after_stage_rewards"
+  },
+  {
+    "id": "surface_village_production_panel",
+    "name": "마을 생산 패널",
+    "monetizationId": "ad_resource_x2",
+    "flow": "village_loop",
+    "displayRule": "show_when_resources_claimable"
+  },
+  {
+    "id": "surface_expedition_detail",
+    "name": "탐험 상세",
+    "monetizationId": "ad_expedition_complete",
+    "flow": "expedition_loop",
+    "displayRule": "show_when_remaining_time_allowed"
+  },
+  {
+    "id": "surface_building_detail",
+    "name": "건물 상세",
+    "monetizationId": "ad_building_complete",
+    "flow": "village_loop",
+    "displayRule": "show_when_remaining_time_allowed"
+  },
+  {
+    "id": "surface_equipment_reward_panel",
+    "name": "장비 보상 패널",
+    "monetizationId": "ad_equipment_box",
+    "flow": "equipment_loop",
+    "displayRule": "show_after_boss_or_daily_reward"
+  },
+  {
+    "id": "surface_ad_remove_package",
+    "name": "광고 제거 패키지",
+    "monetizationId": "iap_remove_ads",
+    "flow": "shop",
+    "displayRule": "show_after_three_ad_accepts_or_settings"
+  },
+  {
+    "id": "surface_monthly_subscription",
+    "name": "월정액",
+    "monetizationId": "iap_monthly_subscription",
+    "flow": "shop",
+    "displayRule": "show_after_d1_return"
+  },
+  {
+    "id": "surface_kingdom_pass",
+    "name": "왕국 패스",
+    "monetizationId": "iap_kingdom_pass",
+    "flow": "season",
+    "displayRule": "show_after_weekly_orders_unlock"
+  }
+]

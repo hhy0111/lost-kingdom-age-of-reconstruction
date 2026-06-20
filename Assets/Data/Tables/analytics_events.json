@@ -1,0 +1,142 @@
+[
+  {
+    "id": "analytics_install",
+    "eventName": "install",
+    "category": "acquisition"
+  },
+  {
+    "id": "analytics_first_open",
+    "eventName": "first_open",
+    "category": "ftue"
+  },
+  {
+    "id": "analytics_tutorial_start",
+    "eventName": "tutorial_start",
+    "category": "ftue"
+  },
+  {
+    "id": "analytics_first_battle_start",
+    "eventName": "first_battle_start",
+    "category": "ftue"
+  },
+  {
+    "id": "analytics_first_battle_win",
+    "eventName": "first_battle_win",
+    "category": "ftue"
+  },
+  {
+    "id": "analytics_first_hero_equip",
+    "eventName": "first_hero_equip",
+    "category": "ftue"
+  },
+  {
+    "id": "analytics_first_building_restore",
+    "eventName": "first_building_restore",
+    "category": "ftue"
+  },
+  {
+    "id": "analytics_first_ad_reward_offer",
+    "eventName": "first_ad_reward_offer",
+    "category": "monetization"
+  },
+  {
+    "id": "analytics_first_ad_reward_accept",
+    "eventName": "first_ad_reward_accept",
+    "category": "monetization"
+  },
+  {
+    "id": "analytics_first_boss_attempt",
+    "eventName": "first_boss_attempt",
+    "category": "ftue"
+  },
+  {
+    "id": "analytics_first_boss_clear",
+    "eventName": "first_boss_clear",
+    "category": "activation"
+  },
+  {
+    "id": "analytics_d1_return",
+    "eventName": "d1_return",
+    "category": "retention"
+  },
+  {
+    "id": "analytics_d3_return",
+    "eventName": "d3_return",
+    "category": "retention"
+  },
+  {
+    "id": "analytics_d7_return",
+    "eventName": "d7_return",
+    "category": "retention"
+  },
+  {
+    "id": "analytics_d14_return",
+    "eventName": "d14_return",
+    "category": "retention"
+  },
+  {
+    "id": "analytics_offline_reward_claim",
+    "eventName": "offline_reward_claim",
+    "category": "retention"
+  },
+  {
+    "id": "analytics_kingdom_tier_up",
+    "eventName": "kingdom_tier_up",
+    "category": "progression"
+  },
+  {
+    "id": "analytics_daily_orders_complete",
+    "eventName": "daily_orders_complete",
+    "category": "retention"
+  },
+  {
+    "id": "analytics_weekly_orders_complete",
+    "eventName": "weekly_orders_complete",
+    "category": "retention"
+  },
+  {
+    "id": "analytics_expedition_complete",
+    "eventName": "expedition_complete",
+    "category": "engagement"
+  },
+  {
+    "id": "analytics_crafting_unlock",
+    "eventName": "crafting_unlock",
+    "category": "progression"
+  },
+  {
+    "id": "analytics_first_purchase_view",
+    "eventName": "first_purchase_view",
+    "category": "monetization"
+  },
+  {
+    "id": "analytics_first_purchase_complete",
+    "eventName": "first_purchase_complete",
+    "category": "monetization"
+  },
+  {
+    "id": "analytics_pass_view",
+    "eventName": "pass_view",
+    "category": "monetization"
+  },
+  {
+    "id": "analytics_pass_purchase",
+    "eventName": "pass_purchase",
+    "category": "monetization"
+  },
+  {
+    "id": "analytics_comeback_event_start",
+    "eventName": "comeback_event_start",
+    "category": "retention"
+  },
+  {
+    "id": "analytics_store_variant_seen",
+    "eventName": "store_variant_seen",
+    "category": "acquisition"
+  },
+  {
+    "id": "analytics_notification_opt_in",
+    "eventName": "notification_opt_in",
+    "category": "retention"
+  }
+]
