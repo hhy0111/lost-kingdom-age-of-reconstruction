@@ -291,7 +291,7 @@ test('playable web game shell exposes canvas, PWA files, emulator server, and ve
   assert.match(styles, /\.lobby-help/);
   assert.match(styles, /\.thumb-row div/);
   assert.match(styles, /\.row > div/);
-  assert.match(serviceWorker, /lost-kingdom-runtime-v25/);
+  assert.match(serviceWorker, /lost-kingdom-runtime-v26/);
   assert.match(serviceWorker, /privacy-policy\.html/);
   assert.match(serviceWorker, /audio-manifest\.json/);
   assert.match(server, /0\.0\.0\.0/);

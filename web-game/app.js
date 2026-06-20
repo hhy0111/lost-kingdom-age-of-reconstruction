@@ -184,6 +184,20 @@ function playSfxThrottled(id, minIntervalMs = 160, options = {}) {
   playSfx(id, options);
 }
 
+function isCombatSceneAudioActive() {
+  return state?.activeTab === 'combat' && !ui.openingVisible && !ui.dailyRewardVisible;
+}
+
+function playCombatSfx(id, options = {}) {
+  if (!isCombatSceneAudioActive()) return;
+  playSfx(id, options);
+}
+
+function playCombatSfxThrottled(id, minIntervalMs = 160, options = {}) {
+  if (!isCombatSceneAudioActive()) return;
+  playSfxThrottled(id, minIntervalMs, options);
+}
+
 function villageBgmId() {
   const tierName = state?.village?.tier?.name || '';
   if (tierName.includes('?쒓뎅')) return 'bgm_village_empire';
@@ -2049,8 +2063,8 @@ function createCombatEvent(type, target, amount, tone = 'damage') {
 
 function createFocusAttackImpact() {
   const amount = Math.max(300, Math.round(state.power.total * 0.08));
-  playSfx('combat_skill_cast', { volume: 0.5 });
-  playSfx('combat_skill_impact');
+  playCombatSfx('combat_skill_cast', { volume: 0.5 });
+  playCombatSfx('combat_skill_impact');
   ui.focusImpactMs = 860;
   ui.screenShakeMs = Math.max(ui.screenShakeMs, 320);
   ui.enemyHitShakeMs = Math.max(ui.enemyHitShakeMs, 300);
@@ -2065,11 +2079,11 @@ function captureCombatEvents(before, after) {
 
   if (after.stage > before.stage || after.enemiesDefeated > before.enemiesDefeated) {
     createCombatEvent('burst', 'enemy', 0, 'reward');
-    playSfxThrottled('combat_stage_clear', 900, { volume: 0.5 });
+    playCombatSfxThrottled('combat_stage_clear', 900, { volume: 0.5 });
     createRewardBurst(resourceDelta(before.resources, after.resources), { source: 'combat' });
     if (after.equipmentLooted > before.equipmentLooted) {
       const latestItem = state.inventory.equipment[state.inventory.equipment.length - 1];
-      playSfx('loot_drop_rare', { volume: 0.52 });
+      playCombatSfx('loot_drop_rare', { volume: 0.52 });
       createUpgradeBurst(null, '장비 획득', latestItem?.assetUrl);
     }
     ui.stageFlashMs = Math.max(ui.stageFlashMs, 560);
@@ -2080,7 +2094,7 @@ function captureCombatEvents(before, after) {
     const damage = Math.max(1, Math.round(before.enemyHp - after.enemyHp));
     const hasSkill = state.combat.floaters.some((floater) => floater.tone === 'skill');
     const hasCrit = state.combat.floaters.some((floater) => floater.tone === 'crit');
-    playSfxThrottled(hasSkill ? 'combat_skill_impact' : hasCrit ? 'combat_critical_hit' : 'combat_sword_light_01', 180, { volume: 0.38 });
+    playCombatSfxThrottled(hasSkill ? 'combat_skill_impact' : hasCrit ? 'combat_critical_hit' : 'combat_sword_light_01', 180, { volume: 0.38 });
     createCombatEvent('hit', 'enemy', damage, hasSkill ? 'skill' : hasCrit ? 'crit' : 'damage');
     ui.enemyHitShakeMs = Math.max(ui.enemyHitShakeMs, 180);
     ui.heroAttackPulseMs = Math.max(ui.heroAttackPulseMs, 160);
@@ -2088,7 +2102,7 @@ function captureCombatEvents(before, after) {
   }
 
   if (after.partyHp < before.partyHp) {
-    playSfxThrottled('combat_hit_armor', 240, { volume: 0.36 });
+    playCombatSfxThrottled('combat_hit_armor', 240, { volume: 0.36 });
     createCombatEvent('hit', 'hero', Math.round(before.partyHp - after.partyHp), 'enemy');
     ui.heroHitShakeMs = Math.max(ui.heroHitShakeMs, 180);
     ui.screenShakeMs = Math.max(ui.screenShakeMs, 140);
