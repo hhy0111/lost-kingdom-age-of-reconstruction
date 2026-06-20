@@ -6,7 +6,7 @@
 
 **Architecture:** Keep `Assets/Data/Tables/` as the source of truth for IAP, rewarded ads, purchase rules, and analytics. Add a small Node validator that reads the generated tables and final release documents, then reports catalog or documentation drift before store submission work proceeds.
 
-**Tech Stack:** Node.js test runner, CommonJS tools, existing JSON data tables, Markdown release documents, Unity IAP and Unity LevelPlay as production integration targets.
+**Tech Stack:** Node.js test runner, CommonJS tools, existing JSON data tables, Markdown release documents, Unity IAP and Google Mobile Ads SDK for AdMob as production integration targets.
 
 ---
 
@@ -204,7 +204,7 @@ Include these sections:
 ## Store Console Setup
 ## Purchase Flow Contract
 ## Rewarded Ad Catalog
-## LevelPlay Setup
+## AdMob Setup
 ## Remove Ads Entitlement
 ## Randomized Rewards And Odds
 ## Privacy And Data Declarations
@@ -310,4 +310,4 @@ Expected: PASS, including tests, data build, data validation, prompt build, prom
 
 - [ ] **Step 4: Record external gates**
 
-In the final response, state that local readiness is complete and that Play Console, App Store Connect, LevelPlay dashboard, signing, native device sandbox testing, and submission remain external account actions outside this repository.
+In the final response, state that local readiness is complete and that Play Console, App Store Connect, AdMob console, signing, native device sandbox testing, and submission remain external account actions outside this repository.

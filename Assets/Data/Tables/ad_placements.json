@@ -8,7 +8,11 @@
     "rewardGrantPolicy": "grant_after_completed_view",
     "format": "rewarded",
     "isForced": false,
-    "rewardType": "offline_reward_x2"
+    "rewardType": "offline_reward_x2",
+    "adProvider": "admob",
+    "adUnitName": "rewarded_core",
+    "androidAdMobAppId": "ca-app-pub-4402708884038037~5285192241",
+    "androidAdMobAdUnitId": "ca-app-pub-4402708884038037/6509654325"
   },
   {
     "id": "ad_gold_x2",
@@ -19,7 +23,11 @@
     "rewardGrantPolicy": "grant_timed_buff_after_completed_view",
     "format": "rewarded",
     "isForced": false,
-    "rewardType": "gold_x2"
+    "rewardType": "gold_x2",
+    "adProvider": "admob",
+    "adUnitName": "rewarded_core",
+    "androidAdMobAppId": "ca-app-pub-4402708884038037~5285192241",
+    "androidAdMobAdUnitId": "ca-app-pub-4402708884038037/6509654325"
   },
   {
     "id": "ad_resource_x2",
@@ -30,7 +38,11 @@
     "rewardGrantPolicy": "grant_timed_buff_after_completed_view",
     "format": "rewarded",
     "isForced": false,
-    "rewardType": "resource_x2"
+    "rewardType": "resource_x2",
+    "adProvider": "admob",
+    "adUnitName": "rewarded_core",
+    "androidAdMobAppId": "ca-app-pub-4402708884038037~5285192241",
+    "androidAdMobAdUnitId": "ca-app-pub-4402708884038037/6509654325"
   },
   {
     "id": "ad_expedition_complete",
@@ -41,7 +53,11 @@
     "rewardGrantPolicy": "grant_completion_after_completed_view",
     "format": "rewarded",
     "isForced": false,
-    "rewardType": "expedition_complete"
+    "rewardType": "expedition_complete",
+    "adProvider": "admob",
+    "adUnitName": "rewarded_core",
+    "androidAdMobAppId": "ca-app-pub-4402708884038037~5285192241",
+    "androidAdMobAdUnitId": "ca-app-pub-4402708884038037/6509654325"
   },
   {
     "id": "ad_building_complete",
@@ -52,7 +68,11 @@
     "rewardGrantPolicy": "grant_completion_after_completed_view",
     "format": "rewarded",
     "isForced": false,
-    "rewardType": "building_complete"
+    "rewardType": "building_complete",
+    "adProvider": "admob",
+    "adUnitName": "rewarded_core",
+    "androidAdMobAppId": "ca-app-pub-4402708884038037~5285192241",
+    "androidAdMobAdUnitId": "ca-app-pub-4402708884038037/6509654325"
   },
   {
     "id": "ad_equipment_box",
@@ -63,7 +83,11 @@
     "rewardGrantPolicy": "grant_item_after_completed_view",
     "format": "rewarded",
     "isForced": false,
-    "rewardType": "equipment_box"
+    "rewardType": "equipment_box",
+    "adProvider": "admob",
+    "adUnitName": "rewarded_core",
+    "androidAdMobAppId": "ca-app-pub-4402708884038037~5285192241",
+    "androidAdMobAdUnitId": "ca-app-pub-4402708884038037/6509654325"
   },
   {
     "id": "ad_boss_retry",
@@ -74,7 +98,11 @@
     "rewardGrantPolicy": "grant_ticket_after_completed_view",
     "format": "rewarded",
     "isForced": false,
-    "rewardType": "boss_retry"
+    "rewardType": "boss_retry",
+    "adProvider": "admob",
+    "adUnitName": "rewarded_core",
+    "androidAdMobAppId": "ca-app-pub-4402708884038037~5285192241",
+    "androidAdMobAdUnitId": "ca-app-pub-4402708884038037/6509654325"
   },
   {
     "id": "ad_free_summon",
@@ -85,7 +113,11 @@
     "rewardGrantPolicy": "grant_summon_after_completed_view",
     "format": "rewarded",
     "isForced": false,
-    "rewardType": "free_summon"
+    "rewardType": "free_summon",
+    "adProvider": "admob",
+    "adUnitName": "rewarded_core",
+    "androidAdMobAppId": "ca-app-pub-4402708884038037~5285192241",
+    "androidAdMobAdUnitId": "ca-app-pub-4402708884038037/6509654325"
   },
   {
     "id": "ad_legendary_box_boost",
@@ -96,7 +128,11 @@
     "rewardGrantPolicy": "grant_next_chest_modifier_after_completed_view",
     "format": "rewarded",
     "isForced": false,
-    "rewardType": "legendary_box_boost"
+    "rewardType": "legendary_box_boost",
+    "adProvider": "admob",
+    "adUnitName": "rewarded_core",
+    "androidAdMobAppId": "ca-app-pub-4402708884038037~5285192241",
+    "androidAdMobAdUnitId": "ca-app-pub-4402708884038037/6509654325"
   },
   {
     "id": "ad_daily_special",
@@ -107,6 +143,10 @@
     "rewardGrantPolicy": "grant_choice_reward_after_completed_view",
     "format": "rewarded",
     "isForced": false,
-    "rewardType": "daily_special"
+    "rewardType": "daily_special",
+    "adProvider": "admob",
+    "adUnitName": "rewarded_core",
+    "androidAdMobAppId": "ca-app-pub-4402708884038037~5285192241",
+    "androidAdMobAdUnitId": "ca-app-pub-4402708884038037/6509654325"
   }
 ]

@@ -19,7 +19,7 @@ The release is complete only when all gates below are satisfied:
 1. Native Unity client builds for Android and iOS from the same gameplay, data, and monetization contracts.
 2. Google Play and App Store product catalogs match `Assets/Data/Tables/iap_products.json`.
 3. Unity IAP purchase handling validates receipts, prevents duplicate fulfillment, confirms completed purchases, and restores eligible entitlements.
-4. Unity LevelPlay rewarded ads use the 10 configured placements, never force ads, and grant rewards only after completed rewarded callbacks.
+4. AdMob rewarded ads use the 10 configured placements, never force ads, and grant rewards only after completed rewarded callbacks.
 5. Remove-ads entitlement changes rewarded-ad claim mode to instant reward while preserving daily limits and reward economy.
 6. Data safety, app privacy, tracking consent, randomized reward odds, review notes, store screenshots, and age rating disclosures are complete.
 7. QA evidence covers clean install, offline return, IAP success/failure/pending/restore, rewarded ad success/failure/cap/cooldown, remove-ads, localization, and device performance.
@@ -39,8 +39,10 @@ The release is complete only when all gates below are satisfied:
 - Apple IAP creation guide: https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-consumable-or-non-consumable-in-app-purchases/
 - Unity IAP purchase handling: https://docs.unity.com/en-us/iap/purchases
 - Unity IAP receipt validation: https://docs.unity.com/en-us/iap/receipt-validation
-- Unity LevelPlay capping and pacing: https://docs.unity.com/en-us/grow/levelplay/platform/settings/capping-pacing
-- Unity LevelPlay rewarded ads integration: https://docs.unity.com/en-us/grow/levelplay/sdk/unity/rewarded-ad-integration-package
+- AdMob Android setup: https://developers.google.com/admob/android/quick-start
+- AdMob Android rewarded ads integration: https://developers.google.com/admob/android/rewarded
+- AdMob Android test ads: https://developers.google.com/admob/android/test-ads
+- AdMob app ID and ad unit ID help: https://support.google.com/admob/answer/7356431
 
 ## Gate 1: Unity Production Project
 
@@ -99,6 +101,12 @@ Release gate:
 
 ## Gate 4: Rewarded Ads
 
+Production Android AdMob IDs:
+
+- App ID: `ca-app-pub-4402708884038037~5285192241`
+- Rewarded ad unit name: `rewarded_core`
+- Rewarded ad unit ID: `ca-app-pub-4402708884038037/6509654325`
+
 Configured placements:
 
 - `ad_offline_reward_x2`
@@ -116,14 +124,14 @@ Rules:
 
 - All ads are rewarded ads.
 - Forced ads are prohibited.
-- Daily limits and cooldowns are enforced locally and mirrored in LevelPlay capping/pacing.
+- Daily limits and cooldowns are enforced locally before showing AdMob rewarded ads.
 - Rewards are granted only after the rewarded completion callback.
 - Failed, closed, capped, unavailable, or network-error ads do not grant rewards or consume daily limits.
 - Remove-ads entitlement grants instant claim for reward placements while still recording analytics and respecting economy limits.
 
 Release gate:
 
-- LevelPlay app IDs, ad unit IDs, placement names, and dashboard caps match local IDs.
+- AdMob app ID, rewarded ad unit ID, and local placement mapping match `Assets/Data/Tables/ad_placements.json`.
 - Test mode validates ready, not ready, capped, failed, closed, and rewarded callbacks.
 - Production mode is enabled only after sandbox ad verification passes.
 
@@ -218,6 +226,5 @@ The validator checks:
 - Final release documents exist.
 - Release documents include current official store, billing, privacy, and ad references.
 - 7 IAP products use valid product ID patterns, prices, fulfillment policies, and restore policies.
-- 10 ad placements are rewarded-only, never forced, capped, paced, and completion-gated.
+- 10 ad placements are rewarded-only, never forced, capped, paced, completion-gated, and mapped to the production AdMob rewarded unit.
 - Required purchase validation rules and monetization analytics events exist.
-

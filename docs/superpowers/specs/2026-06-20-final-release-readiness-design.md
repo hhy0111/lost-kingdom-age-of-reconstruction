@@ -16,7 +16,7 @@ The repository does not currently include a complete Unity project root because 
 
 ### Approach A: Ship The Web/PWA Runtime
 
-This is fastest because `web-game/` already exists and passes checks. It is not acceptable for the final target because real Google Play and App Store IAP, LevelPlay rewarded ads, native build signing, and platform review flows need native integration.
+This is fastest because `web-game/` already exists and passes checks. It is not acceptable for the final target because real Google Play and App Store IAP, AdMob rewarded ads, native build signing, and platform review flows need native integration.
 
 ### Approach B: Native Unity Final Release With Local Release Gates
 
@@ -39,9 +39,9 @@ The shipped game must use native store payment systems:
 
 - Google Play Billing through Unity IAP or a compliant Unity billing package.
 - App Store IAP through Unity IAP or StoreKit-backed Unity integration.
-- Unity LevelPlay rewarded ads for optional rewarded placements.
+- AdMob rewarded ads for optional rewarded placements.
 
-The local validator checks only facts that can be verified inside this repository. External facts, such as Play Console product status, App Store Connect IAP review status, LevelPlay dashboard setup, signing certificates, and device test evidence, remain release gates in the master plan.
+The local validator checks only facts that can be verified inside this repository. External facts, such as Play Console product status, App Store Connect IAP review status, AdMob app and ad unit setup, signing certificates, and device test evidence, remain release gates in the master plan.
 
 ## Monetization Contract
 
@@ -91,7 +91,7 @@ App Store:
 Unity:
 
 - Use Unity IAP purchase pending, fetch purchases, receipt validation, entitlement restore, and purchase confirmation patterns.
-- Use LevelPlay rewarded ad readiness and placement capping checks before showing rewarded ads.
+- Use AdMob rewarded ad readiness and local placement capping checks before showing rewarded ads.
 
 Official references:
 
@@ -153,4 +153,3 @@ npm run check
 - Scope check: the design is focused on final release readiness, not a full Unity project implementation inside this repository.
 - Ambiguity check: local readiness and external console gates are explicitly separated.
 - Consistency check: product counts, ad counts, and document paths match the validator.
-

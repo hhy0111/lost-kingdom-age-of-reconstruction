@@ -2,7 +2,7 @@
 
 Date: 2026-06-20
 
-This document closes the production preparation for payments and rewarded ads. The local repository cannot register products in Play Console, App Store Connect, or LevelPlay without account access, but it now defines the exact product catalog, ad placement catalog, grant rules, restore rules, analytics contract, and validation gate those consoles must match.
+This document closes the production preparation for payments and rewarded ads. The local repository cannot register products in Play Console, App Store Connect, or AdMob without account access, but it now defines the exact product catalog, ad placement catalog, grant rules, restore rules, analytics contract, and validation gate those consoles must match.
 
 ## Production Rule
 
@@ -22,8 +22,10 @@ Official references:
 - Apple IAP setup: https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-consumable-or-non-consumable-in-app-purchases/
 - Unity IAP purchase handling: https://docs.unity.com/en-us/iap/purchases
 - Unity IAP receipt validation: https://docs.unity.com/en-us/iap/receipt-validation
-- Unity LevelPlay capping and pacing: https://docs.unity.com/en-us/grow/levelplay/platform/settings/capping-pacing
-- Unity LevelPlay rewarded ads: https://docs.unity.com/en-us/grow/levelplay/sdk/unity/rewarded-ad-integration-package
+- AdMob Android setup: https://developers.google.com/admob/android/quick-start
+- AdMob Android rewarded ads: https://developers.google.com/admob/android/rewarded
+- AdMob Android test ads: https://developers.google.com/admob/android/test-ads
+- AdMob app ID and ad unit ID help: https://support.google.com/admob/answer/7356431
 
 ## IAP Catalog
 
@@ -88,6 +90,15 @@ Restore flow:
 
 Source file: `Assets/Data/Tables/ad_placements.json`
 
+Production Android AdMob IDs:
+
+| Item | Value |
+|---|---|
+| Android AdMob app ID | `ca-app-pub-4402708884038037~5285192241` |
+| Rewarded ad unit name | `rewarded_core` |
+| Rewarded ad unit ID | `ca-app-pub-4402708884038037/6509654325` |
+| Local usage | All 10 optional rewarded placements use this single rewarded ad unit. |
+
 | Placement | Daily Limit | Cooldown | Screen | Grant Policy |
 |---|---:|---:|---|---|
 | `ad_offline_reward_x2` | 5 | 0 | `offline_reward_popup` | `grant_after_completed_view` |
@@ -101,14 +112,14 @@ Source file: `Assets/Data/Tables/ad_placements.json`
 | `ad_legendary_box_boost` | 1 | 60 | `equipment_chest_panel` | `grant_next_chest_modifier_after_completed_view` |
 | `ad_daily_special` | 1 | 60 | `daily_reward_panel` | `grant_choice_reward_after_completed_view` |
 
-## LevelPlay Setup
+## AdMob Android Setup
 
-- Create one rewarded ad unit for the game.
-- Create placement names matching the local placement IDs.
-- Configure dashboard capping and pacing to match daily limit and cooldown intent.
-- Before showing an ad, check ad readiness and placement cap state.
-- Show ads with the placement name.
-- Grant only from the rewarded callback.
+- Use Android AdMob app ID `ca-app-pub-4402708884038037~5285192241`.
+- Use rewarded ad unit `rewarded_core` with ID `ca-app-pub-4402708884038037/6509654325`.
+- Keep all current local placements mapped to that one rewarded ad unit unless a future production reason requires splitting units.
+- Before release testing, enable AdMob test devices or use test ads to avoid invalid traffic.
+- Before showing an ad, check ad readiness and local placement cap state.
+- Grant only from the rewarded completion callback.
 - Treat close, load failure, display failure, no fill, network error, or capped state as no reward.
 - Keep forced interstitials disabled.
 
@@ -188,7 +199,7 @@ Ads:
 - Daily limit blocks.
 - Cooldown blocks.
 - Remove-ads entitlement gives instant claim.
-- LevelPlay dashboard cap and local cap agree.
+- AdMob test-device mode works and local cap/cooldown state agrees with the rewarded callback result.
 
 Review:
 

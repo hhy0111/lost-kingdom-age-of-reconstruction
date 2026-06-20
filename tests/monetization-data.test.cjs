@@ -28,6 +28,17 @@ test('ad placements are reward-only and include capping and pacing fields', () =
   }
 });
 
+test('rewarded ad placements use the production AdMob rewarded unit', () => {
+  const { adPlacements } = tables();
+
+  for (const placement of adPlacements) {
+    assert.equal(placement.adProvider, 'admob');
+    assert.equal(placement.adUnitName, 'rewarded_core');
+    assert.equal(placement.androidAdMobAppId, 'ca-app-pub-4402708884038037~5285192241');
+    assert.equal(placement.androidAdMobAdUnitId, 'ca-app-pub-4402708884038037/6509654325');
+  }
+});
+
 test('iap product catalog contains store ids and fulfillment policies', () => {
   const { iapProducts } = tables();
 

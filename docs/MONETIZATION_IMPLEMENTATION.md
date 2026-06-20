@@ -6,7 +6,7 @@
 
 ## 공식 문서 기준
 
-- Unity LevelPlay capping/pacing 문서는 광고 노출 빈도와 간격을 제어해 유저 경험, 리텐션, 수익 균형을 맞추는 용도라고 설명한다.
+- AdMob Android 보상형 광고와 테스트 광고 문서는 광고 로드, 표시, 완료 콜백, 테스트 기기 사용을 통해 유저 경험, 리텐션, 수익 균형을 검증하는 기준으로 사용한다.
   - 출처: https://docs.unity.com/grow/levelplay/platform/settings/capping-pacing
 - Unity IAP receipt validation은 구매 영수증의 진위를 검증해 사기와 비정상 결제를 방지하는 절차다.
   - 출처: https://docs.unity.com/en-us/iap/receipt-validation
@@ -171,4 +171,3 @@ PurchaseLedger
 - 광고 제거 구매 후 광고 없는 즉시 수령 확인
 - 월정액 만료/갱신/복원 상태 확인
 - 결제 실패, 취소, pending 상태 UI 처리
-

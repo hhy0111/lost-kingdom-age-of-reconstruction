@@ -14,6 +14,7 @@ test('privacy policy html is available for store submission and in-app linking',
   assert.match(html, /<html lang="ko">/);
   assert.match(html, /<title>Lost Kingdom 개인정보처리방침<\/title>/);
   assert.match(html, /young02hwi@gmail\.com/);
+  assert.match(html, /Google AdMob/);
   assert.match(html, /2026-06-20/);
 
   for (const section of [
@@ -41,6 +42,7 @@ test('privacy policy html is available for store submission and in-app linking',
   assert.match(docsHtml, /<html lang="ko">/);
   assert.match(docsHtml, /<title>Lost Kingdom 개인정보처리방침<\/title>/);
   assert.match(docsHtml, /young02hwi@gmail\.com/);
+  assert.match(docsHtml, /Google AdMob/);
   assert.match(docsHtml, /2026-06-20/);
   assert.doesNotMatch(docsHtml, /\b(TBD|TODO|FIXME|INSERT|example\.com)\b/i);
 });

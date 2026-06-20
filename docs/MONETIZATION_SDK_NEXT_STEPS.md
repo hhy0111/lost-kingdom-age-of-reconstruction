@@ -12,13 +12,13 @@
 
 | 어댑터 | 대상 SDK | 역할 |
 |---|---|---|
-| `IRewardedAdAdapter` | Unity LevelPlay 또는 Unity Ads | 광고 ready 확인, 광고 표시, 완료 콜백 전달 |
+| `IRewardedAdAdapter` | Google Mobile Ads SDK for AdMob | 광고 ready 확인, 광고 표시, 완료 콜백 전달 |
 | `IIapStoreAdapter` | Unity IAP | 구매 시작, 구매 결과, 구매 복원 결과 전달 |
 
 ## 구현 순서
 
 1. Unity Package Manager에서 광고 SDK와 Unity IAP 설치
-2. `Assets/Data/Tables/ad_placements.json`을 로드해 placement ID 매핑
+2. `Assets/Data/Tables/ad_placements.json`을 로드해 AdMob app ID `ca-app-pub-4402708884038037~5285192241` 및 rewarded ad unit ID `ca-app-pub-4402708884038037/6509654325` 매핑
 3. `Assets/Data/Tables/iap_products.json`을 로드해 store product ID 매핑
 4. `IRewardedAdAdapter` 구현체 작성
 5. `IIapStoreAdapter` 구현체 작성

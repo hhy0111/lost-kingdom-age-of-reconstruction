@@ -23,8 +23,10 @@ const REQUIRED_OFFICIAL_REFERENCES = [
   'https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-consumable-or-non-consumable-in-app-purchases/',
   'https://docs.unity.com/en-us/iap/purchases',
   'https://docs.unity.com/en-us/iap/receipt-validation',
-  'https://docs.unity.com/en-us/grow/levelplay/platform/settings/capping-pacing',
-  'https://docs.unity.com/en-us/grow/levelplay/sdk/unity/rewarded-ad-integration-package',
+  'https://developers.google.com/admob/android/quick-start',
+  'https://developers.google.com/admob/android/rewarded',
+  'https://developers.google.com/admob/android/test-ads',
+  'https://support.google.com/admob/answer/7356431',
 ];
 
 const REQUIRED_ANALYTICS_EVENTS = [
@@ -62,6 +64,12 @@ const REQUIRED_PURCHASE_RULES = [
   'validation_idempotent_fulfillment',
   'validation_purchase_restore_button',
 ];
+
+const ADMOB_ANDROID = {
+  appId: 'ca-app-pub-4402708884038037~5285192241',
+  rewardedCoreUnitName: 'rewarded_core',
+  rewardedCoreAdUnitId: 'ca-app-pub-4402708884038037/6509654325',
+};
 
 function readJson(rootDir, relativePath) {
   const filePath = path.join(rootDir, relativePath);
@@ -176,6 +184,18 @@ function validateAdPlacements(placements, errors) {
     }
     if (!placement.rewardGrantPolicy || !placement.rewardGrantPolicy.includes('completed_view')) {
       errors.push(`${placement.id} must grant only after completed rewarded view`);
+    }
+    if (placement.adProvider !== 'admob') {
+      errors.push(`${placement.id} must use production AdMob provider`);
+    }
+    if (placement.adUnitName !== ADMOB_ANDROID.rewardedCoreUnitName) {
+      errors.push(`${placement.id} must use adUnitName ${ADMOB_ANDROID.rewardedCoreUnitName}`);
+    }
+    if (placement.androidAdMobAppId !== ADMOB_ANDROID.appId) {
+      errors.push(`${placement.id} has invalid androidAdMobAppId`);
+    }
+    if (placement.androidAdMobAdUnitId !== ADMOB_ANDROID.rewardedCoreAdUnitId) {
+      errors.push(`${placement.id} has invalid androidAdMobAdUnitId`);
     }
   }
 }

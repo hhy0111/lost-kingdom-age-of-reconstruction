@@ -70,6 +70,12 @@ const AD_PLACEMENTS = [
   ['ad_daily_special', '일일 특별 보상', 1, 60, 'daily_reward_panel', 'grant_choice_reward_after_completed_view'],
 ];
 
+const ADMOB_ANDROID = {
+  appId: 'ca-app-pub-4402708884038037~5285192241',
+  rewardedCoreUnitName: 'rewarded_core',
+  rewardedCoreAdUnitId: 'ca-app-pub-4402708884038037/6509654325',
+};
+
 const SHOP_PRODUCTS = [
   ['starter_pack', '스타터 패키지', 1500, 'package'],
   ['remove_ads', '광고 제거 패키지', 8900, 'convenience'],
@@ -374,6 +380,10 @@ function buildTables(parsed) {
     format: 'rewarded',
     isForced: false,
     rewardType: id.replace(/^ad_/, ''),
+    adProvider: 'admob',
+    adUnitName: ADMOB_ANDROID.rewardedCoreUnitName,
+    androidAdMobAppId: ADMOB_ANDROID.appId,
+    androidAdMobAdUnitId: ADMOB_ANDROID.rewardedCoreAdUnitId,
   }));
 
   const shopProducts = SHOP_PRODUCTS.map(([id, name, priceKrw, type]) => ({
@@ -499,5 +509,6 @@ module.exports = {
   constants: {
     REGION_IDS,
     EQUIPMENT_SLOTS,
+    ADMOB_ANDROID,
   },
 };
