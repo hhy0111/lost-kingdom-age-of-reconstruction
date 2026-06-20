@@ -19,6 +19,15 @@ function makeGame() {
   return runtime.createNewGame(makeData(), { now: NOW, seed: 315 });
 }
 
+function pngSize(filePath) {
+  const buffer = fs.readFileSync(filePath);
+  assert.equal(buffer.toString('ascii', 1, 4), 'PNG');
+  return {
+    width: buffer.readUInt32BE(16),
+    height: buffer.readUInt32BE(20),
+  };
+}
+
 test('runtime data exposes launch-ready playable content and long-term rewards', () => {
   const data = makeData();
 
@@ -291,11 +300,41 @@ test('playable web game shell exposes canvas, PWA files, emulator server, and ve
   assert.match(styles, /\.lobby-help/);
   assert.match(styles, /\.thumb-row div/);
   assert.match(styles, /\.row > div/);
-  assert.match(serviceWorker, /lost-kingdom-runtime-v26/);
+  assert.match(serviceWorker, /lost-kingdom-runtime-v27/);
   assert.match(serviceWorker, /privacy-policy\.html/);
   assert.match(serviceWorker, /audio-manifest\.json/);
   assert.match(server, /0\.0\.0\.0/);
   assert.match(server, /10\.0\.2\.2/);
+});
+
+test('install manifest exposes project-safe app icons for PWA installation', () => {
+  const manifestPath = path.join(rootDir, 'web-game', 'manifest.webmanifest');
+  const indexPath = path.join(rootDir, 'web-game', 'index.html');
+  const serviceWorkerPath = path.join(rootDir, 'web-game', 'sw.js');
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  const indexHtml = fs.readFileSync(indexPath, 'utf8');
+  const serviceWorker = fs.readFileSync(serviceWorkerPath, 'utf8');
+
+  assert.equal(manifest.start_url, './');
+  assert.equal(manifest.scope, './');
+  assert.ok(manifest.icons.some((icon) => icon.src === 'icons/app-icon-192.png' && icon.sizes === '192x192' && icon.purpose === 'any'));
+  assert.ok(manifest.icons.some((icon) => icon.src === 'icons/app-icon-512.png' && icon.sizes === '512x512' && icon.purpose === 'any'));
+  assert.ok(manifest.icons.some((icon) => icon.src === 'icons/app-icon-maskable-512.png' && icon.sizes === '512x512' && icon.purpose === 'maskable'));
+  assert.match(indexHtml, /rel="apple-touch-icon" href="icons\/app-icon-192\.png"/);
+  assert.match(serviceWorker, /lost-kingdom-runtime-v27/);
+  assert.match(serviceWorker, /icons\/app-icon-192\.png/);
+  assert.match(serviceWorker, /icons\/app-icon-512\.png/);
+  assert.match(serviceWorker, /icons\/app-icon-maskable-512\.png/);
+
+  for (const [file, width, height] of [
+    ['app-icon-192.png', 192, 192],
+    ['app-icon-512.png', 512, 512],
+    ['app-icon-maskable-512.png', 512, 512],
+  ]) {
+    const iconPath = path.join(rootDir, 'web-game', 'icons', file);
+    assert.ok(fs.existsSync(iconPath), `${file} missing`);
+    assert.deepEqual(pngSize(iconPath), { width, height });
+  }
 });
 
 test('web game keeps upgrade surfaces stable and highlights kingdom progress', () => {

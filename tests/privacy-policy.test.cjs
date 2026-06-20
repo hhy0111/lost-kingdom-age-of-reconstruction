@@ -36,8 +36,8 @@ test('privacy policy html is available for store submission and in-app linking',
   assert.match(indexHtml, /rel="privacy-policy" href="privacy-policy\.html"/);
 
   const serviceWorker = fs.readFileSync(path.join(rootDir, 'web-game/sw.js'), 'utf8');
-  assert.match(serviceWorker, /lost-kingdom-runtime-v26/);
-  assert.match(serviceWorker, /\/web-game\/privacy-policy\.html/);
+  assert.match(serviceWorker, /lost-kingdom-runtime-v27/);
+  assert.match(serviceWorker, /privacy-policy\.html/);
 
   assert.match(docsHtml, /<html lang="ko">/);
   assert.match(docsHtml, /<title>Lost Kingdom 개인정보처리방침<\/title>/);

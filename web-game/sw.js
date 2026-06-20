@@ -1,13 +1,17 @@
-const CACHE_NAME = 'lost-kingdom-runtime-v26';
+const CACHE_NAME = 'lost-kingdom-runtime-v27';
 const CORE_ASSETS = [
-  '/web-game/',
-  '/web-game/index.html',
-  '/web-game/privacy-policy.html',
-  '/web-game/styles.css',
-  '/web-game/app.js',
-  '/web-game/runtime-core.js',
-  '/web-game/runtime-data.json',
-  '/web-game/audio-manifest.json'
+  './',
+  'index.html',
+  'manifest.webmanifest',
+  'privacy-policy.html',
+  'styles.css',
+  'app.js',
+  'runtime-core.js',
+  'runtime-data.json',
+  'audio-manifest.json',
+  'icons/app-icon-192.png',
+  'icons/app-icon-512.png',
+  'icons/app-icon-maskable-512.png'
 ];
 
 self.addEventListener('install', (event) => {
