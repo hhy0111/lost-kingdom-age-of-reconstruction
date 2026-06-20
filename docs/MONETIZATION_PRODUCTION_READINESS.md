@@ -210,7 +210,7 @@ Expected result:
 ```json
 {
   "platforms": ["app_store", "google_play"],
-  "requiredDocs": 5,
+  "requiredDocs": 6,
   "iapProducts": 7,
   "rewardedAdPlacements": 10
 }

@@ -4,6 +4,7 @@ const path = require('node:path');
 const REQUIRED_DOCS = [
   'docs/FINAL_RELEASE_MASTER_PLAN.md',
   'docs/MONETIZATION_PRODUCTION_READINESS.md',
+  'docs/privacy-policy.html',
   'docs/superpowers/specs/2026-06-20-final-release-readiness-design.md',
   'docs/superpowers/plans/2026-06-20-final-release-readiness.md',
   'web-game/privacy-policy.html',

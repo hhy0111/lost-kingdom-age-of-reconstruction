@@ -7,7 +7,9 @@ const rootDir = path.resolve(__dirname, '..');
 
 test('privacy policy html is available for store submission and in-app linking', () => {
   const policyPath = path.join(rootDir, 'web-game/privacy-policy.html');
+  const docsPolicyPath = path.join(rootDir, 'docs/privacy-policy.html');
   const html = fs.readFileSync(policyPath, 'utf8');
+  const docsHtml = fs.readFileSync(docsPolicyPath, 'utf8');
 
   assert.match(html, /<html lang="ko">/);
   assert.match(html, /<title>Lost Kingdom 개인정보처리방침<\/title>/);
@@ -35,4 +37,10 @@ test('privacy policy html is available for store submission and in-app linking',
   const serviceWorker = fs.readFileSync(path.join(rootDir, 'web-game/sw.js'), 'utf8');
   assert.match(serviceWorker, /lost-kingdom-runtime-v24/);
   assert.match(serviceWorker, /\/web-game\/privacy-policy\.html/);
+
+  assert.match(docsHtml, /<html lang="ko">/);
+  assert.match(docsHtml, /<title>Lost Kingdom 개인정보처리방침<\/title>/);
+  assert.match(docsHtml, /young02hwi@gmail\.com/);
+  assert.match(docsHtml, /2026-06-20/);
+  assert.doesNotMatch(docsHtml, /\b(TBD|TODO|FIXME|INSERT|example\.com)\b/i);
 });

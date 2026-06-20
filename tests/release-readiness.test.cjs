@@ -12,7 +12,7 @@ test('final launch readiness covers both stores, billing, ads, privacy, and QA g
   assert.equal(result.ok, true, result.errors.join('\n'));
   assert.equal(result.summary.iapProducts, 7);
   assert.equal(result.summary.rewardedAdPlacements, 10);
-  assert.equal(result.summary.requiredDocs, 5);
+  assert.equal(result.summary.requiredDocs, 6);
   assert.deepEqual(result.summary.platforms, ['app_store', 'google_play']);
   assert.ok(result.summary.officialReferenceCount >= 8);
 });
