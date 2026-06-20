@@ -30,6 +30,11 @@
       "id": "shop",
       "label": "상점",
       "icon": "/Assets/Art/UI/ui_icon_005.png"
+    },
+    {
+      "id": "settings",
+      "label": "설정",
+      "icon": "/Assets/Art/UI/ui_icon_006.png"
     }
   ],
   "assets": {

@@ -99,6 +99,7 @@ function buildRuntimeData(rootDir) {
       { id: 'heroes', label: '영웅', icon: uiAssets[2]?.assetUrl || '' },
       { id: 'equipment', label: '장비', icon: uiAssets[3]?.assetUrl || '' },
       { id: 'shop', label: '상점', icon: uiAssets[4]?.assetUrl || '' },
+      { id: 'settings', label: '설정', icon: uiAssets[5]?.assetUrl || uiAssets[0]?.assetUrl || '' },
     ],
     assets: {
       heroes: heroAssets,

@@ -4,6 +4,7 @@ const app = document.getElementById('app');
 const PROJECT_TITLE = '잃어버린 왕국 : 재건의 시대';
 const OPENING_SESSION_KEY = 'lost_kingdom_opening_seen_v3';
 const TUTORIAL_KEY = 'lost_kingdom_tutorial_seen_v2';
+const SOUND_SETTINGS_KEY = 'lost_kingdom_sound_enabled_v1';
 const DAILY_REWARD_DISMISS_PREFIX = 'lost_kingdom_daily_reward_dismissed_';
 const RESOURCE_KEYS = ['gold', 'diamond', 'food', 'wood', 'ore', 'magicStone'];
 const SCROLL_BOTTOM_EPSILON = 12;
@@ -68,6 +69,7 @@ function createAudioManager() {
   const ambience = new Audio();
   const oneShots = new Map();
   let unlocked = false;
+  let enabled = true;
   let currentBgmId = '';
   let currentAmbienceId = '';
 
@@ -77,7 +79,7 @@ function createAudioManager() {
   ambience.volume = AUDIO_VOLUME.ambience;
 
   function canPlay() {
-    return unlocked && registry.size > 0;
+    return enabled && unlocked && registry.size > 0;
   }
 
   function entry(id) {
@@ -85,14 +87,26 @@ function createAudioManager() {
   }
 
   function playLoop(player, currentId, nextId, volume) {
-    if (!canPlay() || !nextId || currentId === nextId) return currentId;
+    if (!canPlay() || !nextId) return currentId;
     const sound = entry(nextId);
     if (!sound) return currentId;
-    player.src = sound.url;
+    if (currentId !== nextId) {
+      player.src = sound.url;
+    }
     player.volume = volume;
     player.loop = true;
+    player.muted = !enabled;
     player.play().catch(() => {});
     return nextId;
+  }
+
+  function silence() {
+    bgm.pause();
+    ambience.pause();
+    for (const channel of oneShots.values()) {
+      channel.pause();
+    }
+    oneShots.clear();
   }
 
   return {
@@ -111,9 +125,9 @@ function createAudioManager() {
     },
     unlock() {
       unlocked = true;
-      bgm.muted = false;
-      ambience.muted = false;
-      setBgmForContext();
+      bgm.muted = !enabled;
+      ambience.muted = !enabled;
+      if (enabled) setBgmForContext();
     },
     playSfx(id, options = {}) {
       if (!canPlay()) return;
@@ -136,9 +150,20 @@ function createAudioManager() {
     setAmbience(id) {
       currentAmbienceId = playLoop(ambience, currentAmbienceId, id, AUDIO_VOLUME.ambience);
     },
+    setEnabled(nextEnabled) {
+      enabled = Boolean(nextEnabled);
+      bgm.muted = !enabled;
+      ambience.muted = !enabled;
+      if (!enabled) {
+        silence();
+        return;
+      }
+      if (unlocked) setBgmForContext();
+    },
     state() {
       return {
         unlocked,
+        enabled,
         loaded: registry.size,
         bgm: currentBgmId,
         ambience: currentAmbienceId,
@@ -205,7 +230,7 @@ function setBgmForContext() {
     audioManager.setAmbience('amb_shop_interior');
     return;
   }
-  if (state.activeTab === 'heroes' || state.activeTab === 'equipment') {
+  if (state.activeTab === 'heroes' || state.activeTab === 'equipment' || state.activeTab === 'settings') {
     audioManager.setBgm('bgm_hero_hall');
     audioManager.setAmbience('amb_castle_hall');
     return;
@@ -246,6 +271,17 @@ function storageSet(storage, key, value) {
   } catch {
     // Storage can be unavailable in restricted browser modes.
   }
+}
+
+function isSoundEnabled() {
+  return storageGet(localStorage, SOUND_SETTINGS_KEY) !== 'off';
+}
+
+function setSoundEnabled(enabled) {
+  const nextEnabled = Boolean(enabled);
+  storageSet(localStorage, SOUND_SETTINGS_KEY, nextEnabled ? 'on' : 'off');
+  audioManager?.setEnabled(nextEnabled);
+  return nextEnabled;
 }
 
 function formatNumber(value) {
@@ -1891,6 +1927,46 @@ function renderShopPanel(panel) {
   panel.append(list);
 }
 
+function renderSettingsPanel(panel) {
+  const enabled = isSoundEnabled();
+  panel.append(panelHead('설정', enabled ? '사운드 켜짐' : '사운드 꺼짐'));
+
+  const section = el('section', 'settings-panel');
+  const soundRow = el('article', 'settings-row');
+  const copy = el('div', 'settings-copy');
+  copy.append(
+    el('strong', '', '사운드'),
+    el('span', '', enabled ? 'BGM, 환경음, 효과음이 재생됩니다.' : '모든 BGM, 환경음, 효과음이 꺼져 있습니다.')
+  );
+
+  const toggle = el('button', `sound-toggle ${enabled ? 'on' : 'off'}`);
+  toggle.type = 'button';
+  toggle.dataset.setting = 'sound';
+  toggle.setAttribute('aria-pressed', String(enabled));
+  toggle.setAttribute('aria-label', enabled ? '사운드 끄기' : '사운드 켜기');
+  const track = el('span', 'toggle-track');
+  track.append(el('span', 'toggle-thumb'));
+  toggle.append(track, el('strong', '', enabled ? '켜짐' : '꺼짐'));
+  toggle.addEventListener('click', () => {
+    ui.userInteracted = true;
+    audioManager?.unlock();
+    const nextEnabled = !isSoundEnabled();
+    if (nextEnabled) {
+      setSoundEnabled(true);
+      playSfx('ui_checkbox_on');
+    } else {
+      playSfx('ui_checkbox_off');
+      setSoundEnabled(false);
+    }
+    toast(nextEnabled ? '사운드가 켜졌습니다.' : '사운드가 꺼졌습니다.');
+    renderAll();
+  });
+
+  soundRow.append(copy, toggle);
+  section.append(soundRow);
+  panel.append(section);
+}
+
 function renderPanel() {
   const panel = document.querySelector('.panel');
   if (!panel) return;
@@ -1904,6 +1980,7 @@ function renderPanel() {
   if (nextTab === 'heroes') renderHeroesPanel(panel);
   if (nextTab === 'equipment') renderEquipmentPanel(panel);
   if (nextTab === 'shop') renderShopPanel(panel);
+  if (nextTab === 'settings') renderSettingsPanel(panel);
   ui.renderedPanelTab = nextTab;
   restorePanelScroll(panel, nextTab, savedState);
 }
@@ -2408,6 +2485,7 @@ async function boot() {
   });
   audioManager = createAudioManager();
   await audioManager.load(AUDIO_MANIFEST_URL);
+  audioManager?.setEnabled(isSoundEnabled());
 
   const saved = localStorage.getItem(data.project.saveKey);
   state = Runtime.loadGame(saved, data, { now: Date.now() });
@@ -2448,6 +2526,7 @@ async function boot() {
   });
   window.lostKingdomState = state;
   window.lostKingdomUi = ui;
+  window.setSoundEnabled = setSoundEnabled;
   window.claimDailyPerformanceReward = claimDailyPerformanceReward;
   window.triggerCombatEffectDemo = () => {
     createCombatEvent('hit', 'enemy', Math.max(300, Math.round(state.power.total * 0.08)), 'crit');

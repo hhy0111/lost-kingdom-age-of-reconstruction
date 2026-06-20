@@ -23,7 +23,7 @@ test('runtime data exposes launch-ready playable content and long-term rewards',
   const data = makeData();
 
   assert.equal(data.project.title, '잃어버린 왕국 : 재건의 시대');
-  assert.deepEqual(data.navigation.map((tab) => tab.id), ['village', 'combat', 'heroes', 'equipment', 'shop']);
+  assert.deepEqual(data.navigation.map((tab) => tab.id), ['village', 'combat', 'heroes', 'equipment', 'shop', 'settings']);
   assert.ok(data.assets.heroes.length >= 3);
   assert.ok(data.assets.monsters.length >= 24);
   assert.ok(data.assets.bosses.length >= 8);
@@ -220,6 +220,9 @@ test('playable web game shell exposes canvas, PWA files, emulator server, and ve
   assert.match(app, /data-live-progress/);
   assert.match(app, /DAILY_BUILDING_TARGET = 3/);
   assert.match(app, /renderShopFreeRewards/);
+  assert.match(app, /renderSettingsPanel/);
+  assert.match(app, /sound-toggle/);
+  assert.match(app, /SOUND_SETTINGS_KEY/);
   assert.match(app, /adStatusText/);
   assert.match(app, /isDailyRewardBlocking/);
   assert.match(app, /DAILY_REWARD_DISMISS_PREFIX/);
@@ -273,6 +276,9 @@ test('playable web game shell exposes canvas, PWA files, emulator server, and ve
   assert.match(styles, /\.shop-free-rewards/);
   assert.match(styles, /\.shop-benefit-list/);
   assert.match(styles, /\.shop-action-row/);
+  assert.match(styles, /\.settings-panel/);
+  assert.match(styles, /\.sound-toggle/);
+  assert.match(styles, /\.toggle-track/);
   assert.match(styles, /\.loadout-grid/);
   assert.match(styles, /\.loadout-grid\.large/);
   assert.match(styles, /img\[data-preview="true"\]/);
@@ -285,7 +291,7 @@ test('playable web game shell exposes canvas, PWA files, emulator server, and ve
   assert.match(styles, /\.lobby-help/);
   assert.match(styles, /\.thumb-row div/);
   assert.match(styles, /\.row > div/);
-  assert.match(serviceWorker, /lost-kingdom-runtime-v24/);
+  assert.match(serviceWorker, /lost-kingdom-runtime-v25/);
   assert.match(serviceWorker, /privacy-policy\.html/);
   assert.match(serviceWorker, /audio-manifest\.json/);
   assert.match(server, /0\.0\.0\.0/);

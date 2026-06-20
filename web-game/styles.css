@@ -912,11 +912,93 @@ button {
   box-shadow: 0 8px 14px rgba(157, 93, 12, 0.18);
 }
 
+.settings-panel {
+  display: grid;
+  gap: 10px;
+}
+
+.settings-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid rgba(118, 91, 45, 0.22);
+  background: rgba(255, 250, 240, 0.76);
+}
+
+.settings-copy {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.settings-copy strong {
+  font-size: 14px;
+}
+
+.settings-copy span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.sound-toggle {
+  border: 1px solid rgba(118, 91, 45, 0.32);
+  background: #fffaf0;
+  color: var(--ink);
+  min-width: 94px;
+  min-height: 42px;
+  padding: 6px 9px;
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.sound-toggle strong {
+  font-size: 12px;
+}
+
+.toggle-track {
+  position: relative;
+  width: 38px;
+  height: 22px;
+  border-radius: 999px;
+  background: rgba(110, 121, 117, 0.28);
+  box-shadow: inset 0 0 0 1px rgba(24, 33, 31, 0.16);
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff8df;
+  box-shadow: 0 2px 6px rgba(24, 33, 31, 0.22);
+  transition: transform 0.18s ease;
+}
+
+.sound-toggle.on {
+  border-color: rgba(47, 104, 79, 0.42);
+  background: #e6f0ea;
+}
+
+.sound-toggle.on .toggle-track {
+  background: #2f684f;
+}
+
+.sound-toggle.on .toggle-thumb {
+  transform: translateX(16px);
+}
+
 .bottom-nav {
   height: 76px;
   padding-bottom: env(safe-area-inset-bottom);
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   border-top: 1px solid var(--line);
   background: rgba(255, 250, 240, 0.98);
 }
