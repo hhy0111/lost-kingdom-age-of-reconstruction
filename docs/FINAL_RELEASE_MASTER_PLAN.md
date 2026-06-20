@@ -6,8 +6,8 @@ This plan treats the next release as the final production release. There is no A
 
 ## Current Baseline
 
-- Playable reference runtime: `web-game/` v22.
-- Current verification baseline: `npm run check` passes 28 Node tests plus data, prompt, asset, preview, and runtime builds.
+- Playable reference runtime: `web-game/` v30.
+- Current verification baseline: `npm run check` passes 38 Node tests plus data, prompt, asset, sound, preview, game runtime, and release readiness builds.
 - Source-of-truth content: `Assets/Data/Tables/*.json`, `web-game/runtime-data.json`, and the C# monetization core under `src/LostKingdom.Monetization/`.
 - Current repository shape: Unity-style `Assets/` exists, but `ProjectSettings/` and `Packages/` are not present. A production Unity project must import these assets and contracts before store submission.
 - Monetization data already exists: 7 IAP products, 10 rewarded ad placements, 6 purchase validation rules, 30 monetization analytics events.
@@ -51,7 +51,7 @@ Required local work:
 - Create or attach a real Unity project with `ProjectSettings/`, `Packages/`, and `Assets/`.
 - Import generated assets from `Assets/Art/`, data tables from `Assets/Data/Tables/`, and C# monetization core from `src/LostKingdom.Monetization/`.
 - Build scenes for opening, village, combat, heroes, equipment, shop, settings, restore purchases, privacy, and support.
-- Use `web-game/` v22 as the visual and flow reference, not as the shipped mobile runtime.
+- Use `web-game/` v30 as the visual and flow reference, not as the shipped mobile runtime.
 - Add build scripting for Android App Bundle and iOS Xcode export.
 
 Release gate:
