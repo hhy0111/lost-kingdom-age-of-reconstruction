@@ -4,7 +4,7 @@
   "private": true,
   "description": "Image-independent data foundation for Lost Kingdom: Age of Reconstruction.",
   "scripts": {
-    "test": "node --test tests/catalog-data.test.cjs tests/prompt-manifest.test.cjs tests/growth-upgrade.test.cjs tests/monetization-data.test.cjs tests/asset-application.test.cjs tests/audio-assets.test.cjs tests/privacy-policy.test.cjs tests/web-preview-data.test.cjs tests/web-game-runtime.test.cjs tests/release-readiness.test.cjs",
+    "test": "node --test tests/catalog-data.test.cjs tests/prompt-manifest.test.cjs tests/growth-upgrade.test.cjs tests/monetization-data.test.cjs tests/asset-application.test.cjs tests/audio-assets.test.cjs tests/privacy-policy.test.cjs tests/building-era-image-prompts.test.cjs tests/web-preview-data.test.cjs tests/web-game-runtime.test.cjs tests/release-readiness.test.cjs",
     "build:data": "node tools/build-data.cjs",
     "validate:data": "node tools/validate-data.cjs",
     "build:prompts": "node tools/build-prompt-manifest.cjs",

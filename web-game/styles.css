@@ -354,6 +354,120 @@ button {
   min-height: 88px;
 }
 
+.building-era-card {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  border: 1px solid rgba(63, 125, 92, 0.3);
+  background:
+    radial-gradient(circle at 12% 20%, rgba(255, 241, 199, 0.72), transparent 34%),
+    linear-gradient(135deg, rgba(239, 247, 236, 0.95), rgba(255, 250, 240, 0.96));
+  padding: 10px;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.78), 0 8px 18px rgba(24, 33, 31, 0.08);
+}
+
+.building-era-card.ready {
+  border-color: rgba(209, 155, 56, 0.62);
+  background:
+    radial-gradient(circle at 12% 24%, rgba(255, 209, 102, 0.58), transparent 32%),
+    linear-gradient(135deg, #fff4c8, #e7efd8 58%, #d3e5d5);
+  box-shadow: inset 0 0 0 1px rgba(255, 248, 223, 0.78), 0 12px 26px rgba(209, 155, 56, 0.18);
+}
+
+.building-era-card.is-ascended {
+  animation: building-ascend-pulse 1.45s ease-out;
+}
+
+.building-era-card > img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  background:
+    linear-gradient(45deg, rgba(24, 33, 31, 0.04) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(24, 33, 31, 0.04) 25%, transparent 25%),
+    #fffdf5;
+  background-size: 14px 14px;
+  border: 1px solid rgba(216, 205, 185, 0.72);
+}
+
+.building-era-card > div {
+  min-width: 0;
+  display: grid;
+  gap: 7px;
+}
+
+.building-era-head {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.building-era-head strong {
+  min-width: 0;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.building-era-head span {
+  color: #765a18;
+  font-size: 11px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.building-era-detail {
+  color: #5d6c64;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.building-era-banner {
+  min-height: 42px;
+  grid-column: 1 / -1;
+  display: grid;
+  align-content: center;
+  gap: 2px;
+  border: 1px solid rgba(63, 125, 92, 0.18);
+  background: rgba(255, 253, 245, 0.76);
+  padding: 7px 8px;
+}
+
+.building-era-banner.active,
+.building-era-banner.ascended {
+  border-color: rgba(209, 155, 56, 0.56);
+  background:
+    radial-gradient(circle at 14% 42%, rgba(255, 255, 255, 0.72), transparent 34%),
+    linear-gradient(135deg, #fff1b8, #d8b34c 48%, #6d8b54);
+  animation: building-result-pop 0.42s ease-out both;
+}
+
+.building-era-banner strong {
+  color: #254932;
+  font-size: 12px;
+  line-height: 1.15;
+}
+
+.building-era-banner span {
+  min-width: 0;
+  color: #5c4614;
+  font-size: 11px;
+  font-weight: 900;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.building-era-actions {
+  grid-column: 1 / -1;
+  display: grid;
+}
+
 .building-card {
   min-height: 304px;
   grid-template-rows: auto 58px minmax(44px, 1fr) 42px;

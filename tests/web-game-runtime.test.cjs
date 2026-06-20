@@ -172,13 +172,14 @@ test('village upgrades, hero training, equipment chest, and equip best all chang
   assert.ok(state.power.total > firstPower);
 });
 
-test('village buildings keep growing after level five with visible milestone stages', () => {
+test('village building growth unlocks in five-level group eras', () => {
   const data = makeData();
   const legacy = runtime.createNewGame(data, { now: NOW, seed: 315 });
-  const farm = legacy.village.buildings.find((building) => building.id === 'building_farm');
-  farm.level = 5;
-  farm.maxLevel = 5;
-  farm.productionPerHour = 1200;
+  for (const building of legacy.village.buildings) {
+    building.level = 5;
+    building.maxLevel = 5;
+    building.productionPerHour = runtime.buildingProduction(building);
+  }
   legacy.resources.gold = 5_000_000;
   legacy.resources.wood = 5_000_000;
   legacy.resources.ore = 5_000_000;
@@ -188,25 +189,38 @@ test('village buildings keep growing after level five with visible milestone sta
   const beforeProduction = loadedFarm.productionPerHour;
   const beforePower = state.power.total;
 
-  assert.equal(loadedFarm.maxLevel, 30);
-  assert.equal(runtime.buildingStageInfo(loadedFarm).nextMilestoneLevel, 10);
+  assert.equal(runtime.buildingEraInfo(state).unlockedMaxLevel, 5);
+  assert.equal(loadedFarm.maxLevel, 5);
+  assert.equal(runtime.canAdvanceBuildingEra(state).ok, true);
+
+  const locked = runtime.upgradeBuilding(state, data, 'building_farm');
+  assert.equal(locked.level, 5);
+
+  const era = runtime.advanceBuildingEra(state, data);
+  runtime.recalculatePower(state);
+
+  assert.equal(era.ok, true);
+  assert.equal(era.to.unlockedMaxLevel, 10);
+  assert.equal(runtime.buildingEraInfo(state).unlockedMaxLevel, 10);
+  assert.equal(loadedFarm.maxLevel, 10);
+  assert.ok(state.power.total > beforePower);
 
   const upgraded = runtime.upgradeBuilding(state, data, 'building_farm');
   runtime.recalculatePower(state);
 
   assert.equal(upgraded.level, 6);
   assert.ok(upgraded.productionPerHour > beforeProduction);
-  assert.ok(state.power.total > beforePower);
 
-  upgraded.level = 9;
-  upgraded.productionPerHour = runtime.buildingProduction(upgraded);
-  runtime.upgradeBuilding(state, data, 'building_farm');
-  const milestone = runtime.buildingStageInfo(upgraded);
+  const blocked = runtime.createNewGame(data, { now: NOW, seed: 315 });
+  blocked.resources.gold = 5_000_000;
+  blocked.resources.wood = 5_000_000;
+  blocked.resources.ore = 5_000_000;
+  blocked.village.buildings[0].level = 5;
+  blocked.village.buildings[0].productionPerHour = runtime.buildingProduction(blocked.village.buildings[0]);
+  runtime.syncBuildingLevelCaps(blocked, data);
 
-  assert.equal(upgraded.level, 10);
-  assert.equal(milestone.currentMilestoneLevel, 10);
-  assert.equal(milestone.isMilestone, true);
-  assert.ok(milestone.powerMultiplier > 1);
+  assert.equal(runtime.canAdvanceBuildingEra(blocked).ok, false);
+  assert.equal(runtime.advanceBuildingEra(blocked, data).reason, 'requirements_not_met');
 });
 
 test('rewarded ads and purchase mocks grant value without forced ads', () => {
@@ -314,8 +328,11 @@ test('playable web game shell exposes canvas, PWA files, emulator server, and ve
   assert.match(app, /bottomPinned/);
   assert.match(app, /wheel/);
   assert.match(app, /building-upgrade-result/);
-  assert.match(app, /buildingStageInfo/);
+  assert.match(app, /buildingEraInfo/);
+  assert.match(app, /renderBuildingEraGateCard/);
+  assert.match(app, /advanceBuildingEra/);
   assert.match(app, /building-stage-badge/);
+  assert.match(app, /building-era-card/);
   assert.match(app, /building-milestone-track/);
   assert.match(app, /is-ascended/);
   assert.match(app, /ascended/);
@@ -381,7 +398,7 @@ test('playable web game shell exposes canvas, PWA files, emulator server, and ve
   assert.match(styles, /\.lobby-help/);
   assert.match(styles, /\.thumb-row div/);
   assert.match(styles, /\.row > div/);
-  assert.match(serviceWorker, /lost-kingdom-runtime-v29/);
+  assert.match(serviceWorker, /lost-kingdom-runtime-v30/);
   assert.match(serviceWorker, /privacy-policy\.html/);
   assert.match(serviceWorker, /audio-manifest\.json/);
   assert.match(server, /0\.0\.0\.0/);
@@ -402,7 +419,7 @@ test('install manifest exposes project-safe app icons for PWA installation', () 
   assert.ok(manifest.icons.some((icon) => icon.src === 'icons/app-icon-512.png' && icon.sizes === '512x512' && icon.purpose === 'any'));
   assert.ok(manifest.icons.some((icon) => icon.src === 'icons/app-icon-maskable-512.png' && icon.sizes === '512x512' && icon.purpose === 'maskable'));
   assert.match(indexHtml, /rel="apple-touch-icon" href="icons\/app-icon-192\.png"/);
-  assert.match(serviceWorker, /lost-kingdom-runtime-v29/);
+  assert.match(serviceWorker, /lost-kingdom-runtime-v30/);
   assert.match(serviceWorker, /icons\/app-icon-192\.png/);
   assert.match(serviceWorker, /icons\/app-icon-512\.png/);
   assert.match(serviceWorker, /icons\/app-icon-maskable-512\.png/);
@@ -429,6 +446,8 @@ test('web game keeps upgrade surfaces stable and highlights kingdom progress', (
   assert.match(app, /building-result-slot/);
   assert.match(app, /building-card/);
   assert.match(styles, /\.building-card/);
+  assert.match(styles, /\.building-era-card/);
+  assert.match(styles, /\.building-era-card\.ready/);
   assert.match(styles, /\.building-stage-badge/);
   assert.match(styles, /\.building-milestone-track/);
   assert.match(styles, /\.building-card\.is-ascended/);

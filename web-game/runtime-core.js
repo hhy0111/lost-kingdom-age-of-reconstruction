@@ -77,6 +77,126 @@
     return after.index > before.index;
   }
 
+  const BUILDING_ERAS = [
+    { index: 0, name: '복구', label: '복구 단계', unlockedMaxLevel: 5, powerMultiplier: 1 },
+    { index: 1, name: '마을', label: '마을 단계', unlockedMaxLevel: 10, powerMultiplier: 1.1 },
+    { index: 2, name: '도시', label: '도시 단계', unlockedMaxLevel: 15, powerMultiplier: 1.24 },
+    { index: 3, name: '왕국', label: '왕국 단계', unlockedMaxLevel: 20, powerMultiplier: 1.42 },
+    { index: 4, name: '제국', label: '제국 단계', unlockedMaxLevel: 25, powerMultiplier: 1.66 },
+    { index: 5, name: '수도', label: '영원의 수도', unlockedMaxLevel: 30, powerMultiplier: 1.96 },
+  ];
+
+  function buildingEraByIndex(index) {
+    return BUILDING_ERAS[clamp(Math.floor(index || 0), 0, BUILDING_ERAS.length - 1)];
+  }
+
+  function buildingEraByUnlockedMaxLevel(maxLevel) {
+    const cap = clamp(
+      Math.ceil((maxLevel || BUILDING_MILESTONE_STEP) / BUILDING_MILESTONE_STEP) * BUILDING_MILESTONE_STEP,
+      BUILDING_MILESTONE_STEP,
+      BUILDING_MAX_LEVEL
+    );
+    return buildingEraByIndex(Math.max(0, Math.ceil(cap / BUILDING_MILESTONE_STEP) - 1));
+  }
+
+  function buildingStageInfo(buildingOrLevel) {
+    const rawLevel = typeof buildingOrLevel === 'number' ? buildingOrLevel : buildingOrLevel?.level;
+    const rawMax = typeof buildingOrLevel === 'number'
+      ? Math.ceil((rawLevel || 1) / BUILDING_MILESTONE_STEP) * BUILDING_MILESTONE_STEP
+      : buildingOrLevel?.maxLevel;
+    const maxLevel = clamp(rawMax || BUILDING_MILESTONE_STEP, BUILDING_MILESTONE_STEP, BUILDING_MAX_LEVEL);
+    const level = clamp(Math.floor(rawLevel || 1), 1, maxLevel);
+    const era = buildingEraByUnlockedMaxLevel(maxLevel);
+    const bandStart = Math.max(1, maxLevel - BUILDING_MILESTONE_STEP + 1);
+    const progress = maxLevel > bandStart ? clamp((level - bandStart) / (maxLevel - bandStart), 0, 1) : 1;
+
+    return {
+      ...era,
+      level,
+      maxLevel,
+      currentMilestoneLevel: maxLevel,
+      nextMilestoneLevel: era.index < BUILDING_ERAS.length - 1 ? buildingEraByIndex(era.index + 1).unlockedMaxLevel : null,
+      isMilestone: level >= maxLevel,
+      bandStart,
+      progress,
+    };
+  }
+
+  function buildingEraInfo(stateOrIndex) {
+    const era = typeof stateOrIndex === 'number'
+      ? buildingEraByIndex(stateOrIndex)
+      : buildingEraByIndex(stateOrIndex?.village?.buildingEraIndex || 0);
+    const buildings = typeof stateOrIndex === 'number' ? [] : stateOrIndex?.village?.buildings || [];
+    const readyCount = buildings.filter((building) => (building.level || 1) >= era.unlockedMaxLevel).length;
+    const totalBuildings = buildings.length;
+    const next = era.index < BUILDING_ERAS.length - 1 ? buildingEraByIndex(era.index + 1) : null;
+
+    return {
+      ...era,
+      next,
+      readyCount,
+      totalBuildings,
+      canAdvance: Boolean(next && totalBuildings > 0 && readyCount >= totalBuildings),
+    };
+  }
+
+  function inferBuildingEraIndex(buildings = []) {
+    if (buildings.length === 0) return 0;
+    const highestLevel = buildings.reduce((max, building) => Math.max(max, Math.floor(Number(building.level) || 1)), 1);
+    return clamp(Math.ceil(highestLevel / BUILDING_MILESTONE_STEP) - 1, 0, BUILDING_ERAS.length - 1);
+  }
+
+  function syncBuildingLevelCaps(state, data) {
+    state.village = state.village || {};
+    if (!Number.isFinite(state.village.buildingEraIndex)) {
+      state.village.buildingEraIndex = inferBuildingEraIndex(state.village.buildings || []);
+    }
+    state.village.buildingEraIndex = Math.max(
+      state.village.buildingEraIndex,
+      inferBuildingEraIndex(state.village.buildings || [])
+    );
+    state.village.buildingEraIndex = clamp(state.village.buildingEraIndex, 0, BUILDING_ERAS.length - 1);
+    const era = buildingEraInfo(state);
+
+    for (const building of state.village.buildings || []) {
+      const template = data?.buildings?.find((entry) => entry.id === building.id);
+      building.finalMaxLevel = Math.max(template?.maxLevel || 0, BUILDING_MAX_LEVEL);
+      building.maxLevel = Math.min(building.finalMaxLevel, era.unlockedMaxLevel);
+      building.level = clamp(Math.floor(Number(building.level) || 1), 1, building.finalMaxLevel);
+      building.productionPerHour = buildingProduction(building);
+    }
+
+    return era;
+  }
+
+  function canAdvanceBuildingEra(state) {
+    const era = buildingEraInfo(state);
+    if (!era.next) return { ok: false, reason: 'final_era', era };
+    if (!era.canAdvance) return { ok: false, reason: 'requirements_not_met', era };
+    return { ok: true, era, next: era.next };
+  }
+
+  function advanceBuildingEra(state, data) {
+    syncBuildingLevelCaps(state, data);
+    const check = canAdvanceBuildingEra(state);
+    if (!check.ok) return check;
+
+    const from = check.era;
+    state.village.buildingEraIndex = check.next.index;
+    syncBuildingLevelCaps(state, data);
+    recalculatePower(state);
+    syncPartyHealth(state, { keepLowHealth: true });
+    const to = buildingEraInfo(state);
+    state.village.lastBuildingEraAscension = {
+      from: from.label,
+      to: to.label,
+      unlockedMaxLevel: to.unlockedMaxLevel,
+      at: state.timestamps?.now || Date.now(),
+    };
+    addLog(state, `${to.label} 승급 · Lv.${to.unlockedMaxLevel} 해금`, 'success');
+    return { ok: true, from, to };
+  }
+
   function dayKey(timestamp) {
     return new Date(timestamp).toISOString().slice(0, 10);
   }
@@ -278,7 +398,8 @@
       order: building.order,
       productionType: building.productionType,
       level: 1,
-      maxLevel: Math.max(building.maxLevel || 0, BUILDING_MAX_LEVEL),
+      maxLevel: BUILDING_MILESTONE_STEP,
+      finalMaxLevel: Math.max(building.maxLevel || 0, BUILDING_MAX_LEVEL),
       productionPerHour: buildingProduction({ ...building, level: 1 }),
       assetUrl: building.assetUrl,
     }));
@@ -288,21 +409,23 @@
     state.village = state.village || {};
     state.village.buildings = Array.isArray(state.village.buildings) ? state.village.buildings : [];
     const existingById = new Map(state.village.buildings.map((building) => [building.id, building]));
+    if (!Number.isFinite(state.village.buildingEraIndex)) {
+      state.village.buildingEraIndex = inferBuildingEraIndex(state.village.buildings);
+    }
 
     state.village.buildings = data.buildings.map((template) => {
       const building = existingById.get(template.id) || {};
-      const maxLevel = Math.max(template.maxLevel || 0, BUILDING_MAX_LEVEL);
       building.id = template.id;
       building.name = template.name;
       building.order = template.order;
       building.productionType = template.productionType;
       building.assetUrl = template.assetUrl;
-      building.maxLevel = maxLevel;
-      building.level = clamp(Math.floor(building.level || 1), 1, maxLevel);
-      building.productionPerHour = buildingProduction(building);
+      building.finalMaxLevel = Math.max(template.maxLevel || 0, BUILDING_MAX_LEVEL);
+      building.level = clamp(Math.floor(building.level || 1), 1, building.finalMaxLevel);
       return building;
     });
 
+    syncBuildingLevelCaps(state, data);
     state.village.tier = state.village.tier || KINGDOM_TIERS[0];
     return state.village.buildings;
   }
@@ -631,6 +754,7 @@
       },
       village: {
         tier: KINGDOM_TIERS[0],
+        buildingEraIndex: 0,
         buildings: createBuildings(data),
       },
       inventory: {
@@ -743,19 +867,21 @@
   }
 
   function upgradeBuilding(state, data, buildingId) {
+    syncBuildingLevelCaps(state, data);
     const building = state.village.buildings.find((entry) => entry.id === buildingId);
     if (!building) throw new Error(`Unknown building ${buildingId}`);
     const template = data.buildings.find((entry) => entry.id === buildingId);
     if (template) {
-      building.maxLevel = Math.max(template.maxLevel || 0, BUILDING_MAX_LEVEL);
+      building.finalMaxLevel = Math.max(template.maxLevel || 0, BUILDING_MAX_LEVEL);
       building.name = template.name;
       building.order = template.order;
       building.productionType = template.productionType;
       building.assetUrl = template.assetUrl;
     }
+    syncBuildingLevelCaps(state, data);
     if (building.level >= building.maxLevel) return building;
 
-    const costScale = Math.pow(building.level, 2.08) * (1 + buildingStageInfo(building).index * 0.18);
+    const costScale = Math.pow(building.level, 2.08) * (1 + buildingEraInfo(state).index * 0.18);
     const cost = {
       gold: Math.round(620 * costScale + building.order * 80),
       wood: Math.round(180 * costScale + building.order * 30),
@@ -978,6 +1104,7 @@
       },
       resources: { ...state.resources },
       power: { ...state.power },
+      buildingEra: buildingEraInfo(state),
       heroes: state.heroes.owned.map((hero) => ({
         id: hero.id,
         name: hero.name,
@@ -1003,9 +1130,12 @@
 
   return {
     advanceTime,
+    advanceBuildingEra,
     applyOfflineProgress,
     buildingProduction,
+    buildingEraInfo,
     buildingStageInfo,
+    canAdvanceBuildingEra,
     claimAdReward,
     claimLoginReward,
     createNewGame,
@@ -1018,6 +1148,7 @@
     serializeGame,
     spawnEnemy,
     stateSummary,
+    syncBuildingLevelCaps,
     upgradeBuilding,
     levelHero,
   };

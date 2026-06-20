@@ -60,6 +60,7 @@ const ui = {
   suppressPanelScrollSave: false,
   activeDragScroll: null,
   lastBuildingUpgrade: null,
+  lastVillageAscension: null,
   heroDetailId: null,
 };
 
@@ -451,11 +452,14 @@ function buildingStageInfo(building) {
   return Runtime.buildingStageInfo(building);
 }
 
+function buildingEraInfo() {
+  return Runtime.buildingEraInfo(state);
+}
+
 function buildingMilestoneProgress(building, stage) {
-  if (!stage.nextMilestoneLevel) return 5;
-  const start = stage.currentMilestoneLevel;
-  const end = stage.nextMilestoneLevel;
-  return Math.max(1, Math.min(5, Math.ceil(((building.level - start + 1) / Math.max(1, end - start)) * 5)));
+  const start = stage.bandStart || Math.max(1, stage.maxLevel - 4);
+  const end = stage.maxLevel || building.maxLevel || 5;
+  return Math.max(1, Math.min(5, Math.ceil(((building.level - start + 1) / Math.max(1, end - start + 1)) * 5)));
 }
 
 function renderBuildingMilestoneTrack(building, stage) {
@@ -1790,11 +1794,83 @@ function renderVillagePanel(panel) {
   panel.append(grid);
 }
 
-function renderVillagePanelV2(panel) {
+function activeVillageAscension() {
+  if (!ui.lastVillageAscension) return null;
+  if (Date.now() - ui.lastVillageAscension.at > 8000) return null;
+  return ui.lastVillageAscension;
+}
+
+function renderBuildingEraGateCardLegacy() {
+  const era = buildingEraInfo();
+  const card = el('section', era.canAdvance ? 'building-era-card ready' : 'building-era-card');
+  card.dataset.eraAction = era.canAdvance ? 'ready' : 'progress';
+
+  const icon = el('img');
+  icon.src = data.assets.buildings[Math.min(data.assets.buildings.length - 1, era.index)]?.assetUrl || data.assets.buildings[0]?.assetUrl;
+  icon.alt = era.label;
+
+  const copy = el('div');
+  const head = el('div', 'building-era-head');
+  head.append(
+    el('strong', '', era.label),
+    el('span', '', `Lv.${Math.max(1, era.unlockedMaxLevel - 4)}-${era.unlockedMaxLevel}`)
+  );
+  const detail = era.next
+    ? `${era.readyCount}/${era.totalBuildings}개 건물이 Lv.${era.unlockedMaxLevel} 달성`
+    : '모든 건물 단계가 완성되었습니다';
+  copy.append(
+    head,
+    progressBar('전체 건물 조건', era.readyCount, Math.max(1, era.totalBuildings), ''),
+    el('small', 'building-era-detail', detail)
+  );
+
+  const recent = activeVillageAscension();
+  const result = el('div', recent ? 'building-era-banner active' : 'building-era-banner');
+  if (recent) {
+    result.append(el('strong', '', `${recent.to} 승급 완료`), el('span', '', `새 해금 상한 Lv.${recent.unlockedMaxLevel}`));
+  } else if (era.canAdvance) {
+    result.append(el('strong', '', `${era.next.label} 승급 가능`), el('span', '', `승급 후 Lv.${era.unlockedMaxLevel + 1}-${era.next.unlockedMaxLevel} 강화 해금`));
+  } else if (era.next) {
+    result.append(el('strong', '', '전체 조건 진행 중'), el('span', '', `모든 건물이 Lv.${era.unlockedMaxLevel}에 도달해야 합니다`));
+  } else {
+    result.append(el('strong', '', '최종 수도 완성'), el('span', '', '전체 건물 효과가 모두 적용되었습니다'));
+  }
+
+  const actions = el('div', 'building-era-actions');
+  if (era.next) {
+    actions.append(makeButton(era.canAdvance ? '왕국 단계 승급' : '승급 조건 확인', era.canAdvance ? 'gold' : 'primary', () => {
+      if (!era.canAdvance) {
+        return { message: `모든 건물을 Lv.${era.unlockedMaxLevel}까지 올려야 합니다.` };
+      }
+      const beforePower = state.power.total;
+      const result = Runtime.advanceBuildingEra(state, data);
+      if (!result.ok) return { message: '아직 왕국 단계 승급 조건이 부족합니다.' };
+      Runtime.recalculatePower(state);
+      ui.lastVillageAscension = {
+        at: Date.now(),
+        from: result.from.label,
+        to: result.to.label,
+        unlockedMaxLevel: result.to.unlockedMaxLevel,
+      };
+      playSfx('reward_daily_claim', { volume: 0.58 });
+      createRewardBurst({ power: Math.max(0, state.power.total - beforePower) }, { element: card });
+      createUpgradeBurst(card, '왕국 단계 승급', icon.src);
+      card.classList.add('is-ascended');
+      window.setTimeout(() => card.classList.remove('is-ascended'), 1500);
+      return { message: `${result.to.label} 승급 완료` };
+    }));
+  }
+
+  card.append(icon, copy, result, actions);
+  return card;
+}
+
+function renderVillagePanelV2Legacy(panel) {
   panel.append(panelHead('마을', state.village.tier.name, 'villageTier'));
   panel.append(renderVillageLobby());
   panel.append(renderKingdomProgressCard());
   panel.append(renderObjectiveBoard());
+  panel.append(renderBuildingEraGateCard());
 
   const grid = el('div', 'card-grid');
   for (const building of state.village.buildings) {
@@ -1902,6 +1978,223 @@ function renderVillagePanelV2(panel) {
     }));
     grid.append(card);
   }
+  panel.append(grid);
+}
+
+function renderBuildingEraGateCard() {
+  const era = buildingEraInfo();
+  const nextRangeStart = era.next ? era.unlockedMaxLevel + 1 : era.unlockedMaxLevel;
+  const card = el('section', era.canAdvance ? 'building-era-card ready' : 'building-era-card');
+  card.dataset.eraAction = era.canAdvance ? 'ready' : 'progress';
+
+  const icon = el('img');
+  icon.src = data.assets.buildings[Math.min(data.assets.buildings.length - 1, era.index)]?.assetUrl || data.assets.buildings[0]?.assetUrl;
+  icon.alt = era.label;
+
+  const copy = el('div');
+  const head = el('div', 'building-era-head');
+  head.append(
+    el('strong', '', era.label),
+    el('span', '', `현재 상한 Lv.${era.unlockedMaxLevel}`)
+  );
+
+  const detail = era.next
+    ? `${era.readyCount}/${era.totalBuildings}개 건물이 Lv.${era.unlockedMaxLevel} 달성`
+    : '모든 건물 성장 구간을 완성했습니다.';
+
+  copy.append(
+    head,
+    progressBar('전체 건물 조건', era.readyCount, Math.max(1, era.totalBuildings), ''),
+    el('small', 'building-era-detail', detail)
+  );
+
+  const recent = activeVillageAscension();
+  const result = el('div', recent ? 'building-era-banner active ascended' : 'building-era-banner');
+  if (recent) {
+    result.append(
+      el('strong', '', `${recent.to} 승급 완료`),
+      el('span', '', `새 강화 구간 Lv.${recent.previousMax + 1}-${recent.unlockedMaxLevel} 해금`)
+    );
+  } else if (era.canAdvance) {
+    result.append(
+      el('strong', '', `${era.next.label} 승급 가능`),
+      el('span', '', `승급하면 Lv.${nextRangeStart}-${era.next.unlockedMaxLevel} 강화가 열립니다.`)
+    );
+  } else if (era.next) {
+    result.append(
+      el('strong', '', '전체 조건 진행 중'),
+      el('span', '', `모든 건물을 Lv.${era.unlockedMaxLevel}까지 올려야 다음 구간이 열립니다.`)
+    );
+  } else {
+    result.append(
+      el('strong', '', '최종 수도 완성'),
+      el('span', '', '전체 건물 효과가 최종 단계로 적용되었습니다.')
+    );
+  }
+
+  const actions = el('div', 'building-era-actions');
+  if (era.next) {
+    actions.append(makeButton(era.canAdvance ? `${era.next.label} 승급` : '승급 조건 확인', era.canAdvance ? 'gold' : 'primary', () => {
+      if (!era.canAdvance) {
+        return { message: `모든 건물을 Lv.${era.unlockedMaxLevel}까지 올려야 합니다.` };
+      }
+      const beforePower = state.power.total;
+      const result = Runtime.advanceBuildingEra(state, data);
+      if (!result.ok) return { message: '아직 전체 승급 조건이 부족합니다.' };
+      Runtime.recalculatePower(state);
+      ui.lastVillageAscension = {
+        at: Date.now(),
+        from: result.from.label,
+        to: result.to.label,
+        previousMax: result.from.unlockedMaxLevel,
+        unlockedMaxLevel: result.to.unlockedMaxLevel,
+      };
+      playSfx('village_tier_up', { volume: 0.62 });
+      createRewardBurst({ power: Math.max(0, state.power.total - beforePower) }, { element: card });
+      createUpgradeBurst(card, `${result.to.label} 승급`, icon.src);
+      card.classList.add('is-ascended');
+      window.setTimeout(() => card.classList.remove('is-ascended'), 1500);
+      return { message: `${result.to.label} 승급 완료` };
+    }));
+  }
+
+  card.append(icon, copy, result, actions);
+  return card;
+}
+
+function renderVillagePanelV2(panel) {
+  panel.append(panelHead('마을', state.village.tier.name, 'villageTier'));
+  panel.append(renderVillageLobby());
+  panel.append(renderKingdomProgressCard());
+  panel.append(renderObjectiveBoard());
+  panel.append(renderBuildingEraGateCard());
+
+  const era = buildingEraInfo();
+  const recentEra = activeVillageAscension();
+  const grid = el('div', 'card-grid');
+
+  for (const building of state.village.buildings) {
+    const stageInfo = buildingStageInfo(building);
+    const card = el('article', `card building-card building-tier-${stageInfo.index}`);
+    card.dataset.buildingId = building.id;
+    if (recentEra) card.classList.add('is-ascended');
+
+    const row = el('div', 'thumb-row');
+    const img = el('img', 'thumb');
+    img.src = building.assetUrl;
+    img.alt = building.name;
+
+    const copy = el('div');
+    const titleLine = el('div', 'building-title-line');
+    titleLine.append(
+      el('strong', '', `${building.name} Lv.${building.level}`),
+      el('span', 'building-stage-badge', stageInfo.label)
+    );
+
+    const nextProduction = building.level >= building.maxLevel
+      ? building.productionPerHour
+      : predictedBuildingProduction(building, building.level + 1);
+    const preview = building.level >= building.maxLevel
+      ? (era.next ? `현재 구간 완료 · ${era.next.label} 조건 대기` : '최종 성장 완료')
+      : `다음 Lv.${building.level + 1} · ${formatNumber(nextProduction)}/시간 (+${formatNumber(nextProduction - building.productionPerHour)})`;
+
+    copy.append(
+      titleLine,
+      renderBuildingMilestoneTrack(building, stageInfo),
+      el('small', 'building-effect-text', `효과: ${buildingEffectSummary(building)}`),
+      el('small', '', `${formatNumber(building.productionPerHour)}/시간`),
+      el('small', 'upgrade-preview-text', preview)
+    );
+    row.append(img, copy);
+
+    const recentUpgrade = activeBuildingUpgrade(building);
+    if (recentUpgrade?.ascended) card.classList.add('is-ascended');
+    const resultSlot = el('div', recentUpgrade || recentEra ? 'building-result-slot active' : 'building-result-slot');
+    if (recentUpgrade) {
+      const gain = el('div', recentUpgrade.ascended ? 'building-upgrade-result ascended' : 'building-upgrade-result');
+      gain.append(
+        el('strong', '', `Lv.${recentUpgrade.level} 강화 완료`),
+        el('span', '', `생산 +${formatNumber(recentUpgrade.productionGain)}/시간 · 전투력 +${formatNumber(recentUpgrade.powerGain)}`)
+      );
+      resultSlot.append(gain);
+    } else if (recentEra) {
+      const gain = el('div', 'building-upgrade-result ascended');
+      gain.append(
+        el('strong', '', '새 성장 구간 해금'),
+        el('span', '', `Lv.${recentEra.previousMax + 1}-${recentEra.unlockedMaxLevel} 강화 가능`)
+      );
+      resultSlot.append(gain);
+    } else if (building.level >= building.maxLevel) {
+      if (era.canAdvance) {
+        resultSlot.append(
+          el('strong', '', '전체 승급 가능'),
+          el('span', '', `상단 카드에서 ${era.next.label}로 승급하세요.`)
+        );
+      } else if (era.next) {
+        resultSlot.append(
+          el('strong', '', '현재 구간 완료'),
+          el('span', '', `다른 건물도 Lv.${era.unlockedMaxLevel} 필요`)
+        );
+      } else {
+        resultSlot.append(
+          el('strong', '', '최종 성장 완료'),
+          el('span', '', `현재 생산 ${formatNumber(building.productionPerHour)}/시간`)
+        );
+      }
+    } else {
+      resultSlot.append(
+        el('strong', '', `다음 Lv.${building.level + 1}`),
+        el('span', '', `생산 +${formatNumber(nextProduction - building.productionPerHour)}/시간 · 구간 상한 Lv.${building.maxLevel}`)
+      );
+    }
+
+    card.append(row, resultSlot);
+    card.append(el('p', 'card-help', building.level >= building.maxLevel
+      ? '이 건물은 현재 시대 상한에 도달했습니다. 모든 건물이 같은 상한에 도달하면 상단 승급 카드에서 다음 5레벨 구간이 열립니다.'
+      : '강화하면 생산량과 건물 전투력이 즉시 오릅니다. 이번 구간을 끝내면 전체 시대 승급 조건에 반영됩니다.'));
+
+    const buttonLabel = building.level >= building.maxLevel ? '구간 완료' : '강화';
+    card.append(makeButton(buttonLabel, building.level >= building.maxLevel ? 'ghost' : 'primary', () => {
+      if (building.level >= building.maxLevel) {
+        if (era.canAdvance) {
+          return { message: `상단의 ${era.next.label} 승급 버튼으로 다음 구간을 여세요.` };
+        }
+        return { message: `이 건물은 현재 구간 상한 Lv.${building.maxLevel}입니다.` };
+      }
+
+      const beforeLevel = building.level;
+      const beforeProduction = building.productionPerHour;
+      const beforePower = state.power.total;
+      Runtime.upgradeBuilding(state, data, building.id);
+      if (building.level === beforeLevel) {
+        return { message: '강화할 수 없습니다.' };
+      }
+
+      Runtime.recalculatePower(state);
+      const powerGain = Math.max(0, state.power.total - beforePower);
+      ui.lastBuildingUpgrade = {
+        id: building.id,
+        at: Date.now(),
+        level: building.level,
+        productionGain: Math.max(0, building.productionPerHour - beforeProduction),
+        powerGain,
+        ascended: building.level >= building.maxLevel,
+        stageName: stageInfo.label,
+      };
+      playSfx('village_upgrade', { volume: 0.58 });
+      if (building.level >= building.maxLevel) playSfx('ui_unlock', { volume: 0.5 });
+      createRewardBurst({ power: powerGain }, { element: card });
+      createUpgradeBurst(card, building.level >= building.maxLevel ? '구간 완료' : '건물 강화', building.assetUrl);
+      if (building.level >= building.maxLevel) {
+        card.classList.add('is-ascended');
+        window.setTimeout(() => card.classList.remove('is-ascended'), 1500);
+      }
+      return { message: building.level >= building.maxLevel ? `${building.name} 구간 완료` : `${building.name} 강화 완료` };
+    }));
+
+    grid.append(card);
+  }
+
   panel.append(grid);
 }
 
