@@ -20,6 +20,7 @@ test('buildTables creates the required design data counts', () => {
   assert.equal(tables.equipmentSets.length, 20);
   assert.equal(tables.equipment.length, 200);
   assert.equal(tables.buildings.length, 12);
+  assert.ok(tables.buildings.every((building) => building.maxLevel === 30));
   assert.equal(tables.currencies.length, 6);
   assert.equal(tables.adPlacements.length, 10);
   assert.equal(tables.shopProducts.length, 7);

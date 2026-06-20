@@ -364,7 +364,7 @@ function buildTables(parsed) {
     id,
     order: index + 1,
     name,
-    maxLevel: 5,
+    maxLevel: 30,
     productionType,
   }));
 

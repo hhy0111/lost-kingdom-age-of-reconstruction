@@ -7004,7 +7004,7 @@
       "id": "building_palace",
       "order": 1,
       "name": "왕궁",
-      "maxLevel": 5,
+      "maxLevel": 30,
       "productionType": "kingdom",
       "assetUrl": "/Assets/Art/Buildings/building_001.png"
     },
@@ -7012,7 +7012,7 @@
       "id": "building_inn",
       "order": 2,
       "name": "여관",
-      "maxLevel": 5,
+      "maxLevel": 30,
       "productionType": "hero",
       "assetUrl": "/Assets/Art/Buildings/building_002.png"
     },
@@ -7020,7 +7020,7 @@
       "id": "building_blacksmith",
       "order": 3,
       "name": "대장간",
-      "maxLevel": 5,
+      "maxLevel": 30,
       "productionType": "crafting",
       "assetUrl": "/Assets/Art/Buildings/building_003.png"
     },
@@ -7028,7 +7028,7 @@
       "id": "building_farm",
       "order": 4,
       "name": "농장",
-      "maxLevel": 5,
+      "maxLevel": 30,
       "productionType": "food",
       "assetUrl": "/Assets/Art/Buildings/building_004.png"
     },
@@ -7036,7 +7036,7 @@
       "id": "building_lumber_mill",
       "order": 5,
       "name": "벌목소",
-      "maxLevel": 5,
+      "maxLevel": 30,
       "productionType": "wood",
       "assetUrl": "/Assets/Art/Buildings/building_005.png"
     },
@@ -7044,7 +7044,7 @@
       "id": "building_quarry",
       "order": 6,
       "name": "채석장",
-      "maxLevel": 5,
+      "maxLevel": 30,
       "productionType": "stone",
       "assetUrl": "/Assets/Art/Buildings/building_006.png"
     },
@@ -7052,7 +7052,7 @@
       "id": "building_mine",
       "order": 7,
       "name": "광산",
-      "maxLevel": 5,
+      "maxLevel": 30,
       "productionType": "ore",
       "assetUrl": "/Assets/Art/Buildings/building_007.png"
     },
@@ -7060,7 +7060,7 @@
       "id": "building_magic_tower",
       "order": 8,
       "name": "마법탑",
-      "maxLevel": 5,
+      "maxLevel": 30,
       "productionType": "magicStone",
       "assetUrl": "/Assets/Art/Buildings/building_008.png"
     },
@@ -7068,7 +7068,7 @@
       "id": "building_market",
       "order": 9,
       "name": "시장",
-      "maxLevel": 5,
+      "maxLevel": 30,
       "productionType": "gold",
       "assetUrl": "/Assets/Art/Buildings/building_009.png"
     },
@@ -7076,7 +7076,7 @@
       "id": "building_explorer_guild",
       "order": 10,
       "name": "탐험가 길드",
-      "maxLevel": 5,
+      "maxLevel": 30,
       "productionType": "expedition",
       "assetUrl": "/Assets/Art/Buildings/building_010.png"
     },
@@ -7084,7 +7084,7 @@
       "id": "building_research_lab",
       "order": 11,
       "name": "연구소",
-      "maxLevel": 5,
+      "maxLevel": 30,
       "productionType": "research",
       "assetUrl": "/Assets/Art/Buildings/building_011.png"
     },
@@ -7092,7 +7092,7 @@
       "id": "building_city_wall",
       "order": 12,
       "name": "성벽",
-      "maxLevel": 5,
+      "maxLevel": 30,
       "productionType": "defense",
       "assetUrl": "/Assets/Art/Buildings/building_012.png"
     }

@@ -13,6 +13,17 @@
   const AUTO_STAGE_MIN_INTERVAL_MS = 10 * 60 * 1000;
   const PARTY_REGEN_PER_SECOND = 0.003;
   const RESOURCE_KEYS = ['gold', 'diamond', 'food', 'wood', 'ore', 'magicStone'];
+  const BUILDING_MAX_LEVEL = 30;
+  const BUILDING_MILESTONE_STEP = 5;
+  const BUILDING_STAGE_TIERS = [
+    { index: 0, name: '초석', label: '초석 단계', powerMultiplier: 1 },
+    { index: 1, name: '마을', label: '마을 단계', powerMultiplier: 1.08 },
+    { index: 2, name: '도시', label: '도시 단계', powerMultiplier: 1.2 },
+    { index: 3, name: '왕국', label: '왕국 단계', powerMultiplier: 1.36 },
+    { index: 4, name: '제국', label: '제국 단계', powerMultiplier: 1.56 },
+    { index: 5, name: '황금 제국', label: '황금 제국 단계', powerMultiplier: 1.82 },
+    { index: 6, name: '영원의 수도', label: '영원의 수도', powerMultiplier: 2.1 },
+  ];
   const KINGDOM_TIERS = [
     { id: 'ruins', name: '폐허', minProgress: 0 },
     { id: 'village', name: '마을', minProgress: 4 },
@@ -23,6 +34,47 @@
 
   function clamp(value, min, max) {
     return Math.max(min, Math.min(max, value));
+  }
+
+  function buildingStageInfo(buildingOrLevel) {
+    const rawLevel = typeof buildingOrLevel === 'number' ? buildingOrLevel : buildingOrLevel?.level;
+    const rawMax = typeof buildingOrLevel === 'number' ? BUILDING_MAX_LEVEL : buildingOrLevel?.maxLevel;
+    const maxLevel = Math.max(BUILDING_MILESTONE_STEP, rawMax || BUILDING_MAX_LEVEL);
+    const level = clamp(Math.floor(rawLevel || 1), 1, maxLevel);
+    const tierIndex = Math.min(
+      BUILDING_STAGE_TIERS.length - 1,
+      level >= BUILDING_MAX_LEVEL ? BUILDING_STAGE_TIERS.length - 1 : Math.floor(level / BUILDING_MILESTONE_STEP)
+    );
+    const currentMilestoneLevel = level < BUILDING_MILESTONE_STEP
+      ? 1
+      : Math.min(BUILDING_MAX_LEVEL, Math.floor(level / BUILDING_MILESTONE_STEP) * BUILDING_MILESTONE_STEP);
+    const nextMilestoneLevel = level >= maxLevel
+      ? null
+      : Math.min(maxLevel, currentMilestoneLevel < BUILDING_MILESTONE_STEP
+        ? BUILDING_MILESTONE_STEP
+        : currentMilestoneLevel + BUILDING_MILESTONE_STEP);
+    const milestoneStart = currentMilestoneLevel;
+    const milestoneEnd = nextMilestoneLevel || maxLevel;
+    const progress = milestoneEnd > milestoneStart
+      ? clamp((level - milestoneStart) / (milestoneEnd - milestoneStart), 0, 1)
+      : 1;
+    const tier = BUILDING_STAGE_TIERS[tierIndex];
+
+    return {
+      ...tier,
+      level,
+      maxLevel,
+      currentMilestoneLevel,
+      nextMilestoneLevel,
+      isMilestone: level > 1 && level % BUILDING_MILESTONE_STEP === 0,
+      progress,
+    };
+  }
+
+  function crossedBuildingMilestone(beforeLevel, afterLevel) {
+    const before = buildingStageInfo(beforeLevel);
+    const after = buildingStageInfo(afterLevel);
+    return after.index > before.index;
   }
 
   function dayKey(timestamp) {
@@ -189,6 +241,7 @@
     const uid = `eq_${state.inventory.nextUid}`;
     state.inventory.nextUid += 1;
     const rarity = template.rarity || chestRarity;
+    const craftingBonus = equipmentCraftLevelBonus(state);
     const item = {
       uid,
       id: template.id,
@@ -196,7 +249,7 @@
       slot: template.slot || 'weapon',
       rarity,
       chestRarity,
-      itemLevel: Math.max(1, Math.floor(state.combat.stage / 4) + 1),
+      itemLevel: Math.max(1, Math.floor(state.combat.stage / 4) + 1 + craftingBonus),
       enhance: 0,
       assetUrl: template.assetUrl,
     };
@@ -207,7 +260,15 @@
   function buildingProduction(building) {
     const level = building.level || 1;
     const base = 100 + building.order * 18;
-    return Math.round(base * Math.pow(1.42, level - 1));
+    if (level <= BUILDING_MILESTONE_STEP) {
+      return Math.round(base * Math.pow(1.42, level - 1));
+    }
+
+    const levelFiveProduction = base * Math.pow(1.42, BUILDING_MILESTONE_STEP - 1);
+    const extraLevels = level - BUILDING_MILESTONE_STEP;
+    const stage = buildingStageInfo(building);
+    const stageBonus = 1 + Math.max(0, stage.index - 1) * 0.08;
+    return Math.round(levelFiveProduction * Math.pow(1.18, extraLevels) * stageBonus);
   }
 
   function createBuildings(data) {
@@ -217,10 +278,48 @@
       order: building.order,
       productionType: building.productionType,
       level: 1,
-      maxLevel: building.maxLevel || 5,
+      maxLevel: Math.max(building.maxLevel || 0, BUILDING_MAX_LEVEL),
       productionPerHour: buildingProduction({ ...building, level: 1 }),
       assetUrl: building.assetUrl,
     }));
+  }
+
+  function ensureBuildingProgression(state, data) {
+    state.village = state.village || {};
+    state.village.buildings = Array.isArray(state.village.buildings) ? state.village.buildings : [];
+    const existingById = new Map(state.village.buildings.map((building) => [building.id, building]));
+
+    state.village.buildings = data.buildings.map((template) => {
+      const building = existingById.get(template.id) || {};
+      const maxLevel = Math.max(template.maxLevel || 0, BUILDING_MAX_LEVEL);
+      building.id = template.id;
+      building.name = template.name;
+      building.order = template.order;
+      building.productionType = template.productionType;
+      building.assetUrl = template.assetUrl;
+      building.maxLevel = maxLevel;
+      building.level = clamp(Math.floor(building.level || 1), 1, maxLevel);
+      building.productionPerHour = buildingProduction(building);
+      return building;
+    });
+
+    state.village.tier = state.village.tier || KINGDOM_TIERS[0];
+    return state.village.buildings;
+  }
+
+  function buildingStageBonus(state, productionTypes) {
+    const types = new Set(productionTypes);
+    return (state.village?.buildings || []).reduce((sum, building) => {
+      return types.has(building.productionType) ? sum + buildingStageInfo(building).index : sum;
+    }, 0);
+  }
+
+  function heroTrainingDiscount(state) {
+    return clamp(buildingStageBonus(state, ['hero', 'kingdom']) * 0.015, 0, 0.3);
+  }
+
+  function equipmentCraftLevelBonus(state) {
+    return Math.floor(buildingStageBonus(state, ['crafting', 'research']) / 2);
   }
 
   function currentKingdomTier(state) {
@@ -239,7 +338,10 @@
       .map((uid) => state.inventory.equipment.find((item) => item.uid === uid))
       .filter(Boolean);
     const equipmentPower = equippedItems.reduce((sum, item) => sum + item.rating, 0);
-    const buildingPower = state.village.buildings.reduce((sum, building) => sum + building.level * 82, 0);
+    const buildingPower = state.village.buildings.reduce((sum, building) => {
+      const stage = buildingStageInfo(building);
+      return sum + Math.round(building.level * 82 * stage.powerMultiplier);
+    }, 0);
     const tier = currentKingdomTier(state);
 
     state.village.tier = tier;
@@ -255,7 +357,7 @@
   function syncPartyHealth(state, options = {}) {
     const previousMax = Number(state.combat.partyHpMax) || 0;
     const previousHp = Number(state.combat.partyHp) || 0;
-    const nextMax = Math.max(1200, Math.round(state.power.hero * 1.8 + 1200));
+    const nextMax = Math.max(1200, Math.round(state.power.hero * 1.8 + (state.power.building || 0) * 0.45 + 1200));
     let ratio = previousMax > 1 ? previousHp / previousMax : 1;
     if (!Number.isFinite(ratio) || previousHp <= 1) ratio = 1;
     if (options.keepLowHealth) ratio = clamp(ratio, 0.25, 1);
@@ -603,6 +705,7 @@
     state.timestamps.now = options.now || Date.now();
     ensureProgressShape(state);
     ensureCombatPacing(state);
+    ensureBuildingProgression(state, data);
     recalculatePower(state);
     syncPartyHealth(state, { keepLowHealth: true });
     spawnEnemy(state, data);
@@ -642,9 +745,17 @@
   function upgradeBuilding(state, data, buildingId) {
     const building = state.village.buildings.find((entry) => entry.id === buildingId);
     if (!building) throw new Error(`Unknown building ${buildingId}`);
+    const template = data.buildings.find((entry) => entry.id === buildingId);
+    if (template) {
+      building.maxLevel = Math.max(template.maxLevel || 0, BUILDING_MAX_LEVEL);
+      building.name = template.name;
+      building.order = template.order;
+      building.productionType = template.productionType;
+      building.assetUrl = template.assetUrl;
+    }
     if (building.level >= building.maxLevel) return building;
 
-    const costScale = Math.pow(building.level, 2);
+    const costScale = Math.pow(building.level, 2.08) * (1 + buildingStageInfo(building).index * 0.18);
     const cost = {
       gold: Math.round(620 * costScale + building.order * 80),
       wood: Math.round(180 * costScale + building.order * 30),
@@ -668,9 +779,10 @@
   function levelHero(state, data, heroId) {
     const hero = state.heroes.owned.find((entry) => entry.id === heroId);
     if (!hero) throw new Error(`Unknown hero ${heroId}`);
+    const discount = heroTrainingDiscount(state);
     const cost = {
-      gold: Math.round(520 * Math.pow(hero.level, 1.75)),
-      food: Math.round(130 * Math.pow(hero.level, 1.35)),
+      gold: Math.round(520 * Math.pow(hero.level, 1.75) * (1 - discount)),
+      food: Math.round(130 * Math.pow(hero.level, 1.35) * (1 - discount)),
     };
     if (state.resources.gold < cost.gold || state.resources.food < cost.food) {
       throw new Error('not_enough_resources');
@@ -872,6 +984,15 @@
         level: hero.level,
         skillCharge: Math.round(hero.skillCharge),
       })),
+      buildings: state.village.buildings.map((building) => ({
+        id: building.id,
+        name: building.name,
+        level: building.level,
+        maxLevel: building.maxLevel,
+        productionPerHour: building.productionPerHour,
+        stage: buildingStageInfo(building).label,
+        nextMilestoneLevel: buildingStageInfo(building).nextMilestoneLevel,
+      })),
       progress: { ...state.progress },
       retention: {
         loginStreak: state.retention.loginStreak,
@@ -883,6 +1004,8 @@
   return {
     advanceTime,
     applyOfflineProgress,
+    buildingProduction,
+    buildingStageInfo,
     claimAdReward,
     claimLoginReward,
     createNewGame,

@@ -429,6 +429,7 @@ function productShortDescription(product) {
 }
 
 function buildingEffectSummary(building) {
+  const stage = buildingStageInfo(building);
   const effects = {
     kingdom: '골드 생산 · 왕국 단계 성장',
     hero: '식량 생산 · 영웅 훈련 보조',
@@ -443,7 +444,27 @@ function buildingEffectSummary(building) {
     research: '마력석 연구 보조',
     defense: '골드 보조 · 방어 전투력',
   };
-  return effects[building.productionType] || '오프라인 보상 보조';
+  return `${effects[building.productionType] || '오프라인 보상 보조'} · ${stage.label} 전투력 x${stage.powerMultiplier.toFixed(2)}`;
+}
+
+function buildingStageInfo(building) {
+  return Runtime.buildingStageInfo(building);
+}
+
+function buildingMilestoneProgress(building, stage) {
+  if (!stage.nextMilestoneLevel) return 5;
+  const start = stage.currentMilestoneLevel;
+  const end = stage.nextMilestoneLevel;
+  return Math.max(1, Math.min(5, Math.ceil(((building.level - start + 1) / Math.max(1, end - start)) * 5)));
+}
+
+function renderBuildingMilestoneTrack(building, stage) {
+  const track = el('div', 'building-milestone-track');
+  const filled = buildingMilestoneProgress(building, stage);
+  for (let index = 1; index <= 5; index += 1) {
+    track.append(el('span', index <= filled ? 'filled' : ''));
+  }
+  return track;
 }
 
 function currentAdViews(placementId) {
@@ -910,8 +931,7 @@ function renderLoadoutGrid(slots = EQUIPMENT_SLOT_ORDER.slice(0, 6), size = '') 
 }
 
 function predictedBuildingProduction(building, level = building.level) {
-  const base = 100 + building.order * 18;
-  return Math.round(base * Math.pow(1.42, level - 1));
+  return Runtime.buildingProduction({ ...building, level });
 }
 
 function activeBuildingUpgrade(building) {
@@ -1770,6 +1790,121 @@ function renderVillagePanel(panel) {
   panel.append(grid);
 }
 
+function renderVillagePanelV2(panel) {
+  panel.append(panelHead('마을', state.village.tier.name, 'villageTier'));
+  panel.append(renderVillageLobby());
+  panel.append(renderKingdomProgressCard());
+  panel.append(renderObjectiveBoard());
+
+  const grid = el('div', 'card-grid');
+  for (const building of state.village.buildings) {
+    const stageInfo = buildingStageInfo(building);
+    const card = el('article', `card building-card building-tier-${stageInfo.index}`);
+    card.dataset.buildingId = building.id;
+    const row = el('div', 'thumb-row');
+    const img = el('img', 'thumb');
+    img.src = building.assetUrl;
+    img.alt = building.name;
+
+    const copy = el('div');
+    const titleLine = el('div', 'building-title-line');
+    titleLine.append(
+      el('strong', '', `${building.name} Lv.${building.level}`),
+      el('span', 'building-stage-badge', stageInfo.label)
+    );
+
+    const nextProduction = building.level >= building.maxLevel
+      ? building.productionPerHour
+      : predictedBuildingProduction(building, building.level + 1);
+    copy.append(
+      titleLine,
+      renderBuildingMilestoneTrack(building, stageInfo),
+      el('small', 'building-effect-text', `효과: ${buildingEffectSummary(building)}`),
+      el('small', '', `${formatNumber(building.productionPerHour)}/시간`),
+      el('small', 'upgrade-preview-text', building.level >= building.maxLevel
+        ? '최종 단계 완성'
+        : `다음 Lv.${building.level + 1} · ${formatNumber(nextProduction)}/시간 (+${formatNumber(nextProduction - building.productionPerHour)})`)
+    );
+    row.append(img, copy);
+
+    const recentUpgrade = activeBuildingUpgrade(building);
+    if (recentUpgrade?.ascended) card.classList.add('is-ascended');
+    const resultSlot = el('div', recentUpgrade ? 'building-result-slot active' : 'building-result-slot');
+    if (recentUpgrade) {
+      const gain = el('div', recentUpgrade.ascended ? 'building-upgrade-result ascended' : 'building-upgrade-result');
+      gain.append(
+        el('strong', '', recentUpgrade.ascended ? `${recentUpgrade.stageName} 승급 완료` : `Lv.${recentUpgrade.level} 강화 완료`),
+        el('span', '', recentUpgrade.ascended
+          ? `새 단계 보너스 적용 · 전투력 +${formatNumber(recentUpgrade.powerGain)}`
+          : `생산 +${formatNumber(recentUpgrade.productionGain)}/시간 · 전투력 +${formatNumber(recentUpgrade.powerGain)}`)
+      );
+      resultSlot.append(gain);
+    } else if (building.level >= building.maxLevel) {
+      resultSlot.append(
+        el('strong', '', '최종 단계 완성'),
+        el('span', '', `현재 생산 ${formatNumber(building.productionPerHour)}/시간 · 모든 단계 보너스 적용`)
+      );
+    } else {
+      const nextStageInfo = buildingStageInfo({ ...building, level: building.level + 1 });
+      const ascendsNext = nextStageInfo.index > stageInfo.index;
+      resultSlot.append(
+        el('strong', '', ascendsNext ? `다음 ${nextStageInfo.label}` : `다음 Lv.${building.level + 1}`),
+        el('span', '', ascendsNext
+          ? `승급 시 전투력 계수 x${nextStageInfo.powerMultiplier.toFixed(2)}`
+          : `생산 +${formatNumber(nextProduction - building.productionPerHour)}/시간 · 다음 승급 Lv.${stageInfo.nextMilestoneLevel}`)
+      );
+    }
+
+    card.append(row, resultSlot);
+    card.append(el('p', 'card-help', building.level >= building.maxLevel
+      ? '최종 단계입니다. 생산, 전투력, 영웅/장비 보너스가 모두 적용되어 있습니다.'
+      : '5레벨마다 단계가 승급되어 카드 색, 배지, 광채와 함께 왕국 보너스가 커집니다.'));
+
+    const buttonLabel = building.level < building.maxLevel && buildingStageInfo({ ...building, level: building.level + 1 }).index > stageInfo.index
+      ? '승급 강화'
+      : '강화';
+    card.append(makeButton(buttonLabel, 'primary', () => {
+      if (building.level >= building.maxLevel) {
+        return { message: '최종 단계 완성 상태입니다.' };
+      }
+
+      const beforeLevel = building.level;
+      const beforeProduction = building.productionPerHour;
+      const beforePower = state.power.total;
+      const beforeStage = buildingStageInfo(building);
+      Runtime.upgradeBuilding(state, data, building.id);
+      if (building.level === beforeLevel) {
+        return { message: '강화할 수 없습니다.' };
+      }
+
+      Runtime.recalculatePower(state);
+      const afterStage = buildingStageInfo(building);
+      const ascended = afterStage.index > beforeStage.index;
+      const powerGain = Math.max(0, state.power.total - beforePower);
+      ui.lastBuildingUpgrade = {
+        id: building.id,
+        at: Date.now(),
+        level: building.level,
+        productionGain: Math.max(0, building.productionPerHour - beforeProduction),
+        powerGain,
+        ascended,
+        stageName: afterStage.label,
+      };
+      playSfx('village_upgrade', { volume: 0.58 });
+      if (ascended) playSfx('reward_daily_claim', { volume: 0.5 });
+      createRewardBurst({ power: powerGain }, { element: card });
+      createUpgradeBurst(card, ascended ? '단계 승급' : '건물 강화', building.assetUrl);
+      if (ascended) {
+        card.classList.add('is-ascended');
+        window.setTimeout(() => card.classList.remove('is-ascended'), 1500);
+      }
+      return { message: ascended ? `${building.name} ${afterStage.label} 승급` : `${building.name} 강화 완료` };
+    }));
+    grid.append(card);
+  }
+  panel.append(grid);
+}
+
 function renderHeroesPanel(panel) {
   panel.append(panelHead('영웅', `${state.heroes.owned.length}/50`));
   panel.append(el('p', 'panel-note', '상세 버튼에서 현재 장착 장비를 크게 확인하고, 훈련은 골드와 식량을 사용해 전투력을 올립니다.'));
@@ -2051,7 +2186,7 @@ function renderPanel() {
   ui.suppressPanelScrollSave = true;
   panel.textContent = '';
   if (nextTab === 'combat') renderCombatPanel(panel);
-  if (nextTab === 'village') renderVillagePanel(panel);
+  if (nextTab === 'village') renderVillagePanelV2(panel);
   if (nextTab === 'heroes') renderHeroesPanel(panel);
   if (nextTab === 'equipment') renderEquipmentPanel(panel);
   if (nextTab === 'shop') renderShopPanel(panel);

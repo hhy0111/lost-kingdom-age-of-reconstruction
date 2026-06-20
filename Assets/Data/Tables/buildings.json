@@ -3,84 +3,84 @@
     "id": "building_palace",
     "order": 1,
     "name": "왕궁",
-    "maxLevel": 5,
+    "maxLevel": 30,
     "productionType": "kingdom"
   },
   {
     "id": "building_inn",
     "order": 2,
     "name": "여관",
-    "maxLevel": 5,
+    "maxLevel": 30,
     "productionType": "hero"
   },
   {
     "id": "building_blacksmith",
     "order": 3,
     "name": "대장간",
-    "maxLevel": 5,
+    "maxLevel": 30,
     "productionType": "crafting"
   },
   {
     "id": "building_farm",
     "order": 4,
     "name": "농장",
-    "maxLevel": 5,
+    "maxLevel": 30,
     "productionType": "food"
   },
   {
     "id": "building_lumber_mill",
     "order": 5,
     "name": "벌목소",
-    "maxLevel": 5,
+    "maxLevel": 30,
     "productionType": "wood"
   },
   {
     "id": "building_quarry",
     "order": 6,
     "name": "채석장",
-    "maxLevel": 5,
+    "maxLevel": 30,
     "productionType": "stone"
   },
   {
     "id": "building_mine",
     "order": 7,
     "name": "광산",
-    "maxLevel": 5,
+    "maxLevel": 30,
     "productionType": "ore"
   },
   {
     "id": "building_magic_tower",
     "order": 8,
     "name": "마법탑",
-    "maxLevel": 5,
+    "maxLevel": 30,
     "productionType": "magicStone"
   },
   {
     "id": "building_market",
     "order": 9,
     "name": "시장",
-    "maxLevel": 5,
+    "maxLevel": 30,
     "productionType": "gold"
   },
   {
     "id": "building_explorer_guild",
     "order": 10,
     "name": "탐험가 길드",
-    "maxLevel": 5,
+    "maxLevel": 30,
     "productionType": "expedition"
   },
   {
     "id": "building_research_lab",
     "order": 11,
     "name": "연구소",
-    "maxLevel": 5,
+    "maxLevel": 30,
     "productionType": "research"
   },
   {
     "id": "building_city_wall",
     "order": 12,
     "name": "성벽",
-    "maxLevel": 5,
+    "maxLevel": 30,
     "productionType": "defense"
   }
 ]

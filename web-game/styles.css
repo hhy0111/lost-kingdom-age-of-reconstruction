@@ -355,9 +355,22 @@ button {
 }
 
 .building-card {
-  min-height: 268px;
-  grid-template-rows: auto 52px minmax(42px, 1fr) 42px;
+  min-height: 304px;
+  grid-template-rows: auto 58px minmax(44px, 1fr) 42px;
   align-content: stretch;
+}
+
+.building-card.building-tier-2,
+.building-card.building-tier-3,
+.building-card.building-tier-4,
+.building-card.building-tier-5,
+.building-card.building-tier-6 {
+  border-color: rgba(209, 155, 56, 0.46);
+  box-shadow: inset 0 0 0 1px rgba(255, 248, 223, 0.74);
+}
+
+.building-card.is-ascended {
+  animation: building-ascend-pulse 1.45s ease-out;
 }
 
 .building-card .card-help {
@@ -386,6 +399,44 @@ button {
   font-weight: 800;
 }
 
+.building-title-line {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 6px;
+}
+
+.building-stage-badge {
+  max-width: 88px;
+  border: 1px solid rgba(209, 155, 56, 0.48);
+  background: linear-gradient(180deg, #fff3ce, #e8d596);
+  color: #594316;
+  padding: 3px 6px;
+  font-size: 10px;
+  font-weight: 900;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.building-milestone-track {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 3px;
+  height: 6px;
+}
+
+.building-milestone-track span {
+  min-width: 0;
+  background: rgba(24, 33, 31, 0.12);
+}
+
+.building-milestone-track span.filled {
+  background: linear-gradient(90deg, #4f8b62, #d19b38);
+  box-shadow: 0 0 8px rgba(209, 155, 56, 0.24);
+}
+
 .upgrade-preview-text {
   color: #765a18;
   font-weight: 800;
@@ -401,6 +452,14 @@ button {
   padding: 7px 8px;
   box-shadow: 0 0 0 1px rgba(255, 248, 223, 0.64) inset, 0 8px 18px rgba(209, 155, 56, 0.16);
   animation: building-result-pop 0.42s ease-out both;
+}
+
+.building-upgrade-result.ascended {
+  border-color: rgba(255, 209, 102, 0.82);
+  background:
+    radial-gradient(circle at 16% 44%, rgba(255, 255, 255, 0.68), transparent 34%),
+    linear-gradient(135deg, #fff1b8, #d8b34c 48%, #6d8b54);
+  box-shadow: 0 0 0 1px rgba(255, 248, 223, 0.82) inset, 0 12px 24px rgba(209, 155, 56, 0.26);
 }
 
 .building-result-slot {
@@ -1880,6 +1939,28 @@ button {
   35% {
     box-shadow: 0 0 0 4px rgba(255, 209, 102, 0.42);
     transform: scale(1.018);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rgba(255, 209, 102, 0);
+    transform: scale(1);
+  }
+}
+
+@keyframes building-ascend-pulse {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 209, 102, 0);
+    transform: scale(1);
+  }
+
+  22% {
+    box-shadow: 0 0 0 5px rgba(255, 209, 102, 0.46), 0 16px 26px rgba(209, 155, 56, 0.22);
+    transform: scale(1.026);
+  }
+
+  58% {
+    box-shadow: 0 0 0 2px rgba(255, 248, 223, 0.8), 0 10px 20px rgba(63, 125, 92, 0.18);
+    transform: scale(1.012);
   }
 
   100% {
