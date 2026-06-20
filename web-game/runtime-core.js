@@ -1005,7 +1005,7 @@
     return { ok: true, forced: false, placement };
   }
 
-  function mockPurchase(state, data, productId, now = Date.now()) {
+  function fulfillPurchase(state, data, productId, transactionId, now = Date.now()) {
     const product = data.shop.iapProducts.find((entry) => entry.id === productId);
     if (!product) throw new Error(`Unknown product ${productId}`);
 
@@ -1035,11 +1035,20 @@
       productId,
       at: now,
       priceKrw: product.priceKrw,
-      transactionId: `mock_${productId}_${now}`,
+      transactionId,
     });
     recalculatePower(state);
     addLog(state, `${productId} 지급 완료`, 'reward');
     return { ok: true, product };
+  }
+
+  function fulfillStorePurchase(state, data, productId, transactionId, now = Date.now()) {
+    if (!transactionId) throw new Error('missing_store_transaction_id');
+    return fulfillPurchase(state, data, productId, transactionId, now);
+  }
+
+  function mockPurchase(state, data, productId, now = Date.now()) {
+    return fulfillPurchase(state, data, productId, `mock_${productId}_${now}`, now);
   }
 
   function claimLoginReward(state, data, now = Date.now()) {
@@ -1140,6 +1149,7 @@
     claimLoginReward,
     createNewGame,
     equipBest,
+    fulfillStorePurchase,
     loadGame,
     mockPurchase,
     openEquipmentChest,

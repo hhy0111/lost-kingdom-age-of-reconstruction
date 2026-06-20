@@ -30,6 +30,11 @@ node_modules/
 npm-debug.log*
 *.log
 
+# Android/Gradle generated output
+.gradle/
+local.properties
+android-app/build/
+
 # .NET build output
 bin/
 
@@ -41,6 +46,8 @@ output/
 .env
 .env.*
 !.env.example
+keystore.properties
+android-signing/
 *.keystore
 *.jks
 *.p12

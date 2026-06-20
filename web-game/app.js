@@ -64,6 +64,117 @@ const ui = {
   heroDetailId: null,
 };
 
+const nativeMonetization = {
+  nextRequestId: 1,
+  rewardedAdRequests: new Map(),
+  purchaseRequests: new Map(),
+  restoreRequests: new Map(),
+};
+
+function nextNativeRequestId(prefix) {
+  nativeMonetization.nextRequestId += 1;
+  return `${prefix}_${Date.now()}_${nativeMonetization.nextRequestId}`;
+}
+
+function parseNativePayload(payload) {
+  if (!payload) return {};
+  if (typeof payload === 'string') {
+    try {
+      return JSON.parse(payload);
+    } catch {
+      return {};
+    }
+  }
+  return payload;
+}
+
+function resolveNativeRequest(map, payload) {
+  const result = parseNativePayload(payload);
+  const entry = map.get(result.requestId);
+  if (!entry) return;
+  clearTimeout(entry.timeout);
+  map.delete(result.requestId);
+  entry.resolve(result);
+}
+
+function requestNativeRewardedAd(placementId) {
+  if (state?.entitlements?.removeAds) {
+    return Promise.resolve({ success: true, native: false, skipped: true });
+  }
+  if (!window.LostKingdomAds?.showRewardedAd) {
+    return Promise.resolve({ success: true, native: false, fallback: true });
+  }
+  const requestId = nextNativeRequestId('ad');
+  return new Promise((resolve) => {
+    const timeout = setTimeout(() => {
+      nativeMonetization.rewardedAdRequests.delete(requestId);
+      resolve({ requestId, placementId, success: false, status: 'timeout', message: '광고 응답 시간이 초과되었습니다.' });
+    }, 240000);
+    nativeMonetization.rewardedAdRequests.set(requestId, { resolve, timeout });
+    try {
+      window.LostKingdomAds.showRewardedAd(placementId, requestId);
+    } catch (error) {
+      clearTimeout(timeout);
+      nativeMonetization.rewardedAdRequests.delete(requestId);
+      resolve({ requestId, placementId, success: false, status: 'bridge_error', message: error.message });
+    }
+  });
+}
+
+function requestNativePurchase(productId) {
+  if (!window.LostKingdomBilling?.purchaseProduct) {
+    return Promise.resolve({ success: true, native: false, fallback: true });
+  }
+  const requestId = nextNativeRequestId('purchase');
+  return new Promise((resolve) => {
+    const timeout = setTimeout(() => {
+      nativeMonetization.purchaseRequests.delete(requestId);
+      resolve({ requestId, productId, success: false, status: 'timeout', message: '결제 응답 시간이 초과되었습니다.' });
+    }, 240000);
+    nativeMonetization.purchaseRequests.set(requestId, { resolve, timeout });
+    try {
+      window.LostKingdomBilling.purchaseProduct(productId, requestId);
+    } catch (error) {
+      clearTimeout(timeout);
+      nativeMonetization.purchaseRequests.delete(requestId);
+      resolve({ requestId, productId, success: false, status: 'bridge_error', message: error.message });
+    }
+  });
+}
+
+function requestNativeRestorePurchases() {
+  if (!window.LostKingdomBilling?.restorePurchases) {
+    return Promise.resolve({ success: false, native: false, fallback: true, restoredProductIds: [] });
+  }
+  const requestId = nextNativeRequestId('restore');
+  return new Promise((resolve) => {
+    const timeout = setTimeout(() => {
+      nativeMonetization.restoreRequests.delete(requestId);
+      resolve({ requestId, success: false, status: 'timeout', restoredProductIds: [] });
+    }, 240000);
+    nativeMonetization.restoreRequests.set(requestId, { resolve, timeout });
+    try {
+      window.LostKingdomBilling.restorePurchases(requestId);
+    } catch (error) {
+      clearTimeout(timeout);
+      nativeMonetization.restoreRequests.delete(requestId);
+      resolve({ requestId, success: false, status: 'bridge_error', message: error.message, restoredProductIds: [] });
+    }
+  });
+}
+
+window.onLostKingdomRewardedAdResult = (payload) => {
+  resolveNativeRequest(nativeMonetization.rewardedAdRequests, payload);
+};
+
+window.onLostKingdomPurchaseResult = (payload) => {
+  resolveNativeRequest(nativeMonetization.purchaseRequests, payload);
+};
+
+window.onLostKingdomRestoreResult = (payload) => {
+  resolveNativeRequest(nativeMonetization.restoreRequests, payload);
+};
+
 function createAudioManager() {
   const registry = new Map();
   const bgm = new Audio();
@@ -970,7 +1081,16 @@ function actionFeedbackSnapshot() {
   });
 }
 
-function claimRewardedAd(placementId, now = Date.now()) {
+async function claimRewardedAd(placementId, now = Date.now()) {
+  const nativeResult = await requestNativeRewardedAd(placementId);
+  if (!nativeResult.success) {
+    playSfx('ui_button_disabled');
+    return {
+      ok: false,
+      reason: nativeResult.status || 'ad_unavailable',
+      message: nativeResult.message || '광고를 아직 사용할 수 없습니다.',
+    };
+  }
   const result = Runtime.claimAdReward(state, data, placementId, now);
   if (result.ok) {
     playSfx(state.entitlements.removeAds ? 'ad_skip_entitlement' : 'ad_reward_claim', { volume: 0.52 });
@@ -980,9 +1100,26 @@ function claimRewardedAd(placementId, now = Date.now()) {
   return result;
 }
 
-function completeMockPurchase(productId, now = Date.now()) {
+async function completeStorePurchase(productId, now = Date.now()) {
   playSfx('purchase_open', { volume: 0.42 });
-  const result = Runtime.mockPurchase(state, data, productId, now);
+  const nativeResult = await requestNativePurchase(productId);
+  if (!nativeResult.success) {
+    playSfx('purchase_cancel', { volume: 0.46 });
+    return {
+      ok: false,
+      reason: nativeResult.status || 'purchase_failed',
+      message: nativeResult.message || '결제가 완료되지 않았습니다.',
+    };
+  }
+  const result = nativeResult.native === false
+    ? Runtime.mockPurchase(state, data, productId, now)
+    : Runtime.fulfillStorePurchase(
+      state,
+      data,
+      productId,
+      nativeResult.transactionId || nativeResult.orderId || `store_${productId}_${now}`,
+      now
+    );
   if (result.ok) {
     playSfx('purchase_success');
   } else {
@@ -991,16 +1128,44 @@ function completeMockPurchase(productId, now = Date.now()) {
   return result;
 }
 
+function completeMockPurchase(productId, now = Date.now()) {
+  return completeStorePurchase(productId, now);
+}
+
+async function restoreStorePurchases(now = Date.now()) {
+  const nativeResult = await requestNativeRestorePurchases();
+  if (!nativeResult.success) {
+    return {
+      ok: false,
+      message: nativeResult.native === false ? 'Android 앱에서 구매 복원을 사용할 수 있습니다.' : '복원할 구매가 없습니다.',
+    };
+  }
+  const restoredProductIds = nativeResult.restoredProductIds || [];
+  let restored = 0;
+  for (const productId of restoredProductIds) {
+    const product = data.shop.iapProducts.find((entry) => entry.id === productId);
+    if (!product || product.productType === 'consumable') continue;
+    const result = Runtime.fulfillStorePurchase(state, data, productId, `restore_${productId}_${now}`);
+    if (result.ok) restored += 1;
+  }
+  if (restored > 0) {
+    playSfx('purchase_restore', { volume: 0.5 });
+    return { ok: true, message: `${restored}개 구매 복원 완료` };
+  }
+  return { ok: false, message: '새로 복원할 구매가 없습니다.' };
+}
+
 function makeButton(label, className, onClick) {
   const button = el('button', `btn ${className || ''}`, label);
   button.type = 'button';
-  button.addEventListener('click', () => {
+  button.addEventListener('click', async () => {
     ui.userInteracted = true;
     audioManager?.unlock();
     playSfx('ui_tap_confirm_01');
+    button.disabled = true;
     try {
       const before = actionFeedbackSnapshot();
-      const result = onClick();
+      const result = await onClick();
       const after = actionFeedbackSnapshot();
       if (result?.message) {
         toast(result.message);
@@ -1012,6 +1177,8 @@ function makeButton(label, className, onClick) {
     } catch (error) {
       playSfx('ui_error_soft');
       toast(error.message === 'not_enough_resources' ? '자원이 부족합니다.' : error.message);
+    } finally {
+      button.disabled = false;
     }
   });
   return button;
@@ -1608,21 +1775,21 @@ function renderCombatPanel(panel) {
       }),
     ]),
     actionCard('오프라인 보상', state.offline.pending ? '2배 가능' : '없음', [
-      makeButton('광고 2배', 'gold', () => {
+      makeButton('광고 2배', 'gold', async () => {
         if (!state.offline.pending || state.offline.pending.claimed) {
           return { message: '받을 오프라인 보상이 없습니다.' };
         }
         const before = resourceSnapshot();
-        const result = claimRewardedAd('ad_offline_reward_x2');
+        const result = await claimRewardedAd('ad_offline_reward_x2');
         if (!result.ok) return { message: '오늘 광고 보상 한도에 도달했습니다.' };
         createRewardBurst(resourceGainSince(before), { source: 'daily' });
         return { message: '오프라인 보상 2배 적용' };
       }),
     ], '', 'offlineRewardNote'),
     actionCard('무료 소환', shortAdStatusText('ad_free_summon'), [
-      makeButton('소환', 'primary', () => {
+      makeButton('소환', 'primary', async () => {
         const beforePower = state.power.total;
-        const result = claimRewardedAd('ad_free_summon');
+        const result = await claimRewardedAd('ad_free_summon');
         if (!result.ok) return { message: '오늘 무료 소환 한도에 도달했습니다.' };
         Runtime.recalculatePower(state);
         createRewardBurst({ power: Math.max(0, state.power.total - beforePower) }, { source: 'daily' });
@@ -1631,9 +1798,9 @@ function renderCombatPanel(panel) {
       }),
     ], '', 'freeSummonStatus'),
     actionCard('장비 상자', shortAdStatusText('ad_equipment_box'), [
-      makeButton('열기', 'primary', () => {
+      makeButton('열기', 'primary', async () => {
         const beforePower = state.power.total;
-        const result = claimRewardedAd('ad_equipment_box');
+        const result = await claimRewardedAd('ad_equipment_box');
         if (!result.ok) return { message: '오늘 장비 상자 한도에 도달했습니다.' };
         Runtime.equipBest(state, data);
         Runtime.recalculatePower(state);
@@ -2355,11 +2522,11 @@ function renderStoreProductCard(product, shopProduct) {
   });
 
   const action = el('div', 'shop-action-row');
-  const button = makeButton(owned ? '보유중' : product.productType === 'subscription' ? '구독하기' : '결제', owned ? 'ghost' : 'gold store-pay', () => {
+  const button = makeButton(owned ? '보유중' : product.productType === 'subscription' ? '구독하기' : '결제', owned ? 'ghost' : 'gold store-pay', async () => {
     if (owned) return { message: '이미 보유한 상품입니다.' };
     const before = resourceSnapshot();
     const beforePower = state.power.total;
-    const result = completeMockPurchase(product.id);
+    const result = await completeStorePurchase(product.id);
     Runtime.recalculatePower(state);
     if (result.ok) {
       createRewardBurst(resourceGainSince(before, { power: Math.max(0, state.power.total - beforePower) }), { source: 'shop' });
@@ -2380,9 +2547,9 @@ function renderShopFreeRewards() {
   const grid = el('div', 'card-grid');
   grid.append(
     actionCard('무료 소환', shortAdStatusText('ad_free_summon'), [
-      makeButton('소환', 'primary', () => {
+      makeButton('소환', 'primary', async () => {
         const beforePower = state.power.total;
-        const result = claimRewardedAd('ad_free_summon');
+        const result = await claimRewardedAd('ad_free_summon');
         if (!result.ok) return { message: '오늘 무료 소환 한도에 도달했습니다.' };
         Runtime.recalculatePower(state);
         createRewardBurst({ power: Math.max(0, state.power.total - beforePower) }, { source: 'shop' });
@@ -2391,9 +2558,9 @@ function renderShopFreeRewards() {
       }),
     ], '', 'freeSummonStatus'),
     actionCard('장비 상자', shortAdStatusText('ad_equipment_box'), [
-      makeButton('열기', 'gold', () => {
+      makeButton('열기', 'gold', async () => {
         const beforePower = state.power.total;
-        const result = claimRewardedAd('ad_equipment_box');
+        const result = await claimRewardedAd('ad_equipment_box');
         if (!result.ok) return { message: '오늘 장비 상자 한도에 도달했습니다.' };
         Runtime.equipBest(state, data);
         Runtime.recalculatePower(state);
@@ -2403,9 +2570,9 @@ function renderShopFreeRewards() {
       }),
     ], '', 'equipmentBoxStatus'),
     actionCard('일일 특별 보상', shortAdStatusText('ad_daily_special'), [
-      makeButton('수령', 'gold', () => {
+      makeButton('수령', 'gold', async () => {
         const before = resourceSnapshot();
-        const result = claimRewardedAd('ad_daily_special');
+        const result = await claimRewardedAd('ad_daily_special');
         if (!result.ok) return { message: '오늘 특별 보상 한도에 도달했습니다.' };
         createRewardBurst(resourceGainSince(before), { source: 'shop' });
         createUpgradeBurst(null, '특별 보상', data.assets.currencies[1]?.assetUrl);
@@ -2421,6 +2588,7 @@ function renderShopPanel(panel) {
   panel.append(panelHead('상점', state.entitlements.removeAds ? '광고 제거 보유' : '무료/결제 보상'));
   panel.append(renderShopFreeRewards());
   panel.append(panelHead('결제 상품', '출시 상품 구성'));
+  panel.append(el('div', 'shop-restore-row', makeButton('구매 복원', 'ghost', async () => restoreStorePurchases())));
   const products = new Map(data.shop.shopProducts.map((product) => [product.id, product]));
   const list = el('div', 'shop-product-list');
   for (const product of data.shop.iapProducts) {
