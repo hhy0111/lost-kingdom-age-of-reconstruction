@@ -1,4 +1,4 @@
-const CACHE_NAME = 'lost-kingdom-runtime-v30';
+const CACHE_NAME = 'lost-kingdom-runtime-v31';
 const CORE_ASSETS = [
   './',
   'index.html',

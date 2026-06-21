@@ -398,7 +398,7 @@ test('playable web game shell exposes canvas, PWA files, emulator server, and ve
   assert.match(styles, /\.lobby-help/);
   assert.match(styles, /\.thumb-row div/);
   assert.match(styles, /\.row > div/);
-  assert.match(serviceWorker, /lost-kingdom-runtime-v30/);
+  assert.match(serviceWorker, /lost-kingdom-runtime-v31/);
   assert.match(serviceWorker, /privacy-policy\.html/);
   assert.match(serviceWorker, /audio-manifest\.json/);
   assert.match(server, /0\.0\.0\.0/);
@@ -419,7 +419,7 @@ test('install manifest exposes project-safe app icons for PWA installation', () 
   assert.ok(manifest.icons.some((icon) => icon.src === 'icons/app-icon-512.png' && icon.sizes === '512x512' && icon.purpose === 'any'));
   assert.ok(manifest.icons.some((icon) => icon.src === 'icons/app-icon-maskable-512.png' && icon.sizes === '512x512' && icon.purpose === 'maskable'));
   assert.match(indexHtml, /rel="apple-touch-icon" href="icons\/app-icon-192\.png"/);
-  assert.match(serviceWorker, /lost-kingdom-runtime-v30/);
+  assert.match(serviceWorker, /lost-kingdom-runtime-v31/);
   assert.match(serviceWorker, /icons\/app-icon-192\.png/);
   assert.match(serviceWorker, /icons\/app-icon-512\.png/);
   assert.match(serviceWorker, /icons\/app-icon-maskable-512\.png/);

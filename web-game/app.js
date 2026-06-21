@@ -3166,8 +3166,12 @@ async function boot() {
     return response.json();
   });
   audioManager = createAudioManager();
-  await audioManager.load(AUDIO_MANIFEST_URL);
   audioManager?.setEnabled(isSoundEnabled());
+  audioManager.load(AUDIO_MANIFEST_URL).then(() => {
+    audioManager?.setEnabled(isSoundEnabled());
+    if (ui.userInteracted) audioManager?.unlock();
+    setBgmForContext();
+  });
 
   const saved = localStorage.getItem(data.project.saveKey);
   state = Runtime.loadGame(saved, data, { now: Date.now() });

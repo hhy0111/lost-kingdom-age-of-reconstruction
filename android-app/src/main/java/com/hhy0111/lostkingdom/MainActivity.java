@@ -3,6 +3,7 @@ package com.hhy0111.lostkingdom;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.pm.ApplicationInfo;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -16,6 +17,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.webkit.WebViewAssetLoader;
 
@@ -81,7 +84,7 @@ public final class MainActivity extends Activity {
         FrameLayout root = createLaunchRoot();
         rootView = root;
         setContentView(root);
-        root.postDelayed(() -> attachWebView(root), 1000);
+        root.postDelayed(() -> attachWebView(root), 6500);
     }
 
     @Override
@@ -121,12 +124,48 @@ public final class MainActivity extends Activity {
 
         FrameLayout overlay = new FrameLayout(this);
         overlay.setBackgroundColor(getColor(R.color.app_splash_background));
+
+        LinearLayout content = new LinearLayout(this);
+        content.setGravity(Gravity.CENTER);
+        content.setOrientation(LinearLayout.VERTICAL);
+        content.setPadding(dp(28), 0, dp(28), 0);
+
         ImageView logo = new ImageView(this);
         logo.setImageResource(R.mipmap.ic_launcher);
         logo.setScaleType(ImageView.ScaleType.FIT_CENTER);
         int logoSize = dp(156);
-        FrameLayout.LayoutParams logoParams = new FrameLayout.LayoutParams(logoSize, logoSize, Gravity.CENTER);
-        overlay.addView(logo, logoParams);
+        LinearLayout.LayoutParams logoParams = new LinearLayout.LayoutParams(logoSize, logoSize);
+        logoParams.setMargins(0, 0, 0, dp(26));
+        content.addView(logo, logoParams);
+
+        TextView title = new TextView(this);
+        title.setText(R.string.app_launch_title);
+        title.setTextColor(0xFFF8F0D8);
+        title.setTextSize(24);
+        title.setTypeface(Typeface.DEFAULT_BOLD);
+        title.setGravity(Gravity.CENTER);
+        content.addView(title, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+
+        TextView message = new TextView(this);
+        message.setText(R.string.app_launch_message);
+        message.setTextColor(0xFFD8D0B8);
+        message.setTextSize(15);
+        message.setGravity(Gravity.CENTER);
+        LinearLayout.LayoutParams messageParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+        messageParams.setMargins(0, dp(10), 0, 0);
+        content.addView(message, messageParams);
+
+        overlay.addView(content, new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                Gravity.CENTER
+        ));
         root.addView(overlay, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT

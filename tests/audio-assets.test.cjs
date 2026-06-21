@@ -40,6 +40,8 @@ test('web game runtime exposes audio manager hooks and sound manifest', () => {
   assert.equal(audioManifest.length, 156);
   assert.match(app, /createAudioManager/);
   assert.match(app, /audio-manifest\.json/);
+  assert.doesNotMatch(app, /await audioManager\.load\(AUDIO_MANIFEST_URL\)/);
+  assert.match(app, /audioManager\.load\(AUDIO_MANIFEST_URL\)\.then\(\(\) =>/);
   assert.match(app, /setSoundEnabled/);
   assert.match(app, /audioManager\?\.setEnabled/);
   assert.match(app, /enabled/);
@@ -51,6 +53,6 @@ test('web game runtime exposes audio manager hooks and sound manifest', () => {
   assert.match(app, /playSfx\('reward_daily_claim'\)/);
   assert.match(app, /playSfx\('purchase_success'\)/);
   assert.match(app, /setBgmForContext/);
-  assert.match(serviceWorker, /lost-kingdom-runtime-v30/);
+  assert.match(serviceWorker, /lost-kingdom-runtime-v31/);
   assert.match(serviceWorker, /audio-manifest\.json/);
 });

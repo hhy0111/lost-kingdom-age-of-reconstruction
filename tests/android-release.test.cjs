@@ -23,6 +23,7 @@ test('android app bundle project uses the production AdMob and Play Billing SDKs
   const build = read('android-app/build.gradle.kts');
   const manifest = read('android-app/src/main/AndroidManifest.xml');
   const activity = read('android-app/src/main/java/com/hhy0111/lostkingdom/MainActivity.java');
+  const strings = read('android-app/src/main/res/values/strings.xml');
   const styles = read('android-app/src/main/res/values/styles.xml');
   const splashStyles = read('android-app/src/main/res/values-v31/styles.xml');
 
@@ -53,9 +54,13 @@ test('android app bundle project uses the production AdMob and Play Billing SDKs
   assert.match(styles, /android:windowBackground">@color\/app_splash_background/);
   assert.match(splashStyles, /android:windowSplashScreenBackground">@color\/app_splash_background/);
   assert.match(splashStyles, /android:windowSplashScreenAnimatedIcon">@mipmap\/ic_launcher/);
+  assert.match(strings, /name="app_launch_title">왕국 재건 준비 중/);
+  assert.match(strings, /name="app_launch_message">전투 기록과 사운드 자원을 준비/);
 
   assert.match(activity, /REWARDED_AD_UNIT_ID = "ca-app-pub-4402708884038037\/6509654325"/);
   assert.match(activity, /MobileAds\.initialize/);
+  assert.match(activity, /import android\.widget\.LinearLayout;/);
+  assert.match(activity, /import android\.widget\.TextView;/);
   assert.match(activity, /WebViewAssetLoader/);
   assert.match(activity, /https:\/\/appassets\.androidplatform\.net\/assets\/web-game\/index\.html/);
   assert.match(activity, /\.addPathHandler\("\/Assets\/", new WebViewAssetLoader\.AssetsPathHandler\(this\)\)/);
@@ -70,9 +75,12 @@ test('android app bundle project uses the production AdMob and Play Billing SDKs
   assert.match(activity, /acknowledgePurchase/);
   assert.match(activity, /queryPurchasesAsync/);
   assert.match(activity, /FrameLayout createLaunchRoot\(\)/);
+  assert.match(activity, /setText\(R\.string\.app_launch_title\)/);
+  assert.match(activity, /setText\(R\.string\.app_launch_message\)/);
   assert.match(activity, /void attachWebView\(FrameLayout root\)/);
   assert.match(activity, /void showGameSurface\(\)/);
-  assert.match(activity, /root\.postDelayed\(\(\) -> attachWebView\(root\), 1000\)/);
+  assert.match(activity, /root\.postDelayed\(\(\) -> attachWebView\(root\), 6500\)/);
+  assert.doesNotMatch(activity, /root\.postDelayed\(\(\) -> attachWebView\(root\), 1000\)/);
   assert.match(activity, /onPageFinished/);
   assert.match(activity, /webView\.setBackgroundColor\(getColor\(R\.color\.app_splash_background\)\)/);
   assert.doesNotMatch(activity, /showGameSurface\(\), 6000/);
