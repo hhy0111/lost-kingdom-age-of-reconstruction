@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebResourceRequest;
@@ -13,6 +15,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import androidx.webkit.WebViewAssetLoader;
 
@@ -60,8 +63,11 @@ public final class MainActivity extends Activity {
     private static final Map<String, ProductConfig> PRODUCTS_BY_GOOGLE_ID = indexProductConfigs(PRODUCTS_BY_INTERNAL_ID);
 
     private WebView webView;
+    private FrameLayout rootView;
+    private View launchOverlay;
     private RewardedAd rewardedAd;
     private boolean rewardedAdLoading;
+    private boolean adsInitialized;
     private BillingClient billingClient;
     private boolean billingConnecting;
     private PurchaseRequest activePurchaseRequest;
@@ -72,19 +78,10 @@ public final class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        webView = new WebView(this);
-        webView.setLayoutParams(new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-        ));
-        configureWebView(webView);
-        webView.addJavascriptInterface(new AdsBridge(), "LostKingdomAds");
-        webView.addJavascriptInterface(new BillingBridge(), "LostKingdomBilling");
-        setContentView(webView);
-
-        initializeAds();
-        initializeBilling();
-        webView.loadUrl(GAME_URL);
+        FrameLayout root = createLaunchRoot();
+        rootView = root;
+        setContentView(root);
+        root.postDelayed(() -> attachWebView(root), 1000);
     }
 
     @Override
@@ -93,7 +90,9 @@ public final class MainActivity extends Activity {
         if (billingClient != null && !billingClient.isReady()) {
             connectBilling();
         }
-        loadRewardedAd();
+        if (adsInitialized) {
+            loadRewardedAd();
+        }
     }
 
     @Override
@@ -102,11 +101,85 @@ public final class MainActivity extends Activity {
             webView.destroy();
             webView = null;
         }
+        launchOverlay = null;
+        rootView = null;
         if (billingClient != null) {
             billingClient.endConnection();
             billingClient = null;
         }
+        adsInitialized = false;
         super.onDestroy();
+    }
+
+    private FrameLayout createLaunchRoot() {
+        FrameLayout root = new FrameLayout(this);
+        root.setLayoutParams(new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        ));
+        root.setBackgroundColor(getColor(R.color.app_splash_background));
+
+        FrameLayout overlay = new FrameLayout(this);
+        overlay.setBackgroundColor(getColor(R.color.app_splash_background));
+        ImageView logo = new ImageView(this);
+        logo.setImageResource(R.mipmap.ic_launcher);
+        logo.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        int logoSize = dp(156);
+        FrameLayout.LayoutParams logoParams = new FrameLayout.LayoutParams(logoSize, logoSize, Gravity.CENTER);
+        overlay.addView(logo, logoParams);
+        root.addView(overlay, new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        ));
+        launchOverlay = overlay;
+        return root;
+    }
+
+    @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
+    private void attachWebView(FrameLayout root) {
+        if (webView != null) {
+            return;
+        }
+
+        webView = new WebView(this);
+        webView.setAlpha(0f);
+        webView.setBackgroundColor(getColor(R.color.app_splash_background));
+        webView.setLayoutParams(new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        ));
+        configureWebView(webView);
+        webView.addJavascriptInterface(new AdsBridge(), "LostKingdomAds");
+        webView.addJavascriptInterface(new BillingBridge(), "LostKingdomBilling");
+        root.addView(webView, 0);
+
+        webView.loadUrl(GAME_URL);
+        webView.postDelayed(() -> showGameSurface(), 45000);
+    }
+
+    private void showGameSurface() {
+        if (webView != null) {
+            webView.animate().alpha(1f).setDuration(180).start();
+        }
+
+        View overlay = launchOverlay;
+        if (overlay == null) {
+            return;
+        }
+        launchOverlay = null;
+        overlay.animate()
+                .alpha(0f)
+                .setDuration(180)
+                .withEndAction(() -> {
+                    if (rootView != null) {
+                        rootView.removeView(overlay);
+                    }
+                })
+                .start();
+    }
+
+    private int dp(int value) {
+        return Math.round(value * getResources().getDisplayMetrics().density);
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -133,15 +206,25 @@ public final class MainActivity extends Activity {
             public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest request) {
                 return assetLoader.shouldInterceptRequest(request.getUrl());
             }
+
+            @Override
+            public void onPageFinished(WebView webView, String url) {
+                showGameSurface();
+            }
         });
     }
 
-    private void initializeAds() {
+    private void ensureAdsInitialized() {
+        if (adsInitialized) {
+            loadRewardedAd();
+            return;
+        }
+        adsInitialized = true;
         MobileAds.initialize(this, initializationStatus -> loadRewardedAd());
     }
 
     private void loadRewardedAd() {
-        if (rewardedAd != null || rewardedAdLoading) {
+        if (!adsInitialized || rewardedAd != null || rewardedAdLoading) {
             return;
         }
         rewardedAdLoading = true;
@@ -168,8 +251,8 @@ public final class MainActivity extends Activity {
     }
 
     private void showRewardedAd(String placementId, String requestId) {
+        ensureAdsInitialized();
         if (rewardedAd == null) {
-            loadRewardedAd();
             notifyRewardedResult(requestId, placementId, false, "not_ready", "Rewarded ad is not ready yet.");
             return;
         }
@@ -216,7 +299,10 @@ public final class MainActivity extends Activity {
         callJavaScript("window.onLostKingdomRewardedAdResult", payload);
     }
 
-    private void initializeBilling() {
+    private void ensureBillingInitialized() {
+        if (billingClient != null) {
+            return;
+        }
         billingClient = BillingClient.newBuilder(this)
                 .setListener(this::onPurchasesUpdated)
                 .enablePendingPurchases(PendingPurchasesParams.newBuilder().enableOneTimeProducts().build())
@@ -276,6 +362,7 @@ public final class MainActivity extends Activity {
             notifyPurchaseResult(requestId, productId, false, "unknown_product", "Unknown product.", null);
             return;
         }
+        ensureBillingInitialized();
         runWhenBillingReady(
                 () -> queryAndLaunchBillingFlow(config, requestId),
                 () -> notifyPurchaseResult(requestId, productId, false, "billing_unavailable", "Google Play Billing is unavailable.", null)
@@ -360,6 +447,7 @@ public final class MainActivity extends Activity {
     }
 
     private void restorePurchases(String requestId) {
+        ensureBillingInitialized();
         runWhenBillingReady(
                 () -> queryRestorableProducts(requestId),
                 () -> notifyRestoreResult(requestId, false, "billing_unavailable", Collections.emptyList())

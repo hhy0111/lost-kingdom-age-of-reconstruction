@@ -4,8 +4,10 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowBackground">@color/app_splash_background</item>
-        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowSplashScreenBackground">@color/app_splash_background</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
         <item name="android:navigationBarColor">#1f342a</item>
         <item name="android:statusBarColor">#1f342a</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 </resources>

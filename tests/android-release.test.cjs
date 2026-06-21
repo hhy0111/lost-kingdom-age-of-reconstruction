@@ -23,6 +23,8 @@ test('android app bundle project uses the production AdMob and Play Billing SDKs
   const build = read('android-app/build.gradle.kts');
   const manifest = read('android-app/src/main/AndroidManifest.xml');
   const activity = read('android-app/src/main/java/com/hhy0111/lostkingdom/MainActivity.java');
+  const styles = read('android-app/src/main/res/values/styles.xml');
+  const splashStyles = read('android-app/src/main/res/values-v31/styles.xml');
 
   assert.match(settings, /include\(":android-app"\)/);
   assert.match(build, /namespace = "com\.hhy0111\.lostkingdom"/);
@@ -48,6 +50,9 @@ test('android app bundle project uses the production AdMob and Play Billing SDKs
   assert.match(manifest, /android\.permission\.ACCESS_NETWORK_STATE/);
   assert.match(manifest, /com\.google\.android\.gms\.ads\.APPLICATION_ID/);
   assert.match(manifest, /ca-app-pub-4402708884038037~5285192241/);
+  assert.match(styles, /android:windowBackground">@color\/app_splash_background/);
+  assert.match(splashStyles, /android:windowSplashScreenBackground">@color\/app_splash_background/);
+  assert.match(splashStyles, /android:windowSplashScreenAnimatedIcon">@mipmap\/ic_launcher/);
 
   assert.match(activity, /REWARDED_AD_UNIT_ID = "ca-app-pub-4402708884038037\/6509654325"/);
   assert.match(activity, /MobileAds\.initialize/);
@@ -64,6 +69,39 @@ test('android app bundle project uses the production AdMob and Play Billing SDKs
   assert.match(activity, /consumeAsync/);
   assert.match(activity, /acknowledgePurchase/);
   assert.match(activity, /queryPurchasesAsync/);
+  assert.match(activity, /FrameLayout createLaunchRoot\(\)/);
+  assert.match(activity, /void attachWebView\(FrameLayout root\)/);
+  assert.match(activity, /void showGameSurface\(\)/);
+  assert.match(activity, /root\.postDelayed\(\(\) -> attachWebView\(root\), 1000\)/);
+  assert.match(activity, /onPageFinished/);
+  assert.match(activity, /webView\.setBackgroundColor\(getColor\(R\.color\.app_splash_background\)\)/);
+  assert.doesNotMatch(activity, /showGameSurface\(\), 6000/);
+  assert.match(activity, /showGameSurface\(\), 45000/);
+  assert.match(activity, /void ensureAdsInitialized\(\)/);
+  assert.match(activity, /void ensureBillingInitialized\(\)/);
+  assert.doesNotMatch(activity, /postDelayed\(\(\) -> startNativeMonetization/);
+
+  const firstContentIndex = activity.indexOf('setContentView(root);');
+  const createWebViewIndex = activity.indexOf('new WebView(this);');
+  const loadGameIndex = activity.indexOf('webView.loadUrl(GAME_URL);');
+  const showRewardedIndex = activity.indexOf('private void showRewardedAd');
+  const adsInitializeIndex = activity.indexOf('ensureAdsInitialized();', showRewardedIndex);
+  const adShowIndex = activity.indexOf('if (rewardedAd == null)', showRewardedIndex);
+  const startPurchaseIndex = activity.indexOf('private void startPurchase');
+  const billingInitializeIndex = activity.indexOf('ensureBillingInitialized();', startPurchaseIndex);
+  const billingReadyIndex = activity.indexOf('runWhenBillingReady(', startPurchaseIndex);
+  assert.ok(firstContentIndex !== -1, 'native launch content must be attached before WebView creation');
+  assert.ok(createWebViewIndex !== -1, 'WebView creation must exist');
+  assert.ok(firstContentIndex < createWebViewIndex, 'native launch content must draw before WebView engine creation');
+  assert.ok(loadGameIndex !== -1, 'game load call must exist');
+  assert.ok(showRewardedIndex !== -1, 'rewarded ad bridge method must exist');
+  assert.ok(adsInitializeIndex !== -1, 'ads must be initialized lazily from the ad bridge');
+  assert.ok(adShowIndex !== -1, 'rewarded ad readiness check must exist');
+  assert.ok(adsInitializeIndex < adShowIndex, 'ad SDK initialization must happen before ad readiness is checked');
+  assert.ok(startPurchaseIndex !== -1, 'purchase bridge method must exist');
+  assert.ok(billingInitializeIndex !== -1, 'billing must be initialized lazily from purchase and restore flows');
+  assert.ok(billingReadyIndex !== -1, 'billing readiness check must exist');
+  assert.ok(billingInitializeIndex < billingReadyIndex, 'billing client must be created before billing readiness is checked');
 });
 
 test('android purchase bridge covers every Google Play product id in the catalog', () => {
