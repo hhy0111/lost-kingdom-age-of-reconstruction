@@ -32,7 +32,8 @@ test('android app bundle project uses the production AdMob and Play Billing SDKs
   assert.match(build, /applicationId = "com\.hhy0111\.lostkingdom"/);
   assert.match(build, /compileSdk = 35/);
   assert.match(build, /targetSdk = 35/);
-  assert.match(build, /versionCode = 1/);
+  assert.match(build, /versionCode = 2/);
+  assert.match(build, /versionName = "1\.0\.1"/);
   assert.match(build, /com\.google\.android\.gms:play-services-ads:25\.0\.0/);
   assert.match(build, /com\.android\.billingclient:billing:9\.1\.0/);
   assert.match(build, /androidx\.webkit:webkit:1\.12\.1/);
