@@ -18,11 +18,11 @@ val hasReleaseSigning = listOf("storeFile", "storePassword", "keyAlias", "keyPas
     .all { releaseSigningProperty(it) != null }
 
 android {
-    namespace = "com.lostkingdom.reconstruction"
+    namespace = "com.hhy0111.lostkingdom"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.lostkingdom.reconstruction"
+        applicationId = "com.hhy0111.lostkingdom"
         minSdk = 23
         targetSdk = 35
         versionCode = 1

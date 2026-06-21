@@ -14,7 +14,7 @@ This repository now contains the internal monetization contract, service layer, 
 - `PurchaseService` starts purchases through the store adapter, rejects failed/pending-invalid results, validates receipt presence, checks product identity, prevents duplicate transaction fulfillment, and exposes restore flow handling.
 - `PurchaseLedger` prevents duplicate fulfillment by transaction ID.
 - `NonEmptyPurchaseReceiptValidator` provides the local validation gate and can be replaced by a server-backed validator later.
-- `android-app/` builds the Google Play Android App Bundle with package `com.lostkingdom.reconstruction`.
+- `android-app/` builds the Google Play Android App Bundle with package `com.hhy0111.lostkingdom`.
 - Android rewarded ads use Google Mobile Ads SDK `25.0.0` and grant value only after `OnUserEarnedRewardListener`.
 - Android purchases use Google Play Billing Library `9.1.0`, consume consumables, acknowledge non-consumables/subscriptions, and expose purchase restore.
 - `npm run build:android:aab` creates `android-app/build/outputs/bundle/release/lost-kingdom-release-signed.aab` when local signing files are present.

@@ -13,11 +13,11 @@ test('android app bundle project uses the production AdMob and Play Billing SDKs
   const settings = read('settings.gradle.kts');
   const build = read('android-app/build.gradle.kts');
   const manifest = read('android-app/src/main/AndroidManifest.xml');
-  const activity = read('android-app/src/main/java/com/lostkingdom/reconstruction/MainActivity.java');
+  const activity = read('android-app/src/main/java/com/hhy0111/lostkingdom/MainActivity.java');
 
   assert.match(settings, /include\(":android-app"\)/);
-  assert.match(build, /namespace = "com\.lostkingdom\.reconstruction"/);
-  assert.match(build, /applicationId = "com\.lostkingdom\.reconstruction"/);
+  assert.match(build, /namespace = "com\.hhy0111\.lostkingdom"/);
+  assert.match(build, /applicationId = "com\.hhy0111\.lostkingdom"/);
   assert.match(build, /compileSdk = 35/);
   assert.match(build, /targetSdk = 35/);
   assert.match(build, /versionCode = 1/);
@@ -48,7 +48,7 @@ test('android app bundle project uses the production AdMob and Play Billing SDKs
 
 test('android purchase bridge covers every Google Play product id in the catalog', () => {
   const products = JSON.parse(read('Assets/Data/Tables/iap_products.json'));
-  const activity = read('android-app/src/main/java/com/lostkingdom/reconstruction/MainActivity.java');
+  const activity = read('android-app/src/main/java/com/hhy0111/lostkingdom/MainActivity.java');
 
   for (const product of products) {
     assert.match(activity, new RegExp(product.id));
