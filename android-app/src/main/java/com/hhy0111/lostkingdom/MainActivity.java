@@ -7,10 +7,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+
+import androidx.webkit.WebViewAssetLoader;
 
 import com.android.billingclient.api.AcknowledgePurchaseParams;
 import com.android.billingclient.api.BillingClient;
@@ -49,7 +53,7 @@ import java.util.Map;
 
 public final class MainActivity extends Activity {
     private static final String TAG = "LostKingdom";
-    private static final String GAME_URL = "file:///android_asset/web-game/index.html";
+    private static final String GAME_URL = "https://appassets.androidplatform.net/assets/web-game/index.html";
     private static final String REWARDED_AD_UNIT_ID = "ca-app-pub-4402708884038037/6509654325";
 
     private static final Map<String, ProductConfig> PRODUCTS_BY_INTERNAL_ID = buildProductConfigs();
@@ -115,11 +119,21 @@ public final class MainActivity extends Activity {
         settings.setDomStorageEnabled(true);
         settings.setDatabaseEnabled(true);
         settings.setMediaPlaybackRequiresUserGesture(false);
-        settings.setAllowFileAccess(true);
-        settings.setAllowFileAccessFromFileURLs(true);
+        settings.setAllowFileAccess(false);
+        settings.setAllowFileAccessFromFileURLs(false);
         settings.setAllowUniversalAccessFromFileURLs(false);
         settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
-        view.setWebViewClient(new WebViewClient());
+
+        WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder()
+                .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(this))
+                .addPathHandler("/Assets/", new WebViewAssetLoader.AssetsPathHandler(this))
+                .build();
+        view.setWebViewClient(new WebViewClient() {
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest request) {
+                return assetLoader.shouldInterceptRequest(request.getUrl());
+            }
+        });
     }
 
     private void initializeAds() {

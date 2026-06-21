@@ -9,6 +9,15 @@ function read(relativePath) {
   return fs.readFileSync(path.join(rootDir, relativePath), 'utf8');
 }
 
+function pngSize(relativePath) {
+  const buffer = fs.readFileSync(path.join(rootDir, relativePath));
+  assert.equal(buffer.toString('ascii', 1, 4), 'PNG', `${relativePath} must be a PNG`);
+  return {
+    width: buffer.readUInt32BE(16),
+    height: buffer.readUInt32BE(20),
+  };
+}
+
 test('android app bundle project uses the production AdMob and Play Billing SDKs', () => {
   const settings = read('settings.gradle.kts');
   const build = read('android-app/build.gradle.kts');
@@ -23,9 +32,17 @@ test('android app bundle project uses the production AdMob and Play Billing SDKs
   assert.match(build, /versionCode = 1/);
   assert.match(build, /com\.google\.android\.gms:play-services-ads:25\.0\.0/);
   assert.match(build, /com\.android\.billingclient:billing:9\.1\.0/);
-  assert.match(build, /tasks\.register<Copy>\("syncWebGameAssets"/);
+  assert.match(build, /androidx\.webkit:webkit:1\.12\.1/);
+  assert.match(build, /tasks\.register<Sync>\("syncWebGameAssets"/);
+  assert.match(build, /val maxAndroidArtDimension = 640/);
+  assert.match(build, /tasks\.register\("prepareAndroidArtAssets"\)/);
+  assert.match(build, /val androidAudioSampleRate = 22050\.0f/);
+  assert.match(build, /tasks\.register\("prepareAndroidAudioAssets"\)/);
+  assert.match(build, /exclude\("audio\/\*\*"\)/);
   assert.match(build, /tasks\.register\("signReleaseAab"\)/);
   assert.match(build, /from\(rootProject\.layout\.projectDirectory\.dir\("web-game"\)\)/);
+  assert.match(build, /rootProject\.layout\.projectDirectory\.dir\("Assets\/Art"\)/);
+  assert.match(build, /into\("Art"\)/);
 
   assert.match(manifest, /android\.permission\.INTERNET/);
   assert.match(manifest, /android\.permission\.ACCESS_NETWORK_STATE/);
@@ -34,6 +51,9 @@ test('android app bundle project uses the production AdMob and Play Billing SDKs
 
   assert.match(activity, /REWARDED_AD_UNIT_ID = "ca-app-pub-4402708884038037\/6509654325"/);
   assert.match(activity, /MobileAds\.initialize/);
+  assert.match(activity, /WebViewAssetLoader/);
+  assert.match(activity, /https:\/\/appassets\.androidplatform\.net\/assets\/web-game\/index\.html/);
+  assert.match(activity, /\.addPathHandler\("\/Assets\/", new WebViewAssetLoader\.AssetsPathHandler\(this\)\)/);
   assert.match(activity, /RewardedAd\.load/);
   assert.match(activity, /OnUserEarnedRewardListener/);
   assert.match(activity, /notifyRewardedResult\(requestId, placementId, true/);
@@ -53,6 +73,24 @@ test('android purchase bridge covers every Google Play product id in the catalog
   for (const product of products) {
     assert.match(activity, new RegExp(product.id));
     assert.match(activity, new RegExp(product.googlePlayProductId.replace(/\./g, '\\.')));
+  }
+});
+
+test('android launcher icons use install-safe density assets', () => {
+  assert.deepEqual(pngSize('android-app/src/main/res/drawable-nodpi/ic_launcher_foreground.png'), {
+    width: 1024,
+    height: 1024,
+  });
+
+  for (const [density, size] of [
+    ['mipmap-mdpi', 48],
+    ['mipmap-hdpi', 72],
+    ['mipmap-xhdpi', 96],
+    ['mipmap-xxhdpi', 144],
+    ['mipmap-xxxhdpi', 192],
+  ]) {
+    assert.deepEqual(pngSize(`android-app/src/main/res/${density}/ic_launcher.png`), { width: size, height: size });
+    assert.deepEqual(pngSize(`android-app/src/main/res/${density}/ic_launcher_round.png`), { width: size, height: size });
   }
 });
 
